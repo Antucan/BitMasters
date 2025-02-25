@@ -1,1 +1,13 @@
-<p>login works!</p>
+
+<section>
+    <div id="loginBox">
+        <h2>Login</h2>
+        <label>
+            <span>Nombre</span>
+            <input type="text" placeholder="Nombre de usuario" [(ngModel)]="name" name="username" required>
+        </label>
+        <label>
+            <input type="password" placeholder="Contraseña" [(ngModel)]="pass" name="password" required>
+        </label>
+    </div>
+</section>
