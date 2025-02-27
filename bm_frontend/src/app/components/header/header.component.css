@@ -1,0 +1,11 @@
+header {
+    background-color: #222222;
+    height: 12vh;
+    position: fixed;
+}
+
+.logo {
+    height: 100px;
+    padding: 10px;
+}
+
