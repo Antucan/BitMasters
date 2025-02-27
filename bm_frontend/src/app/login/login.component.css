@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'RetroGaming';
+    src: url('/../../assets/fonts/RetroGaming.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #loginBackground {
     position: absolute;
     top: 0;
@@ -9,33 +16,41 @@
     display: flex;
 }
 
-#loginBox{
+#loginBox {
+    font-family: 'RetroGaming';
     z-index: 1;
-    width: 450px;
-    height: 300px;
+    width: 400px;
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #8A00C7, #430061);
     border-radius: 10px;
-    margin: 0 auto;
-    margin-top: 100px;
+    margin: 200px auto 0px auto;
     padding: 20px;
     text-align: center;
-    box-shadow: 5px 5px 5px 5px #a2a2a2;
+    box-shadow: 5px 5px 5px 5px #616060;
     color: rgb(231, 231, 231);
 }
 
-#nameField{
+#loginLine {
+    width: 90%;
+    height: 1px;
+    background-color: #00C3FF; 
+    border-radius: 5px;
+    margin: 15px auto;
+}
+
+
+#nameField {
     width: 100%;
     margin: 10px 0px 10px 0px;
 }
 
-#passField{
+#passField {
     width: 100%;
     margin: 10px 0px 10px 0px;
 
 }
 
-#loginButton{
+#loginButton {
     margin: 10px 0px 10px 0px;
-
+    background-color: #00C3FF;
 }
