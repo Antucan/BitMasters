@@ -9,10 +9,10 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3",
-        "doctrine/doctrine-bundle": "^2.13",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "doctrine/orm": "^3.3",
+        "doctrine/dbal": "^3.9.4",
+        "doctrine/doctrine-bundle": "^2.13.2",
+        "doctrine/doctrine-migrations-bundle": "^3.4.1",
+        "doctrine/orm": "^2.12 || ^3.3.2",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2",
@@ -75,6 +75,6 @@
         }
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.62"
+        "symfony/maker-bundle": "^1.62.1"
     }
 }
