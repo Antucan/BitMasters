@@ -1,0 +1,16 @@
+<div>
+    <div id="loginBackground"></div>
+    <div id="loginBox" class="flex-container">
+        <h2>Login</h2>
+        <hr id="loginLine">
+        <label id="nameField">
+            <span>Nombre</span>
+            <input type="text" id="loginName" class="form-control" placeholder="Nombre de usuario" [value]="name" (input)="updateName($event)" required>
+        </label>
+        <label id="passField">
+            <span>Contraseña</span>
+            <input type="password" id="loginPass" class="form-control" placeholder="Contraseña" [value]="pass" (input)="updatePass($event)" required>
+        </label>
+        <button type="button" class="btn btn-info" id="loginButton" (click)="showData()">Login</button>
+    </div>
+</div>

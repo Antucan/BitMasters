@@ -1,0 +1,49 @@
+.user-actions {
+    background-size: 18px;
+    padding-left: 40px;
+    background-color: white;
+    height: 40px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.user-actions:hover{
+    background-color: lightgray;
+    border-color: black;
+    cursor: pointer;
+}
+
+
+.login {
+    display: inline-block;
+    margin-top: 5px;
+    text-align: left;
+    color: black;
+    cursor: pointer;
+    font-family: 'RetroGaming', sans-serif;
+    text-decoration: none;
+    font-size: small;
+}   
+
+
+.login:hover{
+
+    text-decoration: underline;
+
+}
+
+
+.user-icon{
+    display: inline-block;
+    height: 30px;
+    margin-left: 30px;
+ 
+}
+
+.bag-icon{
+    display: inline-block;
+    height: 40px;
+    margin-left: 20px;
+
+}
