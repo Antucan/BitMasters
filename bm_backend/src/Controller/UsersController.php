@@ -21,6 +21,15 @@ final class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
         ]);
     }
+    //find user by name returning a json
+    #[Route('/name', name: 'app_users_find', methods: ['GET'])]
+    public function find(UsersRepository $usersRepository, Request $request): Response
+    {
+        $name = $request->query->get('name');
+        $users = $usersRepository->findByName($name);
+        
+        return $this->json($users);
+    }
 
     #[Route('/new', name: 'app_users_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
