@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/users')]
 final class UsersController extends AbstractController
@@ -22,24 +23,21 @@ final class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_users_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new', name: 'app_users_new', methods: ['POST'])]
+    public function new(Request $request): JsonResponse
     {
-        $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
+        $name = $request->request->get("name");
+        $surname = $request->request->get("surname");
+        $phone = $request->request->get("phone");
+        $mail = $request->request->get("mail");
+        $password = $request->request->get("password");
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+        if(isset($name) && isset($surname) && isset($mail) && isset($password)){
+            return new JsonResponse(["name" => $name, "surname" => $surname]);
+        }else{
+            return new JsonResponse(["sdfasdf" => "dsfadsf"]);
         }
-
-        return $this->render('users/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+        return new JsonResponse(["sdfasdf" => "dsfadsf"]);
     }
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
