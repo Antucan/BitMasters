@@ -21,9 +21,9 @@ final class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
         ]);
     }
-    //find user by name returning a json
-    #[Route('/name', name: 'app_users_find', methods: ['GET'])]
-    public function find(UsersRepository $usersRepository, Request $request): Response
+    //find user by name 
+    #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
+    public function findByName(UsersRepository $usersRepository, Request $request): Response
     {
         $name = $request->query->get('name');
         if (empty($name)) {
@@ -45,6 +45,50 @@ final class UsersController extends AbstractController
             return [
                 'id' => $user->getId(),
                 'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail()
+            ];
+        }, $users);
+
+        return $this->json($data);
+    }
+
+    // find user by mail
+    #[Route('/mail', name: 'app_users_findByMail', methods: ['GET'])]
+    public function findByMail(UsersRepository $usersRepository, Request $request): Response
+    {
+        $mail = $request->query->get('mail');
+        if (empty($mail)) {
+            return $this->json(
+                ['error' => 'No mail provided'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            return $this->json(
+                ['error' => 'Invalid mail format'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $users = $usersRepository->findByMail($mail);
+
+        if (empty($users)) {
+            return $this->json(
+                ['error' => 'No users found with mail ' . $mail],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        $data = array_map(function ($user) {
+            return [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail()
             ];
         }, $users);
 
