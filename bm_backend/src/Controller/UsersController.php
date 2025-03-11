@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Roles;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
@@ -97,7 +98,7 @@ final class UsersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_users_new', methods: ['POST'])]
-    public function new(Request $request): JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $name = $request->request->get("name");
         $surname = $request->request->get("surname");
@@ -106,7 +107,19 @@ final class UsersController extends AbstractController
         $password = $request->request->get("password");
 
         if(isset($name) && isset($surname) && isset($mail) && isset($password)){
-            return new JsonResponse(["name" => $name, "surname" => $surname]);
+            $user = new Users();
+            $user->setName($name);
+            $user->setSurname($surname);
+            $user->setPhone($phone);
+            $user->setMail($mail);
+            $user->setPassword($password);
+            $user->setRole(new Roles());
+
+            $entityManager->persist($user);
+
+            $entityManager->flush();
+
+            return new JsonResponse(["datos" => "correcto"]);
         }else{
             return new JsonResponse(["sdfasdf" => "dsfadsf"]);
         }

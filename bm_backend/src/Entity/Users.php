@@ -88,6 +88,18 @@ class Users
 
         return $this;
     }
+    public function getPassword(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setPassword(string $mail): static
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
 
     public function getRole(): ?Roles
     {
