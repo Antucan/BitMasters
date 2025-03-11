@@ -25,8 +25,11 @@ class Users
     #[ORM\Column(length: 255)]
     private ?string $mail = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: "role", referencedColumnName: "id", nullable: false)]
     private ?Roles $role = null;
 
     public function getId(): ?int
@@ -90,16 +93,15 @@ class Users
     }
     public function getPassword(): ?string
     {
-        return $this->mail;
+        return $this->password;
     }
 
-    public function setPassword(string $mail): static
+    public function setPassword(string $password): static
     {
-        $this->mail = $mail;
+        $this->password = $password;
 
         return $this;
     }
-
 
     public function getRole(): ?Roles
     {
