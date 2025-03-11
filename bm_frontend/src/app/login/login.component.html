@@ -2,7 +2,7 @@
     <div id="loginBackground"></div>
     <div id="loginBox" class="flex-container">
         <h2>Login</h2>
-        <hr id="loginLine">
+        <div id="loginLine"></div>
         <label id="nameField">
             <span>Nombre</span>
             <input type="text" id="loginName" class="form-control" placeholder="Nombre de usuario" [value]="name" (input)="updateName($event)" required>
@@ -11,6 +11,7 @@
             <span>Contraseña</span>
             <input type="password" id="loginPass" class="form-control" placeholder="Contraseña" [value]="pass" (input)="updatePass($event)" required>
         </label>
+        <button id="registerMessage" class="customButton" [routerLink]="['/app-register']">No tienes una cuenta aun? Registrate ya!</button>
         <button type="button" class="btn btn-info" id="loginButton" (click)="showData()">Login</button>
     </div>
 </div>

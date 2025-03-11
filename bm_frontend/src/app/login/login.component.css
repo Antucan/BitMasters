@@ -18,8 +18,9 @@
 
 #loginBox {
     font-family: 'RetroGaming';
+    font-size: 20px;
     z-index: 1;
-    width: 400px;
+    width: 500px;
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #8A00C7, #430061);
     border-radius: 10px;
@@ -31,13 +32,13 @@
 }
 
 #loginLine {
+    display: flex;
     width: 90%;
-    height: 1px;
+    height: 3px;
     background-color: #00C3FF; 
     border-radius: 5px;
     margin: 15px auto;
 }
-
 
 #nameField {
     width: 100%;
@@ -46,11 +47,18 @@
 
 #passField {
     width: 100%;
-    margin: 10px 0px 10px 0px;
+    margin: 20px 0px 10px 0px;
 
 }
 
-#loginButton {
+#registerMessage{
+    width: 100%;
     margin: 10px 0px 10px 0px;
+    font-size: 15px;
+}
+
+#loginButton {
+    margin: 20px 0px 10px 0px;
     background-color: #00C3FF;
+    padding: 10px 50px 10px 50px; 
 }
