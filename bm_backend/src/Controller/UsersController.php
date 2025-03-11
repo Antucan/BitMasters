@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Roles;
 use App\Entity\Users;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/users')]
 final class UsersController extends AbstractController
@@ -95,24 +97,33 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/new', name: 'app_users_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new', name: 'app_users_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
-        $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
+        $name = $request->request->get("name");
+        $surname = $request->request->get("surname");
+        $phone = $request->request->get("phone");
+        $mail = $request->request->get("mail");
+        $password = $request->request->get("password");
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if(isset($name) && isset($surname) && isset($mail) && isset($password)){
+            $user = new Users();
+            $user->setName($name);
+            $user->setSurname($surname);
+            $user->setPhone($phone);
+            $user->setMail($mail);
+            $user->setPassword($password);
+            $user->setRole(new Roles());
+
             $entityManager->persist($user);
+
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+            return new JsonResponse(["datos" => "correcto"]);
+        }else{
+            return new JsonResponse(["sdfasdf" => "dsfadsf"]);
         }
-
-        return $this->render('users/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+        return new JsonResponse(["sdfasdf" => "dsfadsf"]);
     }
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
