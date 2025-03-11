@@ -19,7 +19,7 @@ final class Version20250225154107 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
+        // Unificación de los cambios de ambas ramas
         $this->addSql('CREATE TABLE users (
             id INT AUTO_INCREMENT NOT NULL, 
             name VARCHAR(255) NOT NULL,
