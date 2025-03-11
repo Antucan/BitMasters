@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250227143941 extends AbstractMigration
+final class Version20250224144708 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -19,17 +19,16 @@ final class Version20250227143941 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE credit_cards (
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE roles (
             id INT AUTO_INCREMENT NOT NULL, 
-            card_number VARCHAR(255) NOT NULL,
-            ccv VARCHAR(255) NOT NULL,
-            expiration_date INT DEFAULT NULL,
-            holder_name VARCHAR(255) NOT NULL,
+            role_name VARCHAR(255) NOT NULL,
             PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DROP TABLE credit_cards');
+        $this->addSql('DROP TABLE roles');
+
     }
 }

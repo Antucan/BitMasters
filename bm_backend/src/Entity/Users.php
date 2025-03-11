@@ -25,6 +25,10 @@ class Users
     #[ORM\Column(length: 255)]
     private ?string $mail = null;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Roles $role = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -33,7 +37,6 @@ class Users
     public function setId(int $id): static
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -45,7 +48,6 @@ class Users
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -57,7 +59,6 @@ class Users
     public function setSurname(string $surname): static
     {
         $this->surname = $surname;
-
         return $this;
     }
 
@@ -69,7 +70,6 @@ class Users
     public function setPhone(?int $phone): static
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -81,7 +81,28 @@ class Users
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+        return $this;
+    }
 
+    public function getPassword(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setPassword(string $mail): static
+    {
+        $this->mail = $mail;
+        return $this;
+    }
+
+    public function getRole(): ?Roles
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Roles $role): static
+    {
+        $this->role = $role;
         return $this;
     }
 }
