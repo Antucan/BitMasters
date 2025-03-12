@@ -40,7 +40,6 @@ class Users
     public function setId(int $id): static
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -52,7 +51,6 @@ class Users
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -64,7 +62,6 @@ class Users
     public function setSurname(string $surname): static
     {
         $this->surname = $surname;
-
         return $this;
     }
 
@@ -76,7 +73,6 @@ class Users
     public function setPhone(?int $phone): static
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -88,9 +84,9 @@ class Users
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
-
         return $this;
     }
+
     public function getPassword(): ?string
     {
         return $this->password;
@@ -99,7 +95,6 @@ class Users
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -111,7 +106,6 @@ class Users
     public function setRole(?Roles $role): static
     {
         $this->role = $role;
-
         return $this;
     }
 }

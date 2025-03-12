@@ -1,11 +1,31 @@
-header {
-    background-color: #222222;
-    height: 12vh;
-    position: fixed;
+nav {
+    width: 100vw;
+    height: 8vh;
+    background: linear-gradient(0deg, #8A00C7 28%, #430061 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
-.logo {
-    height: 100px;
-    padding: 10px;
+.search-input {
+    background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat left 10px center;
+    background-size: 18px;
+    padding-left: 40px;
+    background-color: white;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
+.search-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: inherit;
+}
+
+i {
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}

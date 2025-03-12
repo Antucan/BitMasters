@@ -24,7 +24,7 @@ final class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
         ]);
     }
-    //find user by name 
+
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
     public function findByName(UsersRepository $usersRepository, Request $request): Response
     {
@@ -57,7 +57,6 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    // find user by mail
     #[Route('/mail', name: 'app_users_findByMail', methods: ['GET'])]
     public function findByMail(UsersRepository $usersRepository, Request $request): Response
     {
@@ -107,7 +106,7 @@ final class UsersController extends AbstractController
         $mail = $request->request->get("mail");
         $password = $request->request->get("password");
 
-        if(isset($name) && isset($surname) && isset($mail) && isset($password)){
+        if (isset($name) && isset($surname) && isset($mail) && isset($password)) {
             $user = new Users();
             $user->setName($name);
             $user->setSurname($surname);
@@ -118,14 +117,12 @@ final class UsersController extends AbstractController
             $user->setRole($role->findOneByID(2));
 
             $entityManager->persist($user);
-
             $entityManager->flush();
 
             return new JsonResponse(["datos" => "correcto"]);
-        }else{
+        } else {
             return new JsonResponse(["sdfasdf" => "dsfadsf"]);
         }
-        return new JsonResponse(["sdfasdf" => "dsfadsf"]);
     }
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
