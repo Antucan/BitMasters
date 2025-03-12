@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Roles;
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Repository\RolesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -97,7 +98,7 @@ final class UsersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_users_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role): JsonResponse
     {
         $name = $request->request->get("name");
         $surname = $request->request->get("surname");
@@ -112,7 +113,8 @@ final class UsersController extends AbstractController
             $user->setPhone($phone);
             $user->setMail($mail);
             $user->setPassword($password);
-            $user->setRole(new Roles());
+            
+            $user->setRole($role->findOneByID(2));
 
             $entityManager->persist($user);
             $entityManager->flush();
