@@ -39,4 +39,13 @@ class UsersRepository extends ServiceEntityRepository
                   ->getQuery()
                   ->getResult();
           }
+        
+       public function findById(int $id)
+       {
+           return $this->createQueryBuilder('u')
+               ->andWhere('u.id = :id')
+               ->setParameter('id', $id)
+               ->getQuery()
+               ->getResult();
+       }
 }

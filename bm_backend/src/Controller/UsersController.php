@@ -119,9 +119,9 @@ final class UsersController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return new JsonResponse(["datos" => "correcto"]);
+            return new JsonResponse(["Ok" => "Peticion realizada correctamente"]);
         } else {
-            return new JsonResponse(["sdfasdf" => "dsfadsf"]);
+            return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
         }
     }
 
@@ -151,14 +151,18 @@ final class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_users_delete', methods: ['POST'])]
-    public function delete(Request $request, Users $user, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
+    public function delete(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($user);
-            $entityManager->flush();
+        $user = $entityManager->getRepository(Users::class)->findById($id);
+
+        if(empty($user)){
+            return new JsonResponse (["Error" => "User not found"]);
         }
 
-        return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+        // $entityManager->remove($user);
+        // $entityManager->flush();
+
+        return new JsonResponse (["Ok" => "User deleted succesfully"]);
     }
 }
