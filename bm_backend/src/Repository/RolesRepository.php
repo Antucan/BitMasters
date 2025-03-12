@@ -31,13 +31,13 @@ class RolesRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Roles
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+       public function findOneByID(int $id): ?Roles
+       {
+           return $this->createQueryBuilder('r')
+               ->andWhere('r.id = :val')
+               ->setParameter('val', $id)
+               ->getQuery()
+               ->getOneOrNullResult()
+           ;
+       }
 }
