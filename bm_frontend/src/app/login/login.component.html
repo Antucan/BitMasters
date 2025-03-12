@@ -1,17 +1,17 @@
 <div>
     <div id="loginBackground"></div>
     <div id="loginBox" class="flex-container">
-        <h2>Login</h2>
+        <h1>Login</h1>
         <div id="loginLine"></div>
         <label id="nameField">
             <span>Nombre</span>
-            <input type="text" id="loginName" class="form-control" placeholder="Nombre de usuario" [value]="name" (input)="updateName($event)" required>
+            <input type="text" id="loginName" class="form-control" [value]="name" (input)="updateName($event)" required>
         </label>
         <label id="passField">
             <span>Contraseña</span>
-            <input type="password" id="loginPass" class="form-control" placeholder="Contraseña" [value]="pass" (input)="updatePass($event)" required>
+            <input type="password" id="loginPass" class="form-control" [value]="pass" (input)="updatePass($event)" required>
         </label>
-        <button id="registerMessage" class="customButton" [routerLink]="['/app-register']">No tienes una cuenta aun? Registrate ya!</button>
-        <button type="button" class="btn btn-info" id="loginButton" (click)="showData()">Login</button>
+        <span id="registerMessage">No tienes una cuenta aun? <a id="registerLink" routerLink="/register">Registrate ya!</a></span>
+        <button type="button" class="btn btn-info" id="loginButton" (click)="send()">Login</button>
     </div>
 </div>
