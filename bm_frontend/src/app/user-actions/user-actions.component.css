@@ -12,24 +12,23 @@
     padding: 0 15px; /* Padding horizontal */
     border-radius: 5px;
     border: 1px solid #ccc;
+    cursor: pointer; /* Cambia el cursor a un puntero */
 }
 
 .user-action:hover {
     background-color: lightgray;
     border-color: black;
-    cursor: pointer;
 }
 
 .login, .cart {
     color: black;
-    cursor: pointer;
     font-family: 'RetroGaming', sans-serif;
-    text-decoration: none;
     font-size: small;
+    text-decoration: none; /* Elimina el subrayado por defecto */
 }
 
 .login:hover, .cart:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Subrayado al hacer hover */
 }
 
 .user-icon, .bag-icon {
