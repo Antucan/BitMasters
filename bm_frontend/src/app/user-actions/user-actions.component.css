@@ -1,49 +1,32 @@
-.user-actions {
-    background-size: 18px;
-    padding-left: 40px;
+.user-actions-container {
+    display: flex;
+    gap: 20px;
+}
+
+.user-action {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     background-color: white;
     height: 40px;
-    width: 300px;
+    padding: 0 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    cursor: pointer; /* Cambia el cursor a un puntero */
 }
 
-.user-actions:hover{
+.user-action:hover {
     background-color: lightgray;
     border-color: black;
-    cursor: pointer;
 }
 
-
-.login {
-    display: inline-block;
-    margin-top: 5px;
-    text-align: left;
+.login, .cart {
     color: black;
-    cursor: pointer;
     font-family: 'RetroGaming', sans-serif;
-    text-decoration: none;
     font-size: small;
-}   
-
-
-.login:hover{
-
-    text-decoration: underline;
-
+    text-decoration: none;
 }
 
-
-.user-icon{
-    display: inline-block;
+.user-icon, .bag-icon {
     height: 30px;
-    margin-left: 30px;
- 
-}
-
-.bag-icon{
-    display: inline-block;
-    height: 40px;
-    margin-left: 20px;
-
 }
