@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
+  standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  imports: [RouterModule]
 })
 export class LoginComponent {
   name: string = '';
@@ -19,7 +23,7 @@ export class LoginComponent {
     this.pass = inputElement.value;
   }
 
-  showData(): void {
+  send(): void {
     console.log('Login:', this.name, this.pass);
   }
 }

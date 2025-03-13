@@ -1,0 +1,24 @@
+<div>
+    <div id="registerBackground"></div>
+    <div id="registerBox" class="flex-container">
+        <h1>Registro</h1>
+        <div id="registerLine"></div>
+        <label id="emailField">
+            <span>Email</span>
+            <input type="email" id="registerEmail" class="form-control" [value]="email" (input)="updateEmail($event)" required>
+        </label>
+        <label id="nameField">
+            <span>Nombre</span>
+            <input type="text" id="registerName" class="form-control" [value]="name" (input)="updateName($event)" required>
+        </label>
+        <label class="passField">
+            <span>Contraseña</span>
+            <input type="password" class="registerPass" class="form-control" [value]="pass" (input)="updatePass($event)" required>
+        </label>
+        <label class="passField">
+            <span>Confirmar Contraseña</span>
+            <input type="password" class="registerPass" class="form-control" [value]="Rpass" (input)="updateRpass($event)" required>
+        </label>
+        <button type="button" class="btn btn-info" id="registerButton" (click)="send()">Registro</button>
+    </div>
+</div>
