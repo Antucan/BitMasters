@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Roles;
 use App\Entity\Users;
 use App\Form\UsersType;
+use App\Repository\RolesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/users')]
 final class UsersController extends AbstractController
@@ -21,7 +24,7 @@ final class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
         ]);
     }
-    //find user by name 
+
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
     public function findByName(UsersRepository $usersRepository, Request $request): Response
     {
@@ -54,7 +57,6 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    // find user by mail
     #[Route('/mail', name: 'app_users_findByMail', methods: ['GET'])]
     public function findByMail(UsersRepository $usersRepository, Request $request): Response
     {
@@ -95,24 +97,32 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/new', name: 'app_users_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new', name: 'app_users_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role): JsonResponse
     {
-        $user = new Users();
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
+        $name = $request->request->get("name");
+        $surname = $request->request->get("surname");
+        $phone = $request->request->get("phone");
+        $mail = $request->request->get("mail");
+        $password = $request->request->get("password");
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (isset($name) && isset($surname) && isset($mail) && isset($password)) {
+            $user = new Users();
+            $user->setName($name);
+            $user->setSurname($surname);
+            $user->setPhone($phone);
+            $user->setMail($mail);
+            $user->setPassword($password);
+            
+            $user->setRole($role->findOneByID(2));
+
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+            return new JsonResponse(["Ok" => "Peticion realizada correctamente"]);
+        } else {
+            return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
         }
-
-        return $this->render('users/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
     }
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
@@ -141,14 +151,18 @@ final class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_users_delete', methods: ['POST'])]
-    public function delete(Request $request, Users $user, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
+    public function delete(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($user);
-            $entityManager->flush();
+        $user = $entityManager->getRepository(Users::class)->findById($id);
+
+        if(empty($user)){
+            return new JsonResponse (["Error" => "User not found"]);
         }
 
-        return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+        // $entityManager->remove($user);
+        // $entityManager->flush();
+
+        return new JsonResponse (["Ok" => "User deleted succesfully"]);
     }
 }

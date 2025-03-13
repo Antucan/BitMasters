@@ -1,5 +1,10 @@
-<div class="user-actions">
-    <a class="login"> INICIAR SESIÓN </a>
-    <img src="../../assets/images/userlogo.png" alt="icon" class="user-icon">
-    <img src="../../assets/images/shopping-bag.png" alt="shopping-icon" class="bag-icon">
+<div class="user-actions-container">
+    <div class="user-action" (click)="redirectTo('/login')">
+        <img src="../../assets/images/userlogo.png" alt="icon" class="user-icon">
+        <span class="login">LOGIN</span>
+    </div>
+    <div class="user-action" (click)="redirectTo('/cart')">
+        <img src="../../assets/images/shopping-bag.png" alt="shopping-icon" class="bag-icon">
+        <span class="cart">CARRITO</span>
+    </div>
 </div>

@@ -26,12 +26,10 @@ final class Version20250227143941 extends AbstractMigration
             expiration_date INT DEFAULT NULL,
             holder_name VARCHAR(255) NOT NULL,
             PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-
     }
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
-
+        $this->addSql('DROP TABLE credit_cards');
     }
 }
