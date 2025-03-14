@@ -29,6 +29,10 @@
   }
 
 #registerBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'RetroGaming';
     font-size: 20px;
     z-index: 1;
@@ -36,7 +40,6 @@
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #8A00C7, #430061);
     border-radius: 15px;
-    margin: 175px auto 0px auto;
     padding: 20px;
     text-align: center;
     box-shadow: 5px 5px 5px 5px #111111;
