@@ -30,6 +30,13 @@ export class LoginComponent {
     this.pass = inputElement.value;
   }
 
+  /*
+  * Login function
+  */
+  login(): void {
+    
+  }
+
   send(): void {
     console.log('Login:', this.name, this.pass);
   }
