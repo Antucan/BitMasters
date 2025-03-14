@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'login',
@@ -9,6 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./login.component.css'],
   imports: [RouterModule]
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class LoginComponent {
   name: string = '';
   pass: string = '';
@@ -25,5 +32,16 @@ export class LoginComponent {
 
   send(): void {
     console.log('Login:', this.name, this.pass);
+  }
+
+  private loginVisible = new BehaviorSubject<boolean>(false);
+  loginVisible$ = this.loginVisible.asObservable();
+
+  showLogin() {
+    this.loginVisible.next(true);
+  }
+
+  hideLogin() {
+    this.loginVisible.next(false);
   }
 }
