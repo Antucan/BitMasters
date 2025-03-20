@@ -1,0 +1,44 @@
+.catalog {
+    position: absolute;
+    top: 8%;
+    left: 0;
+    background: linear-gradient(0deg, #430061 28%, #8A00C7 100%);
+    width: 20%;
+    height: calc(100vh);
+    z-index: 10;
+}
+
+
+.categories-title{
+    display: flex;
+    color: white;
+    font-family: 'RetroGaming', sans-serif;
+    padding-top: 10px;
+    margin-top: 20px;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    font-family: 'RetroGaming', sans-serif;
+    
+}
+
+a:hover{
+    text-decoration: underline;
+    font-size: large;
+   
+}
+
+.list-item {
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    color: white;
+    padding: 25px;
+    list-style: none;
+}
+
+
