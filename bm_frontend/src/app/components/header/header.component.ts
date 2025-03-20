@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -15,4 +16,8 @@ export class HeaderComponent {
   redirectTo(route: string): void {
     this.router.navigate([route]);
   }
+
 }
+
+
+ 
