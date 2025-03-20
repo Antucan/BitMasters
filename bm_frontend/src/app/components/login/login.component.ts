@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -34,7 +34,7 @@ export class LoginComponent {
     console.log('Login:', this.name, this.pass);
   }
 
-  private loginVisible = new BehaviorSubject<boolean>(false);
+  loginVisible = new BehaviorSubject<boolean>(false);
   loginVisible$ = this.loginVisible.asObservable();
 
   showLogin() {
