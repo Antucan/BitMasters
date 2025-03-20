@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [RouterModule]
+  imports: [RouterModule, CommonModule]
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class LoginComponent {
   name: string = '';
   pass: string = '';
@@ -25,5 +32,16 @@ export class LoginComponent {
 
   send(): void {
     console.log('Login:', this.name, this.pass);
+  }
+
+  loginVisible = new BehaviorSubject<boolean>(false);
+  loginVisible$ = this.loginVisible.asObservable();
+
+  showLogin() {
+    this.loginVisible.next(true);
+  }
+
+  hideLogin() {
+    this.loginVisible.next(false);
   }
 }

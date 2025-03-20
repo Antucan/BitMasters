@@ -119,7 +119,7 @@ final class UsersController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return new JsonResponse(["Ok" => "Peticion realizada correctamente"]);
+            return new JsonResponse(["Ok" => "Usuario modificado correctamente"]);
         } else {
             return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
         }
@@ -133,22 +133,32 @@ final class UsersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_users_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Users $user, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
+    public function edit(int $id, Request $request, EntityManagerInterface $entityManager, RolesRepository $role): Response
     {
-        $form = $this->createForm(UsersType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_users_index', [], Response::HTTP_SEE_OTHER);
+        $user = $entityManager->getRepository(Users::class)->findById($id);
+        
+        if(empty($user)){
+            return new JsonResponse(["Error" => "User not found"]);
         }
+        
+        $name = $request->request->get("name");
+        $surname = $request->request->get("surname");
+        $phone = $request->request->get("phone");
+        $mail = $request->request->get("mail");
+        $password = $request->request->get("password");
+        $role_id = $request->request->get("role");
 
-        return $this->render('users/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+        $user->setName($name);
+        $user->setSurname($surname);
+        $user->setPhone($phone);
+        $user->setMail($mail);
+        $user->setPassword($password);
+        $user->setRole($role->findOneByID($role_id));
+
+        $entityManager->flush();
+
+        return new JsonResponse (["Ok" => "Chingchongers"]);
     }
 
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
@@ -160,8 +170,8 @@ final class UsersController extends AbstractController
             return new JsonResponse (["Error" => "User not found"]);
         }
 
-        // $entityManager->remove($user);
-        // $entityManager->flush();
+        $entityManager->remove($user);
+        $entityManager->flush();
 
         return new JsonResponse (["Ok" => "User deleted succesfully"]);
     }

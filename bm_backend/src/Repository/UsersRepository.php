@@ -46,6 +46,6 @@ class UsersRepository extends ServiceEntityRepository
                ->andWhere('u.id = :id')
                ->setParameter('id', $id)
                ->getQuery()
-               ->getResult();
+               ->getOneOrNullResult();
        }
 }

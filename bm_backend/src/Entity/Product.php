@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
+#[ORM\Table(name: 'products')]
 class Product
 {
     #[ORM\Id]
@@ -24,6 +26,10 @@ class Product
 
     #[ORM\Column]
     private ?int $price = null;
+
+    #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
+    private ?Users $user = null;
 
     public function getId(): ?int
     {
@@ -81,6 +87,18 @@ class Product
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
