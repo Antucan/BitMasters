@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [RouterModule]
+  imports: [RouterModule, CommonModule]
 })
 
 @Injectable({
@@ -34,7 +34,7 @@ export class LoginComponent {
     console.log('Login:', this.name, this.pass);
   }
 
-  private loginVisible = new BehaviorSubject<boolean>(false);
+  loginVisible = new BehaviorSubject<boolean>(false);
   loginVisible$ = this.loginVisible.asObservable();
 
   showLogin() {

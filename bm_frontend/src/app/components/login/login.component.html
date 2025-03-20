@@ -1,17 +1,20 @@
-<div>
-    <div id="loginBackground"></div>
-    <div id="loginBox" class="flex-container">
-        <h1>Login</h1>
-        <div id="loginLine"></div>
-        <label id="nameField">
-            <span>Nombre</span>
-            <input type="text" id="loginName" class="form-control" [value]="name" (input)="updateName($event)" required>
-        </label>
-        <label id="passField">
-            <span>Contraseña</span>
-            <input type="password" id="loginPass" class="form-control" [value]="pass" (input)="updatePass($event)" required>
-        </label>
-        <span id="registerMessage">No tienes una cuenta aun? <a id="registerLink" routerLink="/register">Registrate ya!</a></span>
-        <button type="button" class="btn btn-info" id="loginButton" (click)="send()">Login</button>
+<div *ngIf="loginVisible">
+    <div id="loginBackground" (click)="hideLogin()">
+        <div id="loginBox" class="flex-container" (click)="$event.stopPropagation()">
+            <h1>Login</h1>
+            <div id="loginLine"></div>
+            <label id="nameField">
+                <span>Nombre</span>
+                <input type="text" id="loginName" class="form-control" [value]="name" (input)="updateName($event)"
+                    required>
+            </label>
+            <label id="passField">
+                <span>Contraseña</span>
+                <input type="password" id="loginPass" class="form-control" [value]="pass" (input)="updatePass($event)"
+                    required>
+            </label>
+            <span id="registerMessage">No tienes una cuenta aun? <a id="registerLink" routerLink="/register">Registrate ya!</a></span>
+            <button type="button" class="btn btn-info" id="loginButton" (click)="send()">Login</button>
+        </div>
     </div>
 </div>
