@@ -1,11 +1,10 @@
 .offers {
-    width: 100%;
+    width: 100vw;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
     background-color: #4B0082;
     padding-top: 5px;
-    margin-left: 20%;
 }
 
 .offers-text {
