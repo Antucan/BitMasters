@@ -28,21 +28,21 @@ final class UsersController extends AbstractController
     #[Route('/login', name: 'app_users_login', methods: ['POST'])]
     public function login(UsersRepository $usersRepository, Request $request): Response
     {
-        $mail = $request->request->get('mail');
+        $name = $request->request->get('name');
         $password = $request->request->get('password');
 
-        if (empty($mail) || empty($password)) {
+        if (empty($name) || empty($password)) {
             return $this->json(
                 ['error' => 'No mail or password provided'],
                 Response::HTTP_BAD_REQUEST
             );
         }
 
-        $user = $usersRepository->findOneByMail($mail);
+        $user = $usersRepository->findOneByName($name);
 
         if (empty($user)) {
             return $this->json(
-                ['error' => 'No user found with mail ' . $mail],
+                ['error' => 'No user found with mail ' . $name],
                 Response::HTTP_NOT_FOUND
             );
         }
