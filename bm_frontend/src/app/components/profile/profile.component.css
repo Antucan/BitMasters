@@ -4,7 +4,10 @@
     width: 952px;
     border-radius: 10px;
     margin: 0 auto;
-    padding: 1%;
+    padding: 3%;
+}
+section > *{
+    color: white;
 }
 
 .pfp{
@@ -36,6 +39,37 @@
 .profile-content > h2{
     text-align: left;
     position: relative;
-    border-bottom: 3px solid black;
+    color: white;
+    border-bottom: 3px solid rgb(255, 255, 255);
     
+}
+.content{
+    background-color: rgb(148, 92, 253);
+    padding: 20px;
+}
+.purchase-history > .product{
+    background-color: red;
+    padding: 10px;
+}
+.img-product{
+    width: 150px;
+    height: 180px;
+    margin-left:10px;
+}
+
+.product-data{
+    position: relative;
+    margin-left: 10px;
+}
+
+.product-data > div {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.product-name{
+    font-size: 30px;
+    font-style: bold;
+}
+.product-review, .product-price{
+    gap: 50px;
 }

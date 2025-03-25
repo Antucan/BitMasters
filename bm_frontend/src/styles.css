@@ -24,6 +24,6 @@ app-root {
     min-height: 100vh;
 }
 
-router-outlet {
+/* router-outlet {
     flex-grow: 1;
-}
+} */
