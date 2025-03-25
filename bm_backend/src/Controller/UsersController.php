@@ -119,7 +119,7 @@ final class UsersController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return new JsonResponse(["Ok" => "Usuario modificado correctamente"]);
+            return new JsonResponse(["Ok" => "Usuario creado correctamente"]);
         } else {
             return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
         }
