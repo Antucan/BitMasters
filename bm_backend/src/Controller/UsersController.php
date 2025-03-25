@@ -25,6 +25,40 @@ final class UsersController extends AbstractController
         ]);
     }
 
+    #[Route('/login', name: 'app_users_login', methods: ['POST'])]
+    public function login(UsersRepository $usersRepository, Request $request): Response
+    {
+        $mail = $request->request->get('mail');
+        $password = $request->request->get('password');
+
+        if (empty($mail) || empty($password)) {
+            return $this->json(
+                ['error' => 'No mail or password provided'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+
+        $user = $usersRepository->findOneByMail($mail);
+
+        if (empty($user)) {
+            return $this->json(
+                ['error' => 'No user found with mail ' . $mail],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        if ($user->getPassword() !== $password) {
+            return $this->json(
+                ['error' => 'Invalid password'],
+                Response::HTTP_UNAUTHORIZED
+            );
+        }
+
+        return $this->json([
+            'message' => 'Login successful',
+        ]);
+    }
+
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
     public function findByName(UsersRepository $usersRepository, Request $request): Response
     {
@@ -113,7 +147,7 @@ final class UsersController extends AbstractController
             $user->setPhone($phone);
             $user->setMail($mail);
             $user->setPassword($password);
-            
+
             $user->setRole($role->findOneByID(2));
 
             $entityManager->persist($user);
@@ -137,11 +171,11 @@ final class UsersController extends AbstractController
     public function edit(int $id, Request $request, EntityManagerInterface $entityManager, RolesRepository $role): Response
     {
         $user = $entityManager->getRepository(Users::class)->findById($id);
-        
-        if(empty($user)){
+
+        if (empty($user)) {
             return new JsonResponse(["Error" => "User not found"]);
         }
-        
+
         $name = $request->request->get("name");
         $surname = $request->request->get("surname");
         $phone = $request->request->get("phone");
@@ -158,7 +192,7 @@ final class UsersController extends AbstractController
 
         $entityManager->flush();
 
-        return new JsonResponse (["Ok" => "Chingchongers"]);
+        return new JsonResponse(["Ok" => "Chingchongers"]);
     }
 
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
@@ -166,13 +200,13 @@ final class UsersController extends AbstractController
     {
         $user = $entityManager->getRepository(Users::class)->findById($id);
 
-        if(empty($user)){
-            return new JsonResponse (["Error" => "User not found"]);
+        if (empty($user)) {
+            return new JsonResponse(["Error" => "User not found"]);
         }
 
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return new JsonResponse (["Ok" => "User deleted succesfully"]);
+        return new JsonResponse(["Ok" => "User deleted succesfully"]);
     }
 }
