@@ -86,3 +86,7 @@ button .catalog {
 .user-icon, .bag-icon {
     height: 30px;
 }
+
+.searchbar{
+    font-family: 'RetroGaming', sans-serif;
+}
