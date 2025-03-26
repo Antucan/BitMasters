@@ -28,12 +28,15 @@ final class UsersController extends AbstractController
     #[Route('/login', name: 'app_users_login', methods: ['POST'])]
     public function login(UsersRepository $usersRepository, Request $request): Response
     {
-        $name = $request->request->get('name');
-        $password = $request->request->get('password');
+        $data = json_decode($request->getContent(), true);
+        $name = $data['name'] ?? null;
+        $password = $data['password'] ?? null;
+        // $name = $request->request->get('name');
+        // $password = $request->request->get('password');
 
         if (empty($name) || empty($password)) {
             return $this->json(
-                ['error' => 'No mail or password provided'],
+                ['error' => 'No name or password provided'],
                 Response::HTTP_BAD_REQUEST
             );
         }
@@ -42,7 +45,7 @@ final class UsersController extends AbstractController
 
         if (empty($user)) {
             return $this->json(
-                ['error' => 'No user found with mail ' . $name],
+                ['error' => 'No user found with name ' . $name],
                 Response::HTTP_NOT_FOUND
             );
         }
@@ -54,9 +57,7 @@ final class UsersController extends AbstractController
             );
         }
 
-        return $this->json([
-            'message' => 'Login successful',
-        ]);
+        return $this->json(['success' => true], Response::HTTP_OK);
     }
 
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
