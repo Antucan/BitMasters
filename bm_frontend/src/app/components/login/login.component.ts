@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [RouterModule, CommonModule]
+  imports: [RouterModule, CommonModule, FormsModule, HttpClientModule]
 })
 
 @Injectable({
@@ -18,7 +20,10 @@ import { BehaviorSubject } from 'rxjs';
 
 export class LoginComponent {
   name: string = '';
-  pass: string = '';
+  password: string = '';
+  
+
+constructor(private http: HttpClient) { }
 
   updateName(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -27,11 +32,17 @@ export class LoginComponent {
 
   updatePass(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    this.pass = inputElement.value;
+    this.password = inputElement.value;
   }
 
-  send(): void {
-    console.log('Login:', this.name, this.pass);
+  login(): void {
+    console.log('Attempting login with name:', this.name, 'and password:', this.password);
+    const loginData = { name: this.name, password: this.password };
+    this.http.post('/users/login', loginData, { headers: { 'Content-Type': 'application/json' } }).subscribe(response => {
+      console.log('Login successful', response);
+    }, error => {
+      console.error('Login failed', error);
+    });
   }
 
   loginVisible = new BehaviorSubject<boolean>(false);
