@@ -1,23 +1,25 @@
 footer {
     display: flex;
     justify-content: space-between; 
-    height: 15vh;
+    height: 25vh;
     align-items: center;
     padding: 10px 20px;
-    background: linear-gradient(180deg, #8A00C7 28%, #430061 100%);
+    background: linear-gradient(180deg, #430061 0%, #8A00C7 28%, #430061 100%);
+
 }
 
 .bitmasters-logo {
     margin-left: 20px;
     width: 90px;
     height: 90px;
-    border-radius: 30%;
+    border-radius: 20%;
     object-fit: cover;
 }
 
+
 .contact-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
     text-align: center;
     
@@ -30,6 +32,7 @@ ul:hover{
 p {
     color: white;
     margin-bottom: 5px;
+    font-family: 'RetroGaming', sans-serif;
 }
 
 .contact {
@@ -41,6 +44,8 @@ p {
 .li-items {
     color: white;
     text-align: center;
+    padding: 10px;
+    font-family: 'RetroGaming', sans-serif;
 }
 
 .social-container {
@@ -57,5 +62,20 @@ p {
 
 .logos:hover {
     transform: scale(1.2);
+
 }
 
+.social-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    gap: 10px;             
+    margin-right: 40px;
+    text-align: center;
+    padding: 10px;
+}
+
+.social-logos {
+    display: flex;
+    gap: 20px;
+}
