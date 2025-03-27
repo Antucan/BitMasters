@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'RetroGaming';
-    src: url('/../../assets/fonts/RetroGaming.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 #loginBackground {
     position: absolute;
