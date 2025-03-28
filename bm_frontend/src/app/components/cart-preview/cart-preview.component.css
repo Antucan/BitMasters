@@ -1,0 +1,143 @@
+.cart-preview-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100vh;
+    background-color: white;
+    z-index: 9999;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .cart-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 10px 20px;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+  }
+  
+
+.product-info-1 {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    margin-left: 5%;
+    margin-top: 10%;
+}
+
+
+.purchase-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+img {
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px; 
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    font-weight: bolder;
+    color: #8A00C7;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: mediumng ;
+    padding: 20px;
+    display: flex;
+    justify-content: left;
+    font-family: 'RetroGaming', sans-serif;
+}
+
+hr {
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.cart-preview-btn {
+    background-color: #8A00C7;
+    margin-top: 10%;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    font-family: 'RetroGaming', sans-serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+
+}
+
+
+.cart-preview-btn:hover {
+    background-color: #430061;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.product-info-2,
+.product-info-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.purchase-details {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.trash-btn {
+    position: absolute;
+    top: 0;
+    right: -70px; /* mueve el botón más a la derecha */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+
+.trash-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.product-title-with-icon{
+    margin-bottom: 15px;
+}

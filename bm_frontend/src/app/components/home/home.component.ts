@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../login/login.service';
+
+
 
 
 @Component({
@@ -8,12 +11,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [LoginComponent, CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   loginVisible = false;
 
-  constructor(private loginService: LoginComponent) {
+  constructor(private loginService: LoginService) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
     });
