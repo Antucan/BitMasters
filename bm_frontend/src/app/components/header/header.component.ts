@@ -19,7 +19,7 @@ import { LoginService } from '../login/login.service';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private LoginComponent: LoginComponent, private cartService: CartService, private loginService: LoginService) {}
+  constructor(private router: Router, private cartService: CartService, private loginService: LoginService) {}
 
   redirectTo(route: string): void {
     this.router.navigate([route]);
