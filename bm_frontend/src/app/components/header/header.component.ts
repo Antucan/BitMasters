@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { BannerComponent } from '../banner/banner.component';
+import { CartService } from '../cart-preview/cart.service';
+
 
 
 @Component({
@@ -13,7 +15,7 @@ import { BannerComponent } from '../banner/banner.component';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private LoginComponent: LoginComponent) {}
+  constructor(private router: Router, private LoginComponent: LoginComponent, private cartService: CartService) {}
 
   redirectTo(route: string): void {
     this.router.navigate([route]);
@@ -21,6 +23,12 @@ export class HeaderComponent {
 
   showLogin() {
     this.LoginComponent.showLogin();
+  }
+
+ 
+
+  onCartClick() {
+    this.cartService.showCart(); // muestra el carrito
   }
 
 }
