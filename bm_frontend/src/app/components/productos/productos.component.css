@@ -13,7 +13,6 @@
 #productsAndFilters {
     display: flex;
     flex-direction: row;
-    margin: 0px 50px 0px 50px;
 }
 
 #title {
@@ -27,9 +26,8 @@
     display: flex;
     background-color: #8A00C7;
     color: white;
-    margin-right: 30px;
     text-align: center;
-    width: 25%;
+    width: 400px;
     height: 500px;
     border-radius: 20px;
     flex-direction: column;
@@ -46,8 +44,6 @@
     width: 100%;
     border-radius: 20px 20px 0px 0px;
 }
-
-
 
 #price-filter {
     /*Esto queda vacio temporalmente*/
@@ -88,7 +84,7 @@
     margin: 0;
     padding: 20px;
     border-radius: 20px;
-    width: 75%;
+    width: 2000px;
 }
 
 #product {
