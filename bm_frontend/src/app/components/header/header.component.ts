@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { BannerComponent } from '../banner/banner.component';
+
+import { CartService } from '../cart-preview/cart.service';
+
+
+
 import { LoginService } from '../login/login.service';
+
 
 @Component({
   selector: 'app-header',
@@ -13,7 +19,7 @@ import { LoginService } from '../login/login.service';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private LoginComponent: LoginComponent, private cartService: CartService, private loginService: LoginService) {}
 
   redirectTo(route: string): void {
     this.router.navigate([route]);
@@ -21,6 +27,12 @@ export class HeaderComponent {
 
   showLogin() {
     this.loginService.showLogin();
+  }
+
+ 
+
+  onCartClick() {
+    this.cartService.showCart(); // muestra el carrito
   }
 
 }
