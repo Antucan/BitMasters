@@ -7,7 +7,7 @@ import { BannerComponent } from '../banner/banner.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [LoginComponent, BannerComponent],
+  imports: [BannerComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
