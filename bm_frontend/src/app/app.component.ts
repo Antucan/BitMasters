@@ -7,14 +7,13 @@ import { CommonModule } from '@angular/common';
 import { CartService } from './components/cart-preview/cart.service';
 import { ProductosComponent } from './components/productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LoginComponent, HeaderComponent, RegisterComponent, RouterModule, FooterComponent, ProductosComponent, HttpClientModule],
+  imports: [CommonModule, HeaderComponent, RouterModule, FooterComponent, ProductosComponent, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
