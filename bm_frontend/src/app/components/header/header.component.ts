@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { BannerComponent } from '../banner/banner.component';
-
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +13,14 @@ import { BannerComponent } from '../banner/banner.component';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, private LoginComponent: LoginComponent) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   redirectTo(route: string): void {
     this.router.navigate([route]);
   }
 
   showLogin() {
-    this.LoginComponent.showLogin();
+    this.loginService.showLogin();
   }
 
 }

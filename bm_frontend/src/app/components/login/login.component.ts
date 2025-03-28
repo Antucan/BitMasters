@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'login',
@@ -14,16 +15,19 @@ import { FormsModule } from '@angular/forms';
   imports: [RouterModule, CommonModule, FormsModule, HttpClientModule]
 })
 
-@Injectable({
-  providedIn: 'root'
-})
-
 export class LoginComponent {
   name: string = '';
   password: string = '';
+  loginVisible: boolean = false;
   
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, private loginService: LoginService) { }
+
+ngOnInit(): void {
+  this.loginService.loginVisible$.subscribe(visible => {
+    this.loginVisible = visible;
+  });
+}
 
   updateName(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -45,14 +49,11 @@ constructor(private http: HttpClient) { }
     });
   }
 
-  loginVisible = new BehaviorSubject<boolean>(false);
-  loginVisible$ = this.loginVisible.asObservable();
-
   showLogin() {
-    this.loginVisible.next(true);
+    this.loginService.showLogin();
   }
 
   hideLogin() {
-    this.loginVisible.next(false);
+    this.loginService.hideLogin();
   }
 }
