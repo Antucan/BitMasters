@@ -1,8 +1,5 @@
-@font-face {
-    font-family: 'RetroGaming';
-    src: url('/../../assets/fonts/RetroGaming.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+#gloval-div {
+    height: 77vh;
 }
 
 #registerBackground {
@@ -12,7 +9,7 @@
     width: 100%;
     height: 100%;
     background-image: url('/assets/images/registerBackground.gif');
-    background-size: cover; 
+    background-size: cover;
     background-repeat: no-repeat;
     z-index: -1;
     display: flex;
@@ -25,10 +22,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Capa negra semi-transparente */
-  }
+    background: rgba(0, 0, 0, 0.6);
+    /* Capa negra semi-transparente */
+}
 
 #registerBox {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'RetroGaming';
     font-size: 20px;
     z-index: 1;
@@ -36,7 +38,6 @@
     flex-wrap: wrap;
     background: linear-gradient(to bottom, #8A00C7, #430061);
     border-radius: 15px;
-    margin: 175px auto 0px auto;
     padding: 20px;
     text-align: center;
     box-shadow: 5px 5px 5px 5px #111111;
@@ -47,12 +48,14 @@
     display: flex;
     width: 90%;
     height: 3px;
-    background-color: #00C3FF; 
+    background-color: #00C3FF;
     border-radius: 5px;
     margin: 15px auto;
 }
 
-#emailField, #nameField, .passField {
+#emailField,
+#nameField,
+.passField {
     width: 100%;
     margin: 10px 0px 10px 0px;
 }
