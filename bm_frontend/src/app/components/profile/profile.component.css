@@ -48,18 +48,23 @@ section > *{
     padding: 20px;
 }
 .purchase-history > .product{
-    background-color: red;
+    border-radius: 10px;
+    border: 1px solid black;
+    background: linear-gradient(to bottom right,#8A00C7 10%,#FF007F,#00F0FF);
     padding: 10px;
 }
+
 .img-product{
     width: 150px;
-    height: 180px;
+    height: 200px;
+    align-self: center;
     margin-left:10px;
 }
 
 .product-data{
     position: relative;
     margin-left: 10px;
+    width: 400px;
 }
 
 .product-data > div {
@@ -70,6 +75,14 @@ section > *{
     font-size: 30px;
     font-style: bold;
 }
-.product-review, .product-price{
-    gap: 50px;
+.prodcut-review{
+    margin-top: 60px;
+}
+.review{
+    margin-top: 50px;
+}
+.rating > img{
+    width: 50px;
+    height: 50px;
+    
 }
