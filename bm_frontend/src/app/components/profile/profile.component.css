@@ -1,3 +1,21 @@
+@font-face {
+    font-family: "BebasNeue";
+    src: url("../../../assets/fonts/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("../../../assets/fonts/Lato-Regular.ttf");
+}
+*{
+    font-family: "Lato";
+}
+h2{
+    font-family: "BebasNeue";
+}
+section{
+    background: linear-gradient(to bottom, #FF007F, black);
+}
 .profile-header{
     position: relative;
     border: 2px solid black;
@@ -36,7 +54,7 @@ section > *{
     margin: 0 auto;
     margin-top: 10px;
 }
-.profile-content > h2{
+.profile-content > div > h2{
     text-align: left;
     position: relative;
     color: white;
@@ -82,6 +100,7 @@ section > *{
     margin-top: 50px;
 }
 .rating > img{
+    display: inline-block;
     width: 50px;
     height: 50px;
     
