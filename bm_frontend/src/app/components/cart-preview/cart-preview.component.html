@@ -1,8 +1,9 @@
 <section class="cart-preview-container">
+    <button class="close-btn" (click)="closeCart()">✖</button>
     <div class="cart-preview-header">
         <h3>Mi cesta</h3>
-        <button class="close-btn" (click)="closeCart()">✖</button>
-      </div>
+    </div>
+
     <div class="product-info-1">
         <a href="#">
             <img src="https://moviliario.es/50941-large_default/cosola-portatil-retro-sup-game-box-plus-con-400-juegos.jpg"
@@ -14,18 +15,18 @@
                 <img src="assets/images/trash-bin.png" alt="Eliminar">
             </button>
             <div class="product-title-with-icon">
-                <a href="">Producto</a>
+                <a href="#">GameBoy Advance</a>
             </div>
             <p>Precio: 25€</p>
             <p>Unidades: 1</p>
         </div>
-        
-
     </div>
 
     <hr>
 
-    <h3>Resumen del pedido</h3>
+    <div class="resumen-pedido">
+        <h3>Resumen del pedido</h3>
+    </div>
 
     <div class="order-summary">
         <div class="product-info-2">
