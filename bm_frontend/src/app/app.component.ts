@@ -8,12 +8,18 @@ import { CartService } from './components/cart-preview/cart.service';
 import { ProductosComponent } from './components/productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, RouterModule, FooterComponent, HttpClientModule, ProductosComponent, CartPreviewComponent, ProductosComponent],
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    RouterModule,
+    FooterComponent,
+    HttpClientModule,
+    ProductosComponent,
+    CartPreviewComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -24,12 +30,11 @@ export class AppComponent {
     this.isCartVisible = !this.isCartVisible;
   }
 
-
   redirectTo(route: string) {
     if (route === '/cart') {
-      this.toggleCart(); 
+      this.toggleCart();
     } else {
-
+      // Lógica de redirección aquí
     }
   }
 

@@ -1,43 +1,48 @@
 <div id="gloval-div">
-    <h1 id="title">Listado de productos</h1>
-    <div id="productsAndFilters">
-      <div id="filters">
-        <h1 id="filters-title">Filtros</h1>
-        <div id="price-filter">
-          <h1>Precio</h1>
-          <!--Aqui se implementara la linea con el filtro para los precios-->
-        </div>
-        <div id="category-filter">
-          <h1>Categorias</h1>
-          <label>
-            Consolas<input type="checkbox">
-          </label>
-          <label>
-            Videojuegos<input type="checkbox">
-          </label>
-          <label>
-            Accesorios<input type="checkbox">
-          </label>
-          <label>
-            Perifericos<input type="checkbox">
-          </label>
-        </div>
+  <h1 id="title">Listado de productos</h1>
+  <div id="productsAndFilters">
+    <div id="filters">
+      <h1 id="filters-title">Filtros</h1>
+      <div id="price-filter">
+        <h1>Precio</h1>
+        <!--Aqui se implementara la linea con el filtro para los precios-->
       </div>
-      <div id="product-list" class="container">
-        <div *ngFor="let product of paginatedProducts" id="product">
-          <div id="product-img">
-            <img id="product-img" [src]="product.img">
-          </div>
-          <div id="product-info">
-            <div id="product-price">{{ product.price }}€</div>
-            <div id="product-name">{{ product.name }}</div>
-            <div id="product-description">{{ product.description }}</div>
-          </div>
-        </div>
+      <div id="category-filter">
+        <h1>Categorias</h1>
+        <label>
+          Consolas<input type="checkbox">
+        </label>
+        <label>
+          Videojuegos<input type="checkbox">
+        </label>
+        <label>
+          Accesorios<input type="checkbox">
+        </label>
+        <label>
+          Perifericos<input type="checkbox">
+        </label>
       </div>
     </div>
-    <div id="pagination-controls">
-      <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
-      <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= products.length">Siguiente</button>
+    <div id="product-list" class="container">
+      <div *ngFor="let product of paginatedProducts" id="product">
+        <div id="product-img">
+          <img id="product-img" [src]="product.img">
+        </div>
+        <div id="product-info">
+          <div id="product-price">{{ product.price }}€</div>
+          <div id="product-name">{{ product.name }}</div>
+          <div id="product-description">{{ product.description }}</div>
+        </div>
+      </div>
+      <div id="pagination-controls" class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">
+          <span>&#9664;</span> <!-- Flecha izquierda -->
+        </button>
+        <span class="page-number">{{ currentPage }}</span>
+        <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= products.length">
+          <span>&#9654;</span> <!-- Flecha derecha -->
+        </button>
+      </div>
     </div>
   </div>
+</div>
