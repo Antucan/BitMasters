@@ -43,6 +43,25 @@ section > *{
     left:185px;
     padding-left: 16px;
 }
+.header-buttons{
+    position: absolute;
+    top: 100px;
+    left: 780px;
+}
+.header-buttons > *{
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    background-color: #FF007F;
+}
+.overall-rating > *{
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    align-content: center;
+}
 .profile-summary{
     margin-top: 25px;
 }
@@ -54,18 +73,23 @@ section > *{
     margin: 0 auto;
     margin-top: 10px;
 }
-.profile-content > div > h2{
-    text-align: left;
+.profile-content > div:first-child {
+    text-align: end;
     position: relative;
     color: white;
+    padding: 0 auto;
     border-bottom: 3px solid rgb(255, 255, 255);
-    
 }
+
+.profile-content > div:first-child > h2 {
+    margin: 0;
+}
+
 .content{
     background-color: rgb(148, 92, 253);
     padding: 20px;
 }
-.purchase-history > .product{
+.product{
     border-radius: 10px;
     border: 1px solid black;
     background: linear-gradient(to bottom right,#8A00C7 10%,#FF007F,#00F0FF);
@@ -104,4 +128,8 @@ section > *{
     width: 50px;
     height: 50px;
     
+}
+.edit-data{
+    width: 40px;
+    height: 40px;
 }
