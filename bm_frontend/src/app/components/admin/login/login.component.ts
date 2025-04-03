@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'admin-login',
@@ -8,5 +8,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+ admin = null;
+ @Output() adminChange = new EventEmitter<any>;
 
+ updateAdmin(newAdmin: any) {
+   this.admin = newAdmin;
+   this.adminChange.emit(this.admin);
+ }
 }
+

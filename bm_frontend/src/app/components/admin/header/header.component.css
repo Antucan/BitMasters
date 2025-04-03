@@ -1,6 +1,22 @@
-#logo{
-    width: 100px;
-    height: 100px;
-    margin-left: 10px;
-    margin-top: 10px;
+header {
+  color: white;
+  height: 100px;
+}
+
+#logo {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#header_content {
+  background-color: #430061;
+}
+
+h1 {
+  align-self: center;
+  padding-left: 648px;
 }
