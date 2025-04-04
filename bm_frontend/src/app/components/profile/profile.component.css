@@ -1,0 +1,135 @@
+@font-face {
+    font-family: "BebasNeue";
+    src: url("../../../assets/fonts/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("../../../assets/fonts/Lato-Regular.ttf");
+}
+*{
+    font-family: "Lato";
+}
+h2{
+    font-family: "BebasNeue";
+}
+section{
+    background: linear-gradient(to bottom, #FF007F, black);
+}
+.profile-header{
+    position: relative;
+    border: 2px solid black;
+    width: 952px;
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 3%;
+}
+section > *{
+    color: white;
+}
+
+.pfp{
+    width: 166px;
+    height: 166px;
+}
+
+.pfp > img{
+    width: 100%;
+    height: 100%;
+}
+
+.profile-name{
+    position: absolute;
+    left:185px;
+    padding-left: 16px;
+}
+.header-buttons{
+    position: absolute;
+    top: 100px;
+    left: 780px;
+}
+.header-buttons > *{
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    background-color: #FF007F;
+}
+.overall-rating > *{
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    align-content: center;
+}
+.profile-summary{
+    margin-top: 25px;
+}
+.profile-date{
+    margin-top: 25px;
+}
+.profile-content{
+    width: 952px;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.profile-content > div:first-child {
+    text-align: end;
+    position: relative;
+    color: white;
+    padding: 0 auto;
+    border-bottom: 3px solid rgb(255, 255, 255);
+}
+
+.profile-content > div:first-child > h2 {
+    margin: 0;
+}
+
+.content{
+    background-color: rgb(148, 92, 253);
+    padding: 20px;
+}
+.product{
+    border-radius: 10px;
+    border: 1px solid black;
+    background: linear-gradient(to bottom right,#8A00C7 10%,#FF007F,#00F0FF);
+    padding: 10px;
+}
+
+.img-product{
+    width: 150px;
+    height: 200px;
+    align-self: center;
+    margin-left:10px;
+}
+
+.product-data{
+    position: relative;
+    margin-left: 10px;
+    width: 400px;
+}
+
+.product-data > div {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.product-name{
+    font-size: 30px;
+    font-style: bold;
+}
+.prodcut-review{
+    margin-top: 60px;
+}
+.review{
+    margin-top: 50px;
+}
+.rating > img{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    
+}
+.edit-data{
+    width: 40px;
+    height: 40px;
+}
