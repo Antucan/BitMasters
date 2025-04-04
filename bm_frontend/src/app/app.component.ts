@@ -9,13 +9,11 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './components/admin/admin.component';
 import { HeaderComponent as HeaderComponent_Admin } from "./components/admin/header/header.component";
-import { FooterComponent as FooterComponent_Admin } from "./components/admin/footer/footer.component";
-
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, RouterModule, FooterComponent, HttpClientModule, CartPreviewComponent, ProductosComponent, AdminComponent, HeaderComponent_Admin, FooterComponent_Admin],
+  imports: [CommonModule, HeaderComponent, RouterModule, FooterComponent, HttpClientModule, CartPreviewComponent, ProductosComponent, AdminComponent, HeaderComponent_Admin],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
