@@ -141,7 +141,7 @@ final class UsersController extends AbstractController
         $mail = $request->request->get("mail");
         $password = $request->request->get("password");
 
-        if (isset($name) && isset($surname) && isset($mail) && isset($password)) {
+        if (isset($name) && isset($mail) && isset($password)) {
             $user = new Users();
             $user->setName($name);
             $user->setSurname($surname);

@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
+import { CreateUser } from './register.service';
 
 @Component({
   selector: 'register',
   standalone: true,
   imports: [],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
+  providers: [CreateUser]
 })
 export class RegisterComponent {
+
+  constructor(private user: CreateUser){}
   email: string = '';
   name: string = '';
   pass: string = '';
@@ -64,6 +68,12 @@ export class RegisterComponent {
   send(): void {
     if (this.notEmpty() && this.checkPass() && this.checkRpass()) {
       console.log('register:', this.email, this.name, this.pass, this.Rpass);
+      
+      this.user.postUsers(this.name, this.pass, this.email).subscribe(
+        (algo) => {
+          console.log(algo);
+        }
+      )
     }
   }
 }
