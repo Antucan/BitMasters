@@ -10,15 +10,7 @@ import { AdminService } from '../admin.service';
 })
 export class LoginComponent {
  
- @Output() adminChange = new EventEmitter<any>;
-admin: any = "casa";
-
 constructor(private adminService: AdminService){}
-//metodo para cambiar el valor de admin
- updateAdmin(newAdmin: any) {
-   this.admin = newAdmin;
-   this.adminService.setAdmin(this.admin);
-   this.adminChange.emit(this.admin);
- }
+
 }
 

@@ -11,16 +11,7 @@ import { AdminService } from '../admin.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  admin: any;
+
   constructor(private adminService: AdminService) { }
 
-  ngOnInit() {
-    this.adminService.admin$.subscribe(admin => {
-      this.admin = admin;
-    });
-  }
-
-  shouldShowBanner() {
-    return this.admin !== null;
-  }
 }
