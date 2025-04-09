@@ -11,21 +11,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-#[Route('/products')]
+#[Route('/productos')]
 final class ProductController extends AbstractController
 {
     #[Route(name: 'app_products_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
+        
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
-                'id' => $product->getId(),
+                //'id' => $product->getId(),
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
-                'category' => $product->getCategory(),
+                //'category' => $product->getCategory(),
                 'price' => $product->getPrice(),
-                'user' => $product->getUser()->getName()
+                //'user' => $product->getUser()->getName()
             ];
         }, $products);
         return $this->json($data);
