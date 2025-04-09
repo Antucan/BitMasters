@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './login.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'login',
@@ -20,14 +21,13 @@ export class LoginComponent {
   password: string = '';
   loginVisible: boolean = false;
   
+  constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
 
-constructor(private http: HttpClient, private loginService: LoginService) { }
-
-ngOnInit(): void {
-  this.loginService.loginVisible$.subscribe(visible => {
-    this.loginVisible = visible;
-  });
-}
+  ngOnInit(): void {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
 
   updateName(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -41,12 +41,17 @@ ngOnInit(): void {
 
   login(): void {
     console.log('Attempting login with name:', this.name, 'and password:', this.password);
-    const loginData = { name: this.name, password: this.password };
-    this.http.post('/users/login', loginData, { headers: { 'Content-Type': 'application/json' } }).subscribe(response => {
-      console.log('Login successful', response);
-    }, error => {
-      console.error('Login failed', error);
-    });
+    //llamar a la funcion login de auth.service.ts
+    this.authService.login({ name: this.name, password: this.password }).subscribe(
+      response => {
+        console.log('Login successful:', response);
+        // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+      },
+      error => {
+        console.error('Login failed:', error);
+        // Aquí puedes manejar el error de inicio de sesión
+      }
+    );
   }
 
   showLogin() {
