@@ -20,7 +20,10 @@ export class LoginComponent {
   mail: string = '';
   password: string = '';
   loginVisible: boolean = false;
-  
+  errorMessage: string | null = null;
+  mailErrorMessage: string | null = null;
+  passwordErrorMessage: string | null = null;
+
   constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -45,11 +48,27 @@ export class LoginComponent {
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
+        this.loginVisible = false; // Ocultar el formulario de inicio de sesión después de un inicio de sesión exitoso
         // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+        this.mailErrorMessage = null;
+        this.passwordErrorMessage = null;
       },
       error => {
         console.error('Login failed:', error);
+        // Reseteamos mensajes de error
+        this.mailErrorMessage = null;
+        this.passwordErrorMessage = null;
         // Aquí puedes manejar el error de inicio de sesión
+        if (error.error && error.error.message) {
+          if (error.error.message.includes('mail')) {
+            this.mailErrorMessage = "Correo incorrecto";
+          }
+          if (error.error.message.includes('password')) {
+            this.passwordErrorMessage = "Contraseña incorrecta";
+          }
+        } else {
+          this.errorMessage = "Error de conexión";
+        }
       }
     );
   }
