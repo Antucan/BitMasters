@@ -1,72 +1,75 @@
+.form-control {
+  text-align: center;
+}
+
 #loginBackground {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
 }
 
 #loginBox {
-    position: absolute;
-    top: 47%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'RetroGaming';
-    font-size: 20px;
-    width: 500px;
-    flex-wrap: wrap;
-    background: linear-gradient(to bottom, #8A00C7, #430061);
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 5px 5px 5px 5px #616060;
-    color: rgb(231, 231, 231);
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "RetroGaming";
+  font-size: 20px;
+  width: 500px;
+  flex-wrap: wrap;
+  background: linear-gradient(to bottom, #8a00c7, #430061);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 5px 5px 5px 5px #616060;
+  color: rgb(231, 231, 231);
 }
 
 #loginLine {
-    display: flex;
-    width: 90%;
-    height: 3px;
-    background-color: #00C3FF; 
-    border-radius: 5px;
-    margin: 15px auto;
+  display: flex;
+  width: 90%;
+  height: 3px;
+  background-color: #00c3ff;
+  border-radius: 5px;
+  margin: 15px auto;
 }
 
-#nameField {
-    width: 100%;
-    margin: 10px 0px 10px 0px;
+#mailField {
+  width: 100%;
+  margin: 10px 0px 10px 0px;
 }
 
 #passField {
-    width: 100%;
-    margin: 20px 0px 25px 0px;
-
+  width: 100%;
+  margin: 20px 0px 25px 0px;
 }
 
-#registerMessage{
-    width: 100%;
-    font-size: 16px;
+#registerMessage {
+  width: 100%;
+  font-size: 16px;
 }
 
-#registerLink{
-    text-decoration: none!important;
-    color: #00C3FF;
+#registerLink {
+  text-decoration: none !important;
+  color: #00c3ff;
 }
 
-#registerLink:hover{
-    color: #0698c4;
+#registerLink:hover {
+  color: #0698c4;
 }
 
 #loginButton {
-    margin: 25px 0px 10px 0px;
-    background: linear-gradient(to bottom, #00C3FF, #0698c4);
-    padding: 10px 50px 10px 50px;
-    border: 0px;
+  margin: 25px 0px 10px 0px;
+  background: linear-gradient(to bottom, #00c3ff, #0698c4);
+  padding: 10px 50px 10px 50px;
+  border: 0px;
 }
 
 #loginButton:hover {
-    background: linear-gradient(to top, #00C3FF, #0698c4);
+  background: linear-gradient(to top, #00c3ff, #0698c4);
 }

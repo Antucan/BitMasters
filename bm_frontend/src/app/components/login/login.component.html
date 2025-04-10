@@ -1,11 +1,11 @@
 <div *ngIf="loginVisible">
   <div id="loginBackground" (click)="hideLogin()">
     <div id="loginBox" class="flex-container" (click)="$event.stopPropagation()">
-      <h1>Login</h1>
+      <h1>Iniciar Sesión</h1>
       <div id="loginLine"></div>
-      <label id="nameField">
-        <span>Nombre</span>
-        <input type="text" id="loginName" class="form-control" [(ngModel)]="name" required>
+      <label id="mailField">
+        <span>Correo</span>
+        <input type="text" id="loginName" class="form-control" [(ngModel)]="mail" required>
       </label>
       <label id="passField">
         <span>Contraseña</span>
@@ -13,7 +13,7 @@
       </label>
       <span id="registerMessage">No tienes una cuenta aun? <a id="registerLink" routerLink="/register">Registrate
           ya!</a></span>
-      <button type="button" class="btn btn-info" id="loginButton" (click)="login()">Login</button>
+      <button type="button" class="btn btn-info" id="loginButton" (click)="login()">Entrar</button>
      </div>
     </div>
   </div>
