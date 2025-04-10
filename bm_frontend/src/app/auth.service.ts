@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { name: string, password: string }): Observable<any> {
+  login(credentials: { mail: string, password: string }): Observable<any> {
     const headers = { 'Content-Type': 'application/json' };
     console.log('Sending login request to:', this.apiUrl, 'with credentials:', credentials);
     return this.http.post<any>(this.apiUrl, credentials, { headers });

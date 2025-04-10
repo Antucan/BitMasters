@@ -17,7 +17,7 @@ import { AuthService } from '../../auth.service';
 })
 
 export class LoginComponent {
-  name: string = '';
+  mail: string = '';
   password: string = '';
   loginVisible: boolean = false;
   
@@ -29,9 +29,9 @@ export class LoginComponent {
     });
   }
 
-  updateName(event: Event): void {
+  updateMail(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    this.name = inputElement.value;
+    this.mail = inputElement.value;
   }
 
   updatePass(event: Event): void {
@@ -40,9 +40,9 @@ export class LoginComponent {
   }
 
   login(): void {
-    console.log('Attempting login with name:', this.name, 'and password:', this.password);
+    console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
     //llamar a la funcion login de auth.service.ts
-    this.authService.login({ name: this.name, password: this.password }).subscribe(
+    this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
         // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
