@@ -135,6 +135,7 @@ final class UsersController extends AbstractController
     #[Route('/new', name: 'app_users_new', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role): JsonResponse
     {
+        
         $name = $request->request->get("name");
         $surname = $request->request->get("surname");
         $phone = $request->request->get("phone");
@@ -156,7 +157,7 @@ final class UsersController extends AbstractController
 
             return new JsonResponse(["Ok" => "Usuario creado correctamente"]);
         } else {
-            return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
+            return new JsonResponse(["Error" => "Faltan campos obligatorios, $name"]);
         }
     }
 

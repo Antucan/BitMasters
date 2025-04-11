@@ -72,6 +72,7 @@ export class RegisterComponent {
       this.user.postUsers(this.name, this.pass, this.email).subscribe(
         (algo) => {
           console.log(algo);
+          console.log(this.name);
         }
       )
     }
