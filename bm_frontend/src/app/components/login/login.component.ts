@@ -43,6 +43,9 @@ export class LoginComponent {
   }
 
   login(): void {
+    // Reseteamos mensajes de error
+    this.mailErrorMessage = null;
+    this.passwordErrorMessage = null;
     console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
     //llamar a la funcion login de auth.service.ts
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
@@ -55,19 +58,10 @@ export class LoginComponent {
       },
       error => {
         console.error('Login failed:', error);
-        // Reseteamos mensajes de error
-        this.mailErrorMessage = null;
-        this.passwordErrorMessage = null;
-        // Aquí puedes manejar el error de inicio de sesión
-        if (error.error && error.error.message) {
-          if (error.error.message.includes('mail')) {
-            this.mailErrorMessage = "Correo incorrecto";
-          }
-          if (error.error.message.includes('password')) {
-            this.passwordErrorMessage = "Contraseña incorrecta";
-          }
-        } else {
-          this.errorMessage = "Error de conexión";
+        if (error.status === 401) {
+          this.passwordErrorMessage = "Constraseña incorrecta";
+        } else if (error.status === 404) {
+          this.mailErrorMessage = "Usuario no encontrado";
         }
       }
     );

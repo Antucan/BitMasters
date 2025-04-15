@@ -1,49 +1,26 @@
 <div *ngIf="loginVisible">
   <div id="loginBackground" (click)="hideLogin()">
-    <div
-      id="loginBox"
-      class="flex-container"
-      (click)="$event.stopPropagation()"
-    >
+    <div id="loginBox" class="flex-container" (click)="$event.stopPropagation()">
       <h1>Iniciar Sesión</h1>
       <div id="loginLine"></div>
       <label id="mailField">
         <span>Correo</span>
-        <input
-          type="email"
-          id="loginName"
-          class="form-control"
-          [(ngModel)]="mail"
-          required
-        />
+        <input type="email" id="loginName" class="form-control" [(ngModel)]="mail" required />
       </label>
       <div *ngIf="mailErrorMessage" class="error-message">
         {{ mailErrorMessage }}
       </div>
       <label id="passField">
         <span>Contraseña</span>
-        <input
-          type="password"
-          id="loginPass"
-          class="form-control"
-          [(ngModel)]="password"
-          required
-        />
+        <input type="password" id="loginPass" class="form-control" [(ngModel)]="password" required />
       </label>
-              <div *ngIf="passwordErrorMessage" class="error-message">
-          {{ passwordErrorMessage }}
-        </div>
-      
-      <span id="registerMessage"
-        >No tienes una cuenta aun?
-        <a id="registerLink" routerLink="/register">Registrate ya!</a></span
-      >
-      <button
-        type="button"
-        class="btn btn-info"
-        id="loginButton"
-        (click)="login()"
-      >
+      <div *ngIf="passwordErrorMessage" class="error-message">
+        {{ passwordErrorMessage }}
+      </div>
+
+      <span id="registerMessage">No tienes una cuenta aun?
+        <a id="registerLink" routerLink="/register">Registrate ya!</a></span>
+      <button type="button" class="btn btn-info" id="loginButton" (click)="login()">
         Entrar
       </button>
     </div>

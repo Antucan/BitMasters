@@ -4,13 +4,13 @@ export class User {
         public name: string,
         public surname: string,
         public phone: number,
-        public email: string,
+        public mail: string,
         public password: string,
-        public role: string,
+        public role: number,
     ) { }
     get infoLogin(){
         return {
-            email: this.email,
+            mail: this.mail,
             password: this.password
         }
     }

@@ -31,7 +31,7 @@ final class UsersController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $mail = $data['mail'] ?? null;
         $password = $data['password'] ?? null;
-        
+
         if (empty($mail) || empty($password)) {
             return $this->json(
                 ['error' => 'No mail or password provided'],
@@ -55,7 +55,16 @@ final class UsersController extends AbstractController
             );
         }
 
-        return $this->json(['success' => true], Response::HTTP_OK);
+        return $this->json([
+            'success' => true,
+            'client' => [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail(),
+            ],
+        ], Response::HTTP_OK);
     }
 
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]
