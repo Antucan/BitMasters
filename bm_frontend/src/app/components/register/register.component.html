@@ -4,10 +4,6 @@
     <div id="registerBox" class="flex-container">
         <h1>Registro</h1>
         <div id="registerLine"></div>
-        <label id="emailField">
-            <span>Email</span>
-            <input type="email" id="registerEmail" class="form-control" [value]="email" (input)="updateEmail($event)" required>
-        </label>
         <label id="nameField">
             <span>Nombre</span>
             <input type="text" id="registerName" class="form-control" [value]="name" (input)="updateName($event)" required>
@@ -15,6 +11,10 @@
         <label id="surnameField">
             <span>Apellido</span>
             <input type="text" id="registerSurname" class="form-control" [value]="surname" (input)="updateSurname($event)" required>
+        </label>
+        <label id="emailField">
+            <span>Email</span>
+            <input type="email" id="registerEmail" class="form-control" [value]="email" (input)="updateEmail($event)" required>
         </label>
         <label class="passField">
             <span>Contraseña</span>
