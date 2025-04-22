@@ -9,3 +9,4 @@ nelmio_cors:
   paths:
     "^/":
       allow_origin: ["http://localhost:4200"]
+

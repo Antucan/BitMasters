@@ -1,15 +1,20 @@
 import { Component } from '@angular/core';
+import { CreateUser } from './register.service';
 
 @Component({
   selector: 'register',
   standalone: true,
   imports: [],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
+  providers: [CreateUser]
 })
 export class RegisterComponent {
+
+  constructor(private user: CreateUser){}
   email: string = '';
   name: string = '';
+  surname: string = '';
   pass: string = '';
   Rpass: string = '';
 
@@ -21,6 +26,11 @@ export class RegisterComponent {
   updateName(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     this.name = inputElement.value;
+  }
+
+  updateSurname(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.surname = inputElement.value;
   }
 
   updatePass(event: Event): void {
@@ -63,7 +73,14 @@ export class RegisterComponent {
 
   send(): void {
     if (this.notEmpty() && this.checkPass() && this.checkRpass()) {
-      console.log('register:', this.email, this.name, this.pass, this.Rpass);
+      console.log('register:', this.email, this.name, this.surname, this.pass, this.Rpass);
+      
+      this.user.postUsers(this.name, this.surname, this.pass, this.email).subscribe(
+        (algo) => {
+          console.log(algo);
+          console.log(this.name);
+        }
+      )
     }
   }
 }

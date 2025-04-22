@@ -12,6 +12,10 @@
             <span>Nombre</span>
             <input type="text" id="registerName" class="form-control" [value]="name" (input)="updateName($event)" required>
         </label>
+        <label id="surnameField">
+            <span>Apellido</span>
+            <input type="text" id="registerSurname" class="form-control" [value]="surname" (input)="updateSurname($event)" required>
+        </label>
         <label class="passField">
             <span>Contraseña</span>
             <input type="password" class="registerPass" class="form-control" [value]="pass" (input)="updatePass($event)" required>
