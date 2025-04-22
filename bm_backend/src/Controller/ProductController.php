@@ -26,7 +26,7 @@ final class ProductController extends AbstractController
                 'description' => $product->getDescription(),
                 //'category' => $product->getCategory(),
                 'price' => $product->getPrice(),
-                //'user' => $product->getUser()->getName()
+                'img_url' => $product->getImgUrl(),
             ];
         }, $products);
         return $this->json($data);

@@ -27,6 +27,9 @@ class Product
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $img_url = null;
+
     #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'products')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
     private ?Users $user = null;
@@ -99,6 +102,18 @@ class Product
     public function setUser(?Users $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImgUrl(): ?string
+    {
+        return $this->img_url;
+    }
+
+    public function setImgUrl(string $img_url): static
+    {
+        $this->img_url = $img_url;
 
         return $this;
     }
