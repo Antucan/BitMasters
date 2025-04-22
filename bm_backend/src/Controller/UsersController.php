@@ -135,18 +135,26 @@ final class UsersController extends AbstractController
     #[Route('/new', name: 'app_users_new', methods: ['POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role): JsonResponse
     {
-        
-        $name = $request->request->get("name");
-        $surname = $request->request->get("surname");
-        $phone = $request->request->get("phone");
-        $mail = $request->request->get("mail");
-        $password = $request->request->get("password");
+        $userdata = json_decode($request->getContent(), true);
+        $name = $userdata['name'];
+        $surname = $userdata['surname'];
+        // $phone = $user['phone'];
+        $mail = $userdata['mail'];
+        $password = $userdata['password'];
+        // $name = $request->get("name");
+        // $surname = $request->get("surname");
+        // $phone = $request->get("phone");
+        // $mail = $request->get("mail");
+        // $password = $request->get("password");
 
-        if (isset($name) && isset($mail) && isset($password)) {
+        if (isset($name) && isset($mail) && isset($password) && isset($surname)) {
             $user = new Users();
             $user->setName($name);
             $user->setSurname($surname);
-            $user->setPhone($phone);
+
+            if(isset($userdata['phone']))
+            $user->setPhone($userdata['phone']);
+
             $user->setMail($mail);
             $user->setPassword($password);
 
