@@ -16,36 +16,46 @@ class UsersRepository extends ServiceEntityRepository
         parent::__construct($registry, Users::class);
     }
 
-       /**
-        * @return Users[] Returns an array of Users objects
-        */
-       public function findByName(string $name)
-       {
-           return $this->createQueryBuilder('u')
-               ->andWhere('u.name = :name')
-               ->setParameter('name', $name)
-               ->getQuery()
-               ->getResult();
-       }
+    /**
+     * @return Users[] Returns an array of Users objects
+     */
+    public function findByName(string $name)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getResult();
+    }
 
-         /**
-          * @return Users[] Returns an array of Users objects
-          */
-          public function findByMail(string $mail)
-          {
-              return $this->createQueryBuilder('u')
-                  ->andWhere('u.mail = :mail')
-                  ->setParameter('mail', $mail)
-                  ->getQuery()
-                  ->getResult();
-          }
-        
-       public function findById(int $id)
-       {
-           return $this->createQueryBuilder('u')
-               ->andWhere('u.id = :id')
-               ->setParameter('id', $id)
-               ->getQuery()
-               ->getOneOrNullResult();
-       }
+    /**
+     * @return Users[] Returns an array of Users objects
+     */
+    public function findByMail(string $mail)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.mail = :mail')
+            ->setParameter('mail', $mail)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOneByMail(string $mail): ?Users
+    {
+
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.mail = :mail')
+            ->setParameter('mail', $mail)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findById(int $id)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

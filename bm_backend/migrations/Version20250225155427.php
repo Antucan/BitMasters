@@ -26,8 +26,9 @@ final class Version20250225155427 extends AbstractMigration
         description VARCHAR(255) NOT NULL, 
         category VARCHAR(100) NOT NULL, 
         user_id INT DEFAULT NULL,
-        FOREIGN KEY (user_id) REFERENCES users(id), 
         price INT NOT NULL,
+        img_url VARCHAR(255) NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES users(id), 
         PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 

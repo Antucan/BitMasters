@@ -146,3 +146,31 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/*CSS para la paginacion*/
+#pagination-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 0px 20px 0px 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'RetroGaming';
+}
+
+.pagination-controls button {
+    background: none;
+    border: none;
+    font-size: 45px;
+    cursor: pointer;
+  }
+  
+  .pagination-controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+  
+  .page-number {
+    margin: 0px 20px 0px 20px;
+    font-size: 40px;
+  }

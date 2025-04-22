@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './login.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'login',
@@ -16,22 +17,21 @@ import { LoginService } from './login.service';
 })
 
 export class LoginComponent {
-  name: string = '';
+  mail: string = '';
   password: string = '';
   loginVisible: boolean = false;
   
+  constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
 
-constructor(private http: HttpClient, private loginService: LoginService) { }
+  ngOnInit(): void {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
 
-ngOnInit(): void {
-  this.loginService.loginVisible$.subscribe(visible => {
-    this.loginVisible = visible;
-  });
-}
-
-  updateName(event: Event): void {
+  updateMail(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
-    this.name = inputElement.value;
+    this.mail = inputElement.value;
   }
 
   updatePass(event: Event): void {
@@ -40,13 +40,18 @@ ngOnInit(): void {
   }
 
   login(): void {
-    console.log('Attempting login with name:', this.name, 'and password:', this.password);
-    const loginData = { name: this.name, password: this.password };
-    this.http.post('/users/login', loginData, { headers: { 'Content-Type': 'application/json' } }).subscribe(response => {
-      console.log('Login successful', response);
-    }, error => {
-      console.error('Login failed', error);
-    });
+    console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
+    //llamar a la funcion login de auth.service.ts
+    this.authService.login({ mail: this.mail, password: this.password }).subscribe(
+      response => {
+        console.log('Login successful:', response);
+        // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+      },
+      error => {
+        console.error('Login failed:', error);
+        // Aquí puedes manejar el error de inicio de sesión
+      }
+    );
   }
 
   showLogin() {
