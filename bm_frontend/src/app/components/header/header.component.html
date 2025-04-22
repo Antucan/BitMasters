@@ -16,14 +16,21 @@
 
   <div class="user-actions-container">
     <!-- Mostrar botón dependiendo del estado de autenticación -->
-    <div class="user-action" (click)="showLogin()">
+    <div class="user-action" *ngIf="!logged" (click)="showLogin()">
       <img
         src="../../assets/images/userlogo.png"
         alt="icon"
         class="user-icon"
       />
-      <span class="login" *ngIf="!logged">INICIAR SESIÓN</span>
-      <span class="login" *ngIf="logged">PERFIL</span>
+      <span class="login">INICIAR SESIÓN</span>
+    </div>
+    <div class="user-action" *ngIf="logged" (click)="showLogin()">
+      <img
+        src="../../assets/images/userlogo.png"
+        alt="icon"
+        class="user-icon"
+      />
+      <span class="login">PERFIL</span>
     </div>
     <div class="user-action" (click)="onCartClick()">
       <img
