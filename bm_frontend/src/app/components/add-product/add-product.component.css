@@ -1,0 +1,40 @@
+#productForm{
+    justify-content: center;
+    text-align: center;
+}
+#productName > input{
+    width: 30%;
+    height: 50px;
+    border: 2px solid black;
+    text-align:center;
+    /* margin-top: 5px;
+    margin-bottom: 5px; */
+}
+#product > span {
+    text-align: left;
+}
+
+
+#productDescription > input {
+    width: 30%;
+    height: 90px;
+    border: 2px solid black;
+}
+
+#productCategory > input {
+
+}
+
+#productPrice > input {
+    border: 2px solid black;
+    text-align: center;
+}
+
+#productImage > input {
+    border: 2px solid black;
+}
+
+#productAdd > button {
+    border: 2px solid black;
+}
+
