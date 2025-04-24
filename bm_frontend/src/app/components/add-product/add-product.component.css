@@ -10,15 +10,12 @@
     /* margin-top: 5px;
     margin-bottom: 5px; */
 }
-#product > span {
-    text-align: left;
-}
-
 
 #productDescription > input {
     width: 30%;
     height: 90px;
     border: 2px solid black;
+    text-align: center;
 }
 
 #productCategory > input {

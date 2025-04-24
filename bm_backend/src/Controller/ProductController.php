@@ -123,13 +123,18 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/new', name: 'app_products_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $user): Response
     {
+        $productdata = json_decode($request->getContent(), true);
         //funcion para crear un nuevo producto
-        $name = $request->request->get('name');
-        $description = $request->request->get('description');
-        $category = $request->request->get('category');
-        $price = $request->request->get('price');
+        $name = $productdata["name"];
+        $description = $productdata["description"];
+        $category = $productdata["category"];
+        $price = $productdata["price"];
+            // $name = $request->request->get('name');
+            // $description = $request->request->get('description');
+            // $category = $request->request->get('category');
+            // $price = $request->request->get('price');
         //comprobamos si nombre del producto ya existe
         $productRepository = $entityManager->getRepository(Product::class);
         $product = $productRepository->findOneBy(['name' => $name]);
@@ -144,6 +149,7 @@ final class ProductController extends AbstractController
             $product->setName($name);
             $product->setDescription($description);
             $product->setCategory($category);
+            $product->setUser($user->findOneByID(1));
             $product->setPrice($price);
             $entityManager->persist($product);
             $entityManager->flush();
