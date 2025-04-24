@@ -26,11 +26,17 @@ export class AuthService {
     return this.http.post<any>(this.apiUrl, credentials, { headers }).pipe(
       tap(user => {
         this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
-        console.log('User logged in:', user);
-      })
+        console.log('User logged in:', this.userSubject.value);
+      }),
     );
   }
   logout(): void {
     this.userSubject.next(null); // Limpiar el usuario al cerrar sesión
+  }
+  getUser(): User | null {
+    return this.userSubject.value; // Obtener el valor actual del BehaviorSubject
+  }
+  setUser(user: User): void {
+    this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
   }
 }

@@ -14,4 +14,7 @@ export class User {
             password: this.password
         }
     }
+    get getName(): string{
+        return this.name;
+    }
 }

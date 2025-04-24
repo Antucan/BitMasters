@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 import { BannerComponent } from '../banner/banner.component';
 import { CartService } from '../cart-preview/cart.service';
 import { LoginService } from '../login/login.service';
-import { User } from '../../models/user.model';
 import { AuthService } from '../../auth.service';
-
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,12 +16,21 @@ import { AuthService } from '../../auth.service';
 })
 export class HeaderComponent {
   logged: boolean = false;
-  constructor(private router: Router, private cartService: CartService, private loginService: LoginService, private authService: AuthService) { }
+  userName: string = '';
+
+  constructor(private router: Router,
+    private cartService: CartService,
+    private loginService: LoginService,
+    private authService: AuthService,) { }
 
   ngOnInit() {
     this.authService.user$.subscribe(user => {
-      this.logged = !!user; // Cambia a true si hay un usuario, false si no
-      console.log('User:', user, 'Logged:', this.logged);
+      console.log('User object: ',user);
+      if (user) {
+        this.logged = !!user; // Cambia a true si hay un usuario, false si no
+        this.userName = user.name || 'PERFIL'; 
+        console.log('User detected in HeaderComponent: ', this.userName);
+      }
     });
   }
 
@@ -39,4 +46,4 @@ export class HeaderComponent {
     this.cartService.showCart(); // muestra el carrito
   }
 
- }
+}
