@@ -1,5 +1,5 @@
 <section id = "productForm">
-    <form method = "POST" (ngSubmit)="add()">
+    <form method = "POST" (ngSubmit)="add()" enctype="multipart/form-data">
         <div id = "productName" class = "my-4">
             <span> Nombre </span>
             <br>
@@ -30,7 +30,7 @@
         <div id = "productImage" class = "my-4">
             <span> Adjuntar imagenes </span>
             <br>
-            <input type = "file" [(ngModel)] = "image" name = "image">
+            <input type = "text" [(ngModel)] = "image" name = "image">
         </div>
 
         <div id = "productAdd" class = "my-4">

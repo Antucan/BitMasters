@@ -131,6 +131,7 @@ final class ProductController extends AbstractController
         $description = $productdata["description"];
         $category = $productdata["category"];
         $price = $productdata["price"];
+        $img = $productdata["image"];
             // $name = $request->request->get('name');
             // $description = $request->request->get('description');
             // $category = $request->request->get('category');
@@ -149,14 +150,16 @@ final class ProductController extends AbstractController
             $product->setName($name);
             $product->setDescription($description);
             $product->setCategory($category);
-            $product->setUser($user->findOneByID(1));
+            $product->setUser($user->findById(1));
             $product->setPrice($price);
+            $product->setImage($img);
             $entityManager->persist($product);
             $entityManager->flush();
             return $this->json(
                 [
                     'id' => $product->getId(),
-                    'name' => $product->getName()
+                    'name' => $product->getName(),
+                    'img' => $img
                 ],
                 Response::HTTP_CREATED
             );

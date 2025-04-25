@@ -43,6 +43,7 @@ export class AddProductComponent {
 
   add(): void{
     console.log(this.name, this.image, this.category, this.price);
+    console.log(this.image)
     if (this.validateName() && this.validateCategory() && this.validatePrice()) { 
       this.product.postProduct(this.name, this.description, this.category, this.price, this.image).subscribe(
         (algo) => {
