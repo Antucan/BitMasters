@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './models/user.model'; // Update the path to the User model
-import { tap } from 'rxjs';//para actualizar la propiedad user
+import { map, tap } from 'rxjs';//para actualizar la propiedad user
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +19,29 @@ export class AuthService {
     return this.userSubject.asObservable();
   }
 
-  login(credentials: { mail: string, password: string }): Observable<any> {
+  login(credentials: { mail: string, password: string }): Observable<User> {
     const headers = { 'Content-Type': 'application/json' };
     console.log('Sending login request to:', this.apiUrl, 'with credentials:', credentials);
 
-    return this.http.post<any>(this.apiUrl, credentials, { headers }).pipe(
-      tap(user => {
-        this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
-        console.log('User logged in:', this.userSubject.value);
-      }),
+    return this.http.post<{ success: boolean; user: any }>(this.apiUrl, credentials, { headers }).pipe(
+      map(response => {
+        if (response.success) {
+          const user = new User(
+            response.user.id,
+            response.user.name,
+            response.user.surname,
+            response.user.phone,
+            response.user.mail,
+            response.user.password,
+            response.user.role
+          ); // Mapea los datos al modelo User
+          this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
+          console.log('User logged in:', user);
+          return user;
+        } else {
+          throw new Error('Login failed');
+        }
+      })
     );
   }
   logout(): void {
