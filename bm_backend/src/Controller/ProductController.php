@@ -21,7 +21,7 @@ final class ProductController extends AbstractController
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
-                //'id' => $product->getId(),
+                'id' => $product->getId(),
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
                 //'category' => $product->getCategory(),
