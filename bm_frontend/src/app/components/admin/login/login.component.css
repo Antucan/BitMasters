@@ -1,0 +1,93 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Background container */
+#loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9ecef;
+}
+
+/* Login box */
+#loginBox {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+/* Title */
+#loginBox h1 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #333333;
+}
+
+/* Divider line */
+#loginLine {
+    height: 3px;
+    background-color: #430061;
+    margin: 15px 0 25px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label span {
+    display: block;
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 8px;
+}
+
+/* Input fields */
+input.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input.form-control:focus {
+    border-color: #430061;
+    outline: none;
+}
+
+/* Error messages */
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: -8px;
+    margin-bottom: 12px;
+}
+
+/* Button */
+#loginButton {
+    background-color: #430061;
+    color: #ffffff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#loginButton:hover {
+    background-color: #0056b3;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   isCartVisible = false;
-
+  isAdminRoute: boolean = false;
   toggleCart() {
     this.isCartVisible = !this.isCartVisible;
   }
@@ -37,9 +38,12 @@ export class AppComponent {
     }
   }
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.cartService.cartVisible$.subscribe(value => {
       this.isCartVisible = value;
+    });
+    this.router.events.subscribe(() => {
+      this.isAdminRoute = this.router.url === ('/admin');
     });
   }
 
