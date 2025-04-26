@@ -63,7 +63,7 @@ final class UsersController extends AbstractController
                 'surname' => $user->getSurname(),
                 'phone' => $user->getPhone(),
                 'mail' => $user->getMail(),
-                'role' => $user->getRole()
+                'role' => $user->getRole()->getId()
             ]
         ], Response::HTTP_OK);
     }
@@ -93,7 +93,8 @@ final class UsersController extends AbstractController
                 'name' => $user->getName(),
                 'surname' => $user->getSurname(),
                 'phone' => $user->getPhone(),
-                'mail' => $user->getMail()
+                'mail' => $user->getMail(),
+                'role' => $user->getRole()->getId()
             ];
         }, $users);
 
@@ -133,7 +134,8 @@ final class UsersController extends AbstractController
                 'name' => $user->getName(),
                 'surname' => $user->getSurname(),
                 'phone' => $user->getPhone(),
-                'mail' => $user->getMail()
+                'mail' => $user->getMail(),
+                'role' => $user->getRole()->getId()
             ];
         }, $users);
 
