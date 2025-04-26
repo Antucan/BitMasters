@@ -55,7 +55,17 @@ final class UsersController extends AbstractController
             );
         }
 
-        return $this->json(['success' => true], Response::HTTP_OK);
+        return $this->json([
+            'success' => true,
+            'user' => [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail(),
+                'role' => $user->getRole()
+            ]
+        ], Response::HTTP_OK);
     }
 
     #[Route('/name', name: 'app_users_findByName', methods: ['GET'])]

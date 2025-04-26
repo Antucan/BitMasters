@@ -20,7 +20,10 @@ export class LoginComponent {
   mail: string = '';
   password: string = '';
   loginVisible: boolean = false;
-  
+  errorMessage: string | null = null;
+  mailErrorMessage: string | null = null;
+  passwordErrorMessage: string | null = null;
+
   constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -40,16 +43,26 @@ export class LoginComponent {
   }
 
   login(): void {
+    // Reseteamos mensajes de error
+    this.mailErrorMessage = null;
+    this.passwordErrorMessage = null;
     console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
     //llamar a la funcion login de auth.service.ts
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
+        this.loginVisible = false; // Ocultar el formulario de inicio de sesión después de un inicio de sesión exitoso
         // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+        this.mailErrorMessage = null;
+        this.passwordErrorMessage = null;
       },
       error => {
         console.error('Login failed:', error);
-        // Aquí puedes manejar el error de inicio de sesión
+        if (error.status === 401) {
+          this.passwordErrorMessage = "Constraseña incorrecta";
+        } else if (error.status === 404) {
+          this.mailErrorMessage = "Usuario no encontrado";
+        }
       }
     );
   }

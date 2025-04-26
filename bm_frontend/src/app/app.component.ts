@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ProfileComponent } from './components/profile/profile.component';
 import { CartPreviewComponent } from './components/cart-preview/cart-preview.component';
 import { CommonModule } from '@angular/common';
 import { CartService } from './components/cart-preview/cart.service';
@@ -18,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     FooterComponent,
     HttpClientModule,
-    ProductosComponent,
     CartPreviewComponent
   ],
   templateUrl: './app.component.html',
