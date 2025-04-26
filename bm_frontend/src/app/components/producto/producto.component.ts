@@ -26,6 +26,7 @@ export class ProductoComponent implements OnInit {
     // Llama al servicio para obtener el producto por ID
     this.productosService.getProductoById(id).subscribe((response) => {
       this.product = response[0]; // Asigna el primer elemento del array
+      console.log(this.product); // Verifica el producto en la consola
     });
   }
 }
