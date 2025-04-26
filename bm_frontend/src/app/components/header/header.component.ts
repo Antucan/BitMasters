@@ -46,4 +46,8 @@ export class HeaderComponent {
     this.cartService.showCart(); // muestra el carrito
   }
 
+  navigateToProfile(){
+    this.router.navigate(['/profile']);
+  }
+
 }
