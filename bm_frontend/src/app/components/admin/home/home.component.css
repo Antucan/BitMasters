@@ -1,0 +1,57 @@
+.bg-purple {
+  background-color: #3d0066; /* tono púrpura como en la imagen */
+}
+
+.header-container {
+  height: 100px; /* Fija la altura del header */
+  overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.header-logo {
+  max-height: 100%; /* Asegura que la imagen no exceda la altura del header */
+  max-width: 100%; /* Mantiene las proporciones de la imagen */
+}
+
+.panel-control {
+  font-size: 1.25rem; /* Ajusta el tamaño de la fuente (20px aproximadamente) */
+  font-weight: bold; /* Opcional: hace el texto más grueso */
+}
+
+.placeholder-box {
+  height: 200px;
+  border: 1px solid #aaa;
+}
+
+.bg-purple.text-white.py-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Espaciado entre imagen y texto */
+}
+
+.container-fluid {
+  box-sizing: border-box;
+  overflow: hidden; /* Evita scroll innecesario */
+}
+
+.img-fluid {
+  max-height: 80px;
+  object-fit: contain; /* Asegura que la imagen no se deforme */
+}
+
+.bg-light.placeholder-box {
+  height: 400px;
+  border: 1px solid #aaa;
+  box-sizing: border-box; /* Asegura que el tamaño incluye bordes y relleno */
+  overflow: hidden; /* Evita contenido que se desborde */
+}
+
+#nav_text{
+  font-size: 1.3rem;
+  color: #fff; /* Color del texto */
+}
+
+.list-style-disc {
+  list-style-type: disc; /* Asegura que los puntos aparezcan */
+  padding-left: 20px; /* Ajusta el espaciado si es necesario */
+}

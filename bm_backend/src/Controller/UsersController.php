@@ -20,9 +20,19 @@ final class UsersController extends AbstractController
     #[Route(name: 'app_users_index', methods: ['GET'])]
     public function index(UsersRepository $usersRepository): Response
     {
-        return $this->render('users/index.html.twig', [
-            'users' => $usersRepository->findAll(),
-        ]);
+        //return a json
+        $users = $usersRepository->findAll();
+        $data = array_map(function ($user) {
+            return [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail(),
+                'role' => $user->getRole()->getId()
+            ];
+        }, $users);
+        return $this->json($data);
     }
 
     #[Route('/login', name: 'app_users_login', methods: ['POST'])]
@@ -31,7 +41,7 @@ final class UsersController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $mail = $data['mail'] ?? null;
         $password = $data['password'] ?? null;
-        
+
         if (empty($mail) || empty($password)) {
             return $this->json(
                 ['error' => 'No mail or password provided'],
@@ -162,8 +172,8 @@ final class UsersController extends AbstractController
             $user->setName($name);
             $user->setSurname($surname);
 
-            if(isset($userdata['phone']))
-            $user->setPhone($userdata['phone']);
+            if (isset($userdata['phone']))
+                $user->setPhone($userdata['phone']);
 
             $user->setMail($mail);
             $user->setPassword($password);

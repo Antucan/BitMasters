@@ -1,1 +1,58 @@
-<p>home works!</p>
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+    <!-- Main Panel -->
+    <div class="p-0">
+      <!-- Header -->
+      <div
+        class="bg-purple text-white py-3 d-flex align-items-center justify-content-center position-relative px-3 header-container">
+        <img src="../../../../assets/images/bitmasters5.jpg" alt="Logo"
+          class="img-fluid position-absolute start-0 header-logo">
+        <h1 class="m-0">ADMIN'S DASHBOARD</h1>
+      </div>
+      <!-- Submenu -->
+      <div class="bg-secondary text-white px-3 py-2 panel-control">
+        <i class="bi bi-list me-2"></i> PANEL DE CONTROL
+      </div>
+      <!-- Sidebar and Content -->
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-2 bg-purple text-white d-flex flex-column p-5 vh-100">
+          <ul class="nav flex-column list-style-disc">
+            <li id="nav_text" class="nav-item mb-2"><strong>Lista Clientes</strong></li>
+            <li id="nav_text" class="nav-item mb-2"><strong>Lista Productos</strong></li>
+            <li id="nav_text" class="nav-item"><strong>Pedidos y compras</strong></li>
+          </ul>
+        </div>
+        <!-- Content -->
+        <div class="col-md-10 p-4">
+          <div class="row g-3">
+            <!-- CLIENTS -->
+            <div class="col-md-6">
+              <div class="bg-light placeholder-box d-flex align-items-center">
+                <div style="margin-left: 20px;">
+                  <h3>CLIENTES</h3>
+                  <p style="font-size: 20px;">Número total de clientes</p>
+                  <p style="font-size: 30px;"><strong>{{ countClients }}</strong></p>
+                </div>
+              </div>
+            </div>
+            <!-- PRODCUTS -->
+            <div class="col-md-6">
+              <div class="bg-light placeholder-box d-flex align-items-center">
+                <div style="margin-left: 20px;">
+                  <h3>PRODUCTOS</h3>
+                  <p style="font-size: 20px;">Número total de productos</p>
+                  <p style="font-size: 30px;"><strong>{{ countProducts }}</strong></p>
+                </div>
+              </div>
+            </div>
+            <!-- ORDERS -->
+            <div class="col-12">
+              <div class="bg-light placeholder-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
