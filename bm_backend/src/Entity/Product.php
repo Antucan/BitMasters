@@ -93,6 +93,17 @@ class Product
 
         return $this;
     }
+    public function getImage(): ?string
+    {
+        return $this->img_url;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->img_url = $image;
+
+        return $this;
+    }
 
     public function getUser(): ?Users
     {

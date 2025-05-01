@@ -1,0 +1,29 @@
+<section id = "productForm">
+    <div class = "hola">
+        <div class = "adios">
+            <h2 class = "title"> AÑADIR PRODUCTO </h2>
+            <form method = "POST" (ngSubmit)="add()">
+                <label for = "name" id = "test"> Nombre </label>
+                <input type = "text" required [(ngModel)] = "name" name = "name" id = "name" class = "input">
+                
+                <label for = "name" id = "test"> Descripción </label>
+                <input type = "text" [(ngModel)] = "description" name = "description">
+                
+                <label for = "name" id = "test"> Categoria </label>
+                <select [(ngModel)] = "category" name = "category">
+                    <option> Consolas </option>
+                    <option> Merchandising </option>
+                </select>
+
+                <label for = "name" id = "test"> Precio </label>
+                <input type = "number" placeholder = "Precio de venta" [(ngModel)] = "price" name = "price">
+            
+                <label for = "name" id = "test"> Url Imagen </label>
+                <input type = "text" [(ngModel)] = "image" name = "image">
+                
+                <input type = "submit" value = "AÑADIR PRODUCTO" id = "submit"> 
+                
+            </form>
+        </div>
+    </div>
+</section>
