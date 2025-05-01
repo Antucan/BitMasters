@@ -1,37 +1,33 @@
-#productForm{
-    justify-content: center;
+input, select{
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 30px;
+    border: 1px solid black;
+}
+#submit{
+    margin-top: 30px;
+    background-color: purple;
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+.hola{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 70px 40px;
+    
+}
+.adios{
+    padding: 50px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+label{
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 0.9px;
+}
+.title{
     text-align: center;
+    font-weight: bold;
+    font-size: 40px;
 }
-#productName > input{
-    width: 30%;
-    height: 50px;
-    border: 2px solid black;
-    text-align:center;
-    /* margin-top: 5px;
-    margin-bottom: 5px; */
-}
-
-#productDescription > input {
-    width: 30%;
-    height: 90px;
-    border: 2px solid black;
-    text-align: center;
-}
-
-#productCategory > input {
-
-}
-
-#productPrice > input {
-    border: 2px solid black;
-    text-align: center;
-}
-
-#productImage > input {
-    border: 2px solid black;
-}
-
-#productAdd > button {
-    border: 2px solid black;
-}
-

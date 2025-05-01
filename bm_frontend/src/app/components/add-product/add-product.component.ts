@@ -51,6 +51,8 @@ export class AddProductComponent {
           console.log(this.name);
         }
       )
+    }else{
+      alert("Faltan campos");
     }
   }
 

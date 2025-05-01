@@ -1,40 +1,29 @@
 <section id = "productForm">
-    <form method = "POST" (ngSubmit)="add()" enctype="multipart/form-data">
-        <div id = "productName" class = "my-4">
-            <span> Nombre </span>
-            <br>
-            <input type = "text" placeholder="Introduce nombre de producto" required [(ngModel)] = "name" name = "name" id = "name">
-        </div>
+    <div class = "hola">
+        <div class = "adios">
+            <h2 class = "title"> AÑADIR PRODUCTO </h2>
+            <form method = "POST" (ngSubmit)="add()">
+                <label for = "name" id = "test"> Nombre </label>
+                <input type = "text" required [(ngModel)] = "name" name = "name" id = "name" class = "input">
+                
+                <label for = "name" id = "test"> Descripción </label>
+                <input type = "text" [(ngModel)] = "description" name = "description">
+                
+                <label for = "name" id = "test"> Categoria </label>
+                <select [(ngModel)] = "category" name = "category">
+                    <option> Consolas </option>
+                    <option> Merchandising </option>
+                </select>
 
-        <div id = "productDescription" class = "my-4"> 
-            <span> Descripción </span>
-            <br>
-            <input type = "text" [(ngModel)] = "description" name = "description">
+                <label for = "name" id = "test"> Precio </label>
+                <input type = "number" placeholder = "Precio de venta" [(ngModel)] = "price" name = "price">
+            
+                <label for = "name" id = "test"> Url Imagen </label>
+                <input type = "text" [(ngModel)] = "image" name = "image">
+                
+                <input type = "submit" value = "AÑADIR PRODUCTO" id = "submit"> 
+                
+            </form>
         </div>
-
-        <div id = "productCategory" class = "my-4">
-            <span> Categoria </span>
-            <br>
-            <select [(ngModel)] = "category" name = "category">
-                <option> Consolas </option>
-                <option> Merchandising </option>
-            </select>
-        </div>
-
-        <div id = "productPrice" class = "my-4">
-            <span> Precio </span>
-            <br>
-            <input type = "number" placeholder = "Precio de venta" [(ngModel)] = "price" name = "price">
-        </div>
-
-        <div id = "productImage" class = "my-4">
-            <span> Adjuntar imagenes </span>
-            <br>
-            <input type = "text" [(ngModel)] = "image" name = "image">
-        </div>
-
-        <div id = "productAdd" class = "my-4">
-            <input type = "submit" value = "Añadir Producto "> 
-        </div>
-    </form>
+    </div>
 </section>
