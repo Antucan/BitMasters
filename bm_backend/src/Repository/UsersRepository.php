@@ -58,4 +58,5 @@ class UsersRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+  
 }
