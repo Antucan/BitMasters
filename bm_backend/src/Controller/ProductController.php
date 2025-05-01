@@ -21,12 +21,11 @@ final class ProductController extends AbstractController
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
-                //'id' => $product->getId(),
+                'id' => $product->getId(),
                 'name' => $product->getName(),
                 'description' => $product->getDescription(),
-                //'category' => $product->getCategory(),
                 'price' => $product->getPrice(),
-                //'user' => $product->getUser()->getName()
+                'img_url' => $product->getImgUrl(),
             ];
         }, $products);
         return $this->json($data);
@@ -56,7 +55,8 @@ final class ProductController extends AbstractController
                 'description' => $product->getDescription(),
                 'category' => $product->getCategory(),
                 'price' => $product->getPrice(),
-                'user' => $product->getUser()->getName()
+                'user' => $product->getUser()->getName(),
+                'img_url' => $product->getImgUrl(),
             ];
         }, $products);
         return $this->json($data);

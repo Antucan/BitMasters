@@ -1,0 +1,30 @@
+<div *ngIf="!logged">
+    <div id="loginBackground">
+        <div id="loginBox" class="flex-container" (click)="$event.stopPropagation()">
+            <h1>Panel de Admin</h1>
+            <div id="loginLine"></div>
+            <label id="mailField">
+                <span>Correo</span>
+                <input type="email" id="loginName" class="form-control" [(ngModel)]="mail" required />
+            </label>
+            <div *ngIf="mailErrorMessage" class="error-message">
+                {{ mailErrorMessage }}
+            </div>
+            <label id="passField">
+                <span>Contraseña</span>
+                <input type="password" id="loginPass" class="form-control" [(ngModel)]="password" required />
+            </label>
+            <div *ngIf="passwordErrorMessage" class="error-message">
+                {{ passwordErrorMessage }}
+            </div>
+            <div *ngIf="roleErrorMessage" class="error-message">
+                {{ roleErrorMessage }}
+            </div>
+            <button type="button" class="btn btn-info" id="loginButton" (click)="login()">
+                Entrar
+            </button>
+        </div>
+    </div>
+</div>
+<home *ngIf="logged"></home>
+<router-outlet></router-outlet>

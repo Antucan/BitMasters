@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductosService } from './productos.service'; // Importa el nuevo servicio
 import { Product } from '../../models/product.model'; // Asegúrate de que la ruta sea correcta
+import { Router } from '@angular/router'; // Importa Router para la navegación
 
 @Component({
   selector: 'app-productos',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule], // Elimina Router de aquí
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
@@ -16,16 +17,23 @@ export class ProductosComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 8;
 
-  constructor(private productosService: ProductosService) {}
+  // Inyecta el servicio Router
+  constructor(private productosService: ProductosService, private router: Router) {}
 
   ngOnInit() {
     this.loadProducts();
   }
 
   loadProducts() {
-     this.productosService.getProductos().subscribe((data: Product[]) => {
-       this.products = data;
-     });
+    this.productosService.getProductos().subscribe((data: Product[]) => {
+      this.products = data;
+      console.log(this.products);
+    });
+  }
+
+  goToProduct(productId: number): void {
+    // Navega a la ruta producto/{id}
+    this.router.navigate([`/producto/${productId}`]);
   }
 
   get paginatedProducts(): Product[] {

@@ -24,9 +24,9 @@
       </div>
     </div>
     <div id="product-list" class="container">
-      <div *ngFor="let product of paginatedProducts" id="product">
+      <div *ngFor="let product of paginatedProducts" id="product" (click)="goToProduct(product.id)">
         <div id="product-img">
-          <!-- <img id="product-img" [src]="product.img"> -->
+          <img [src]="product.img_url">
         </div>
         <div id="product-info">
           <div id="product-price">{{ product.price }}€</div>

@@ -1,26 +1,45 @@
 <nav class="d-flex align-items-center justify-content-between px-3">
-    <button id="catalog-btn">
-        <i class="bi bi-list h1" onclick="changeIcon()"></i>
-        <p class="catalog">CATÁLOGO</p>
-    </button>
-    
+  <button id="catalog-btn">
+    <i class="bi bi-list h1" onclick="changeIcon()"></i>
+    <p class="catalog">CATÁLOGO</p>
+  </button>
 
-    <div class="d-flex flex-grow-1 justify-content-center ms-auto">
-        <form class="d-flex w-50 justify-content-center" role="search"> 
-            <input class="searchbar form-control search-input w-100" type="search" aria-label="Search">
-        </form>
-    </div>
+  <div class="d-flex flex-grow-1 justify-content-center ms-auto">
+    <form class="d-flex w-50 justify-content-center" role="search">
+      <input
+        class="searchbar form-control search-input w-100"
+        type="search"
+        aria-label="Search"
+      />
+    </form>
+  </div>
 
-    <div class="user-actions-container">
-        <div class="user-action" (click)="showLogin()">
-            <img src="../../assets/images/userlogo.png" alt="icon" class="user-icon">
-            <span class="login">INICIAR SESIÓN</span>
-        </div>
-        <div class="user-action" (click)="onCartClick()">
-            <img src="../../assets/images/shopping-bag.png" alt="shopping-icon" class="bag-icon">
-            <span class="cart">MI CESTA</span>
-        </div>
+  <div class="user-actions-container">
+    <!-- Mostrar botón dependiendo del estado de autenticación -->
+    <div class="user-action" *ngIf="!logged" (click)="showLogin()">
+      <img
+        src="../../assets/images/userlogo.png"
+        alt="icon"
+        class="user-icon"
+      />
+      <span class="login">INICIAR SESIÓN</span>
     </div>
-    
+    <div class="user-action" *ngIf="logged" (click)="navigateToProfile()">
+      <img
+        src="../../assets/images/userlogo.png"
+        alt="icon"
+        class="user-icon"
+      />
+      <span class="login">{{ userName }}</span>
+    </div>
+    <div class="user-action" (click)="onCartClick()">
+      <img
+        src="../../assets/images/shopping-bag.png"
+        alt="shopping-icon"
+        class="bag-icon"
+      />
+      <span class="cart">MI CESTA</span>
+    </div>
+  </div>
 </nav>
 <app-banner></app-banner>

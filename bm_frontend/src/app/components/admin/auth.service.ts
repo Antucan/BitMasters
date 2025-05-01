@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
-import { User } from './models/user.model'; // Update the path to the User model
-import { map, tap } from 'rxjs';//para actualizar la propiedad user
+import { Observable, BehaviorSubject } from 'rxjs';
+import { User } from '../../models/user.model'; // Update the path to the User model
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,6 @@ import { map, tap } from 'rxjs';//para actualizar la propiedad user
 export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/users/login'; // Reemplaza con tu URL de Symfony
   private userSubject = new BehaviorSubject<User | null>(null);
-
   constructor(private http: HttpClient) { }
 
   //Observable para exponer los datos del usuario
@@ -26,6 +24,10 @@ export class AuthService {
     return this.http.post<{ success: boolean; user: any }>(this.apiUrl, credentials, { headers }).pipe(
       map(response => {
         if (response.success) {
+          if (response.user.role !== 1) {
+            throw new Error('Login failed: Unauthorized role');
+          }
+
           const user = new User(
             response.user.id,
             response.user.name,
@@ -36,7 +38,7 @@ export class AuthService {
             response.user.role
           ); // Mapea los datos al modelo User
           this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
-          console.log('User logged in:', user);
+          console.log('User logged in:', user, 'with role:', user.role);
           return user;
         } else {
           throw new Error('Login failed');

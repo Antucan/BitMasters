@@ -1,36 +1,31 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule, NgClass } from '@angular/common';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../auth.service';
+import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'login',
   standalone: true,
+  imports: [RouterModule, CommonModule, FormsModule, HttpClientModule, HomeComponent],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  imports: [RouterModule, CommonModule, FormsModule, HttpClientModule]
+  styleUrl: './login.component.css'
 })
-
 export class LoginComponent {
+  logged: boolean = false;
   mail: string = '';
   password: string = '';
-  loginVisible: boolean = false;
   errorMessage: string | null = null;
   mailErrorMessage: string | null = null;
   passwordErrorMessage: string | null = null;
+  roleErrorMessage: string | null = null;
+  router: any;
 
   constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
-
-  ngOnInit(): void {
-    this.loginService.loginVisible$.subscribe(visible => {
-      this.loginVisible = visible;
-    });
-  }
 
   updateMail(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -46,15 +41,17 @@ export class LoginComponent {
     // Reseteamos mensajes de error
     this.mailErrorMessage = null;
     this.passwordErrorMessage = null;
+    this.roleErrorMessage = null;
     console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
     //llamar a la funcion login de auth.service.ts
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
-        this.loginVisible = false; // Ocultar el formulario de inicio de sesión después de un inicio de sesión exitoso
-        // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+        this.logged = true; // Cambiamos el estado de logged a true
+        // Si el login es exitoso, cargar el componente home y cerra el login
         this.mailErrorMessage = null;
         this.passwordErrorMessage = null;
+        this.roleErrorMessage = null;
       },
       error => {
         console.error('Login failed:', error);
@@ -62,16 +59,14 @@ export class LoginComponent {
           this.passwordErrorMessage = "Constraseña incorrecta";
         } else if (error.status === 404) {
           this.mailErrorMessage = "Usuario no encontrado";
+        } else if (error.message === 'Login failed: Unauthorized role') {
+          this.roleErrorMessage = "Usuario no autorizado";
         }
       }
     );
   }
 
-  showLogin() {
-    this.loginService.showLogin();
-  }
-
-  hideLogin() {
-    this.loginService.hideLogin();
+  closeLogin(): void {
+    this.loginService.hideAdminLogin();
   }
 }

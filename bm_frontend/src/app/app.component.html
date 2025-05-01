@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header *ngIf="!isAdminRoute"></app-header>
 <app-cart-preview *ngIf="isCartVisible" (close)="closeCart()"></app-cart-preview>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="!isAdminRoute"></app-footer>

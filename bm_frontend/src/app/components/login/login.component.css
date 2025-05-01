@@ -46,7 +46,7 @@
 
 #passField {
   width: 100%;
-  margin: 20px 0px 25px 0px;
+  margin: 20px 0px 0px 0px;
 }
 
 #registerMessage {
@@ -72,4 +72,13 @@
 
 #loginButton:hover {
   background: linear-gradient(to top, #00c3ff, #0698c4);
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 16px;
+}
+
+#error {
+  height: 25px;
 }

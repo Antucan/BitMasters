@@ -116,4 +116,16 @@ class Product
 
         return $this;
     }
+
+    public function getImgUrl(): ?string
+    {
+        return $this->img_url;
+    }
+
+    public function setImgUrl(string $img_url): static
+    {
+        $this->img_url = $img_url;
+
+        return $this;
+    }
 }
