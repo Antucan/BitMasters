@@ -28,7 +28,7 @@ class Product
     private ?int $price = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $img_url = null;
 
     #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'products')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: true)]
@@ -95,12 +95,12 @@ class Product
     }
     public function getImage(): ?string
     {
-        return $this->image;
+        return $this->img_url;
     }
 
     public function setImage(string $image): static
     {
-        $this->image = $image;
+        $this->img_url = $image;
 
         return $this;
     }
