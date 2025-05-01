@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
 import { UserService } from '../user.service';
+import { ClientsComponent } from "./clients/clients.component";
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'home',
-  imports: [],
+  standalone: true,
+  imports: [ClientsComponent, CommonModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   countClients: number = 0;
   countProducts: number = 0;
+  clientsComponent = false;
 
   constructor(private productService: ProductService, private userService: UserService) { }
 
@@ -23,6 +28,15 @@ export class HomeComponent {
     this.productService.countProducts().subscribe(products => {
       this.countProducts = products.length; // Asigna la cantidad de productos
     });
+
+  }
+
+  showDashboard() {
+    this.clientsComponent = false;
+  }
+
+  showClients() {
+    this.clientsComponent = true;
   }
 }
 

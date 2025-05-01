@@ -1,0 +1,13 @@
+<div>
+    <ul>
+        <li *ngFor="let client of clientsList">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ client.name }} {{ client.surname }}</h5>
+                    <p class="card-text">Email: {{ client.mail }}</p>
+                    <p class="card-text">Phone: {{ client.phone }}</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

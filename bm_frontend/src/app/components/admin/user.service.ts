@@ -16,6 +16,12 @@ export class UserService {
         return this.http.get<any[]>(`${this.apiUrl}`);
     }
 
+    getClients(): Observable<any[]> {
+        return this.getUsers().pipe(
+            map(users => users.filter(user => user.role === 2))
+        );
+    }
+
     // Obtener la cantidad de usuarios con role 2
     countClients(): Observable<any[]> {
         return this.getUsers().pipe(
