@@ -206,23 +206,18 @@ final class UsersController extends AbstractController
             return new JsonResponse(["Error" => "User not found"]);
         }
 
-        $name = $request->request->get("name");
-        $surname = $request->request->get("surname");
-        $phone = $request->request->get("phone");
-        $mail = $request->request->get("mail");
-        $password = $request->request->get("password");
-        $role_id = $request->request->get("role");
+        $data = json_decode($request->getContent(), true);
 
-        $user->setName($name);
-        $user->setSurname($surname);
-        $user->setPhone($phone);
-        $user->setMail($mail);
-        $user->setPassword($password);
-        $user->setRole($role->findOneByID($role_id));
+        $user->setName($data['name'] ?? $user->getName());
+        $user->setSurname($data['surname'] ?? $user->getSurname());
+        $user->setPhone($data['phone'] ?? $user->getPhone());
+        $user->setMail($data['mail'] ?? $user->getMail());
+        $user->setPassword($data['password'] ?? $user->getPassword());
+        $user->setRole($role->findOneByID($data['role'] ?? $user->getRole()->getId()));
 
         $entityManager->flush();
 
-        return new JsonResponse(["Ok" => "Chingchongers"]);
+        return new JsonResponse(["Ok" => "Cliente editado correctamente"]);
     }
 
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
