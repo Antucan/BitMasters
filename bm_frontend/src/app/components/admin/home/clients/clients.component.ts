@@ -92,6 +92,10 @@ export class ClientsComponent {
           this.editingClient = null; // Salir del modo de edición
           alert('Cliente actualizado.');
           this.isEditing = false; // Cambiar el estado a no edición
+          // actualizar la lista de clientes
+          this.userService.getClients().subscribe(clients => {
+            this.clientsList = clients;
+          });
         },
         error: (err) => {
           console.error('Error actualizando cliente:', err);

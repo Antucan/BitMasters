@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
 import { UserService } from '../user.service';
 import { ClientsComponent } from "./clients/clients.component";
+import { ProductsComponent } from "./products/products.component";
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [ClientsComponent, CommonModule, HttpClientModule],
+  imports: [ClientsComponent, ProductsComponent, CommonModule, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -16,6 +17,7 @@ export class HomeComponent {
   countClients: number = 0;
   countProducts: number = 0;
   clientsComponent = false;
+  productsComponent = false;
 
   constructor(private productService: ProductService, private userService: UserService) { }
 
@@ -33,10 +35,17 @@ export class HomeComponent {
 
   showDashboard() {
     this.clientsComponent = false;
+    this.productsComponent = false;
   }
 
   showClients() {
     this.clientsComponent = true;
+    this.productsComponent = false;
+  }
+
+  showProducts() {
+    this.clientsComponent = false;
+    this.productsComponent = true;
   }
 }
 
