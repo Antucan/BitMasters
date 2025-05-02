@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'products', component: ProductosComponent },
-  { path: 'add-product', component: AddProductComponent}
+  { path: 'add-product', component: AddProductComponent},
   { path: 'producto/:id', component: ProductoComponent },
   { path: 'admin', component: LoginComponent }
 ];
