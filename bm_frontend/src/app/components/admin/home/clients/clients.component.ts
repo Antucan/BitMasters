@@ -16,7 +16,9 @@ export class ClientsComponent {
   clientsList: any[] = [];
   currentPage = 1;
   clientsPerPage = 5;
-  searchTerm: string = ''; // Nuevo término de búsqueda
+  searchTerm: string = '';
+  editingClient: any = null; // Cliente en edición
+  isEditing: boolean = false; // Estado de edición
 
   constructor(private userService: UserService) { }
 
@@ -26,7 +28,6 @@ export class ClientsComponent {
     });
   }
 
-  // Filtrar clientes según el término de búsqueda
   get filteredClients(): any[] {
     if (!this.searchTerm.trim()) {
       return this.clientsList;
@@ -36,7 +37,6 @@ export class ClientsComponent {
     );
   }
 
-  // Obtener clientes paginados de la lista filtrada
   get paginatedClients(): any[] {
     const startIndex = (this.currentPage - 1) * this.clientsPerPage;
     return this.filteredClients.slice(startIndex, startIndex + this.clientsPerPage);
@@ -58,12 +58,10 @@ export class ClientsComponent {
     return Math.ceil(this.filteredClients.length / this.clientsPerPage);
   }
 
-  // Método para eliminar un cliente
   deleteClient(clientId: number | string) {
     if (confirm('Estás seguro de que quieres borrar el cliente?')) {
       this.userService.deleteUser(Number(clientId)).subscribe({
         next: () => {
-          // Actualizar la lista de clientes al eliminar el cliente
           this.clientsList = this.clientsList.filter(client => client.id !== Number(clientId));
           alert('Cliente borrado.');
         },
@@ -73,5 +71,39 @@ export class ClientsComponent {
         }
       });
     }
+  }
+
+  // Método para iniciar la edición
+  startEdit(client: any) {
+    this.isEditing = true; // Cambiar el estado a edición
+    this.editingClient = { ...client }; // Crear una copia del cliente para editar
+  }
+
+  // Método para guardar los cambios
+  saveEdit() {
+    if (this.editingClient) {
+      this.userService.updateUser(this.editingClient).subscribe({
+        next: (updatedClient) => {
+          // Actualizar la lista de clientes con los datos editados
+          const index = this.clientsList.findIndex(client => client.id === updatedClient.id);
+          if (index !== -1) {
+            this.clientsList[index] = updatedClient;
+          }
+          this.editingClient = null; // Salir del modo de edición
+          alert('Cliente actualizado.');
+          this.isEditing = false; // Cambiar el estado a no edición
+        },
+        error: (err) => {
+          console.error('Error actualizando cliente:', err);
+          alert('Un error ha ocurrido al actualizar el cliente. Vuelve a intentarlo.');
+        }
+      });
+    }
+  }
+
+  // Método para cancelar la edición
+  cancelEdit() {
+    this.isEditing = false; // Cambiar el estado a no edición
+    this.editingClient = null;
   }
 }

@@ -36,7 +36,9 @@ export class UserService {
 
     // Actualizar un usuario existente
     updateUser(client: any): Observable<any> {
-        return this.http.put<any>(`${this.apiUrl}/${client.id}`, client);
+        return this.http.put<any>(`${this.apiUrl}/${client.id}`, client, {
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 
     // Eliminar un usuario
