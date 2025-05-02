@@ -1,0 +1,47 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 40px;
+    background-color: rgb(220, 198, 240);
+    box-sizing: border-box;
+  }
+  
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: 'RetroGaming', sans-serif;
+}
+
+.add-address-btn, .continue-btn {
+    background-color: #430061;
+    padding: 20px;
+    color: white;
+    border-radius: 5px;
+    font-family: 'RetroGaming', sans-serif;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.address-card {
+    margin-top: 10px;
+    padding: 20px;
+    border: 2px solid #430061;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.info-buttons, .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.edit-info, .delete{
+    background-color: #430061;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+    font-family: 'RetroGaming', sans-serif;
+}
