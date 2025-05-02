@@ -1,0 +1,10 @@
+.payment-container{
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(220, 198, 240);
+    font-family: 'RetroGaming', sans-serif;
+}
+
+.title{
+    padding: 20px;
+}

@@ -8,39 +8,37 @@
         <!--Aqui se implementara la linea con el filtro para los precios-->
       </div>
       <div id="category-filter">
-        <h1>Categorias</h1>
-        <label>
-          Consolas<input type="checkbox">
-        </label>
-        <label>
-          Videojuegos<input type="checkbox">
-        </label>
-        <label>
-          Accesorios<input type="checkbox">
-        </label>
-        <label>
-          Perifericos<input type="checkbox">
-        </label>
+        <h1>Categorías</h1>
+        <label>Consolas <input type="checkbox"></label>
+        <label>Videojuegos <input type="checkbox"></label>
+        <label>Accesorios <input type="checkbox"></label>
+        <label>Periféricos <input type="checkbox"></label>
       </div>
     </div>
+
     <div id="product-list" class="container">
-      <div *ngFor="let product of paginatedProducts" id="product" (click)="goToProduct(product.id)">
+      <div *ngFor="let product of paginatedProducts" id="product">
         <div id="product-img">
-          <img [src]="product.img_url">
+          <img [src]="product.img_url" alt="{{ product.name }}">
         </div>
         <div id="product-info">
           <div id="product-price">{{ product.price }}€</div>
           <div id="product-name">{{ product.name }}</div>
           <div id="product-description">{{ product.description }}</div>
         </div>
+        <!-- ✅ Botón que lleva al producto -->
+        <button (click)="goToProduct(product.id)" class="add-to-cart-btn">
+          Ver producto
+        </button>
       </div>
+
       <div id="pagination-controls" class="pagination-controls">
         <button (click)="prevPage()" [disabled]="currentPage === 1">
-          <span>&#9664;</span> <!-- Flecha izquierda -->
+          <span>&#9664;</span>
         </button>
         <span class="page-number">{{ currentPage }}</span>
         <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= products.length">
-          <span>&#9654;</span> <!-- Flecha derecha -->
+          <span>&#9654;</span>
         </button>
       </div>
     </div>

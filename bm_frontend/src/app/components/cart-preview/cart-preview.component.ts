@@ -1,17 +1,46 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-cart-preview',
-  imports: [],
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './cart-preview.component.html',
-  styleUrl: './cart-preview.component.css'
+  styleUrls: ['./cart-preview.component.css']
 })
 export class CartPreviewComponent {
+  isVisible: boolean = false;
 
-  @Output() close = new EventEmitter<void>();
+  constructor(private router: Router, public cartService: CartService) {
+    this.cartService.cartVisible$.subscribe(visible => {
+      this.isVisible = visible;
+    });
+  }
+
+  get items() {
+    return this.cartService.getItems();
+  }
+
+  get totalItems() {
+    return this.cartService.getTotalItems();
+  }
+
+  get totalPrice() {
+    return this.cartService.getTotalPrice();
+  }
+
+  goToCart() {
+    this.cartService.hideCart();
+    this.router.navigate(['/cesta']);
+  }
 
   closeCart() {
-    this.close.emit();
+    this.cartService.hideCart();
+  }
+
+  removeItem(id: number) {
+    this.cartService.removeFromCart(id);
   }
 }

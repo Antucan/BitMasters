@@ -1,0 +1,48 @@
+<!-- src/app/cart/cart.component.html -->
+
+<div class="main-container d-flex p-4">
+  <div class="products-container">
+    <h2 class="my-cart text-bold">Mi cesta</h2>
+
+    <p *ngIf="!showProducts" class="empty-cart-message">
+      No hay productos en la cesta.
+    </p>
+
+    <div class="products" *ngIf="showProducts">
+      <p>{{ itemCount }} artículo{{ itemCount === 1 ? '' : 's' }}</p>
+      <app-cart-item
+        *ngFor="let item of cartItems"
+        [item]="item"
+        (deleted)="loadItems()">
+      </app-cart-item>
+    </div>
+
+    <div class="buttons d-flex ms-4 gap-10">
+      <button class="drop-cart-btn" (click)="openModal()">
+        <i class="fa-solid fa-trash-can p-2"></i> Vaciar cesta
+      </button>
+
+      <button (click)="goToProducts()" class="keep-buying">
+        <i class="fa-solid fa-left-long"></i> Seguir comprando
+      </button>
+    </div>
+  </div>
+
+  <app-modal
+    [show]="showModal"
+    (close)="onClose()"
+    (confirm)="vaciarCesta()">
+  </app-modal>
+
+  <div class="summary-container">
+    <h2 class="summary">Resumen de la compra</h2>
+    <div class="summary-container-details">
+      <div class="details">
+        <p>Total: {{ cartService.getTotalPrice() }} €</p>
+      </div>
+      <button class="confirm-purchase-btn" (click)="goToShippingDetails()">
+        Realizar pedido
+      </button>
+    </div>
+  </div>
+</div>

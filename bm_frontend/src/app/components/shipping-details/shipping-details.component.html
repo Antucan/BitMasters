@@ -1,0 +1,25 @@
+<div class="container">
+    <h3 class="title">Dirección de envío</h3>
+
+
+    <div class="address-info">
+        <div *ngFor="let address of addresses; let i = index" class="address-card">
+          <p><strong>Nombre:</strong> {{ address.name }} {{ address.surname }}</p>
+          <p><strong>Teléfono:</strong> {{ address.phone }}</p>
+          <p><strong>Dirección:</strong> {{ address.address }}</p>
+          <p><strong>Población:</strong> {{ address.city }}</p>
+          <p><strong>Código postal:</strong> {{ address.zipCode }}</p>
+          <div class="info-buttons">
+            <button class="edit-info" (click)="openFormDialog(address, i)">Editar</button>
+            <button class="delete" (click)="deleteAddress(i)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="buttons">
+        <button class="add-address-btn" (click)="openFormDialog()"> + Añadir dirección</button>
+        <button class="continue-btn" (click)="goToPayment()">Continuar</button>
+    </div>
+
+</div>
