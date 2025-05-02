@@ -35,12 +35,12 @@ export class UserService {
     }
 
     // Actualizar un usuario existente
-    updateUser(id: number, user: any): Observable<any> {
-        return this.http.put<any>(`${this.apiUrl}/${id}`, user);
+    updateUser(client: any): Observable<any> {
+        return this.http.put<any>(`${this.apiUrl}/${client.id}`, client);
     }
 
     // Eliminar un usuario
     deleteUser(id: number): Observable<any> {
-        return this.http.delete<any>(`${this.apiUrl}/${id}`);
+        return this.http.delete<any>(`${this.apiUrl}/${id}/delete`);
     }
 }

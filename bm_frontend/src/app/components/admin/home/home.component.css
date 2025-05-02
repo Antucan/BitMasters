@@ -47,6 +47,8 @@
   max-height: 80px;
   object-fit: contain;
   /* Asegura que la imagen no se deforme */
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .bg-light.placeholder-box {
