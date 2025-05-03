@@ -54,7 +54,9 @@
   }
   
   #product {
-    width: 200px;
+    display: flex;
+    width: 275px;
+    height: 400px;
     background-color: #a020f0; /* 💜 color morado de producto */
     border-radius: 10px;
     overflow: hidden;
@@ -65,15 +67,20 @@
     align-items: center;
     text-align: center;
     transition: transform 0.2s ease-in-out;
+    margin: 15px 15px 15px 15px;
   }
-  
+
   #product:hover {
     transform: scale(1.05); /* efecto hover */
   }
   
+  #product-img {
+    width: 100%;
+}
+
   #product-img img {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: cover;
   }
   
