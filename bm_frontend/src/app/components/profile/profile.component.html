@@ -3,22 +3,18 @@
         <!-- HEADER DEL PERFIL -->
         <div class = "profile-header">
             <div class = "profile-name">
-                <h3> Alex Alabay, Gracias </h3>
-                <div class = "profile-summary">
+                <h3> {{user?.name}} {{user?.surname}}</h3>
+                <!-- <div class = "profile-summary">
                     "Chavales, hoy subo a oro 1"
-                </div>
-                <div class = "profile-date"> 
+                </div> -->
+                <!-- <div class = "profile-date"> 
                     Se ha unido: 20 de marzo de 2025
-                </div>
+                </div> -->
             </div>
 
             <div class = "header-buttons d-flex flex-column">
                 <button> Enviar Mensaje</button>
-                <button> Editar Perfil</button>
-            </div>
-
-            <div class = "overall-rating">
-                <span> 4 </span>
+                <button (click)="navigateToAddProduct()"> Vender Producto </button>
             </div>
             
             <div class = "pfp">
@@ -30,17 +26,19 @@
         <div class = "personal-data profile-content">
             <div class = "d-flex justify-content-between my-4">
                 <h2> Datos personales </h2>
-                <img src = "../../../assets/images/profile/Star-Logo-PNG-HD.png" class = "edit-data">
+                <!-- <img src = "../../../assets/images/profile/Star-Logo-PNG-HD.png" class = "edit-data"> -->
             </div>
 
             <div class = "d-flex justify-content-around gap-5">
                 <div class = "d-flex flex-column"> 
                     <span><strong>Correo electrónico</strong></span>
-                    <span> antherpra&#64;yahoo.es </span>
+                    <span> {{user?.mail}} </span>
                 </div>
                 <div class = "d-flex flex-column">   
                     <span><strong>Teléfono de contacto</strong></span>
-                    <span> 888 777 727 </span>
+                    <span *ngIf="user?.phone === null"> Telefono no proporcionado </span>
+                    <span *ngIf="user?.phone !== null"> {{user?.phone}} </span>
+                    
                 </div>
             </div>
         </div>
@@ -49,18 +47,18 @@
         <div class = "purchase-history profile-content">
             <div class = "d-flex justify-content-between my-4">
                 <h2> Historial de compras </h2>
-                <img src = "../../../assets/images/profile/Star-Logo-PNG-HD.png" class = "edit-data">
+                <!-- <img src = "../../../assets/images/profile/Star-Logo-PNG-HD.png" class = "edit-data"> -->
             </div>
 
             <!-- HISTORIAL DE COMPRAS producto -->
-            <div class = "product d-flex">
-                <img src = "https://lasnochesdecine.wordpress.com/wp-content/uploads/2016/04/fallout-4-portada.jpg?w=935" class = "img-product">
+            <div class = "product d-flex mb-4" *ngFor="let purchase of purchases; let i = index">
+                <img src = {{purchase.product.img_url}} class = "img-product">
                 <div class = "product-data d-flex flex-column">
-                    <div class = "product-name"><span> Fallout 4 - Copia física (PS4)</span></div>
+                    <div class = "product-name"><span> {{purchase.product.name}} </span></div>
 
-                    <div class = "product-summary"><span> Vendo bideojuego llamado fallout 4, en perfecto estado, incluye juego y manual de instrucciones </span></div>
+                    <div class = "product-summary"><span> {{purchase.product.description}} </span></div>
 
-                    <div class = "product-date"><span> Comprado: 27 Febrero 2025 </span></div>
+                    <div class = "product-date"><span> {{purchase.purchase_date.getDay}} </span></div>
                 </div>
 
                 <div class = "product-review">
@@ -75,22 +73,26 @@
                     </div>
                 </div>
             </div>
+
+            <div *ngIf="purchases.length === 0">
+                <span>No hay compras recientes</span>
+            </div>
         </div>
         
         <!-- PRODUCTOS EN VENTA -->
         <div class = "products profile-content">
             <div class = "d-flex justify-content-between my-4">
                 <h2> Productos </h2>
-                <button> PRUEBA </button>
+                <!-- <button> PRUEBA </button> -->
             </div>
 
             <!-- PRODUCTOS EN VENTA producto -->
-            <div class = "product d-flex">
-                <img src = "https://lasnochesdecine.wordpress.com/wp-content/uploads/2016/04/fallout-4-portada.jpg?w=935" class = "img-product">
+            <div class = "product d-flex mb-4" *ngFor="let product of products; let i = index">
+                <img src = {{product.img_url}} class = "img-product">
                 <div class = "product-data d-flex flex-column">
-                    <div class = "product-name"><span> Fallout 4 - Copia física (PS4)</span></div>
-                    <div class = "product-summary"><span> Vendo bideojuego llamado fallout 4, en perfecto estado, incluye juego y manual de instrucciones </span></div>
-                    <div class = "product-date"><span> Comprado: 27 Febrero 2025 </span></div>
+                    <div class = "product-name"><span> {{product.name}}</span></div>
+                    <div class = "product-summary"><span> {{product.description}} </span></div>
+                    <div class = "product-date"><span> {{product.category}} </span></div>
                 </div>
 
                 <div class = "product-review">
@@ -98,6 +100,10 @@
                         
                     </div>
                 </div>
+            </div>
+
+            <div *ngIf="products.length === 0">
+                <span>No hay productos disponibles</span>
             </div>
         </div>
     </div>

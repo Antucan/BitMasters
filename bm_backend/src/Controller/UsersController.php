@@ -35,7 +35,7 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/login', name: 'app_users_login', methods: ['POST'])]
+    #[Route('/login', name: 'app_users_login', methods: ['GET'])]
     public function login(UsersRepository $usersRepository, Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
@@ -190,11 +190,33 @@ final class UsersController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
-    public function show(Users $user): Response
+    public function show(UsersRepository $usersRepository, Request $request, int $id): Response
     {
-        return $this->render('users/show.html.twig', [
-            'user' => $user,
-        ]);
+        if (empty($id)) {
+            return $this->json(
+                ['error' => 'No id provided'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+        $users = $usersRepository->findById($id);
+        if (empty($users)) {
+            return $this->json(
+                ['error' => 'No users found with id ' . $id],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+        $data = array_map(function ($user) use ($usersRepository) {
+            return [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail(),
+                'password' => $user->getPassword(),
+                'role' => $user->getRole()->getId()
+            ];
+        }, $users);
+        return $this->json($data);
     }
 
     #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
@@ -222,7 +244,7 @@ final class UsersController extends AbstractController
 
         $entityManager->flush();
 
-        return new JsonResponse(["Ok" => "Chingchongers"]);
+        return new JsonResponse(["Ok" => "User edited"]);
     }
 
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]

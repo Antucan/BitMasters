@@ -12,7 +12,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'products', component: ProductosComponent },
   { path: 'add-product', component: AddProductComponent},
   { path: 'producto/:id', component: ProductoComponent },

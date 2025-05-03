@@ -28,6 +28,18 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByUserId(string $id)
+    {
+        return $this->createQueryBuilder('p')
+               ->andWhere('p.user = :val')
+               ->setParameter('val', $id)
+               ->orderBy('p.id', 'DESC')
+               ->setMaxResults(3)
+               ->getQuery()
+               ->getResult()
+           ;
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
