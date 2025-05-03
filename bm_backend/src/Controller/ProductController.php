@@ -63,6 +63,37 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/user/{id}', name: 'app_products_show', methods: ['GET'])]
+    public function findByUserId(ProductRepository $productRepository, UsersRepository $usersRepository, Request $request, int $id): Response
+    {
+        // $id = $request->query->get('id');
+        if (empty($id)) {
+            return $this->json(
+                ['error' => 'No id provided'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
+        $products = $productRepository->findByUserId($id);
+        if (empty($products)) {
+            return $this->json(
+                ['error' => 'No products found with id ' . $id],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+        $data = array_map(function ($product) use ($usersRepository) {
+            return [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'category' => $product->getCategory(),
+                'price' => $product->getPrice(),
+                'user' => $product->getUser()->getName(),
+                'img_url' => $product->getImgUrl(),
+            ];
+        }, $products);
+        return $this->json($data);
+    }
+
     #[Route('/name', name: 'app_products_findByName', methods: ['GET'])]
     public function findByName(ProductRepository $productRepository, UsersRepository $usersRepository, Request $request): Response
     {
