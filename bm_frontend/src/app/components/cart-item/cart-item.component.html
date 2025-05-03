@@ -1,0 +1,20 @@
+<!-- src/app/cart-item/cart-item.component.html -->
+
+<div class="products-content">
+    <div class="product-img-container">
+      <img [src]="item.img_url" [alt]="item.name" class="product-img" />
+    </div>
+  
+    <div class="products-details">
+      <p>{{ item.name }}</p>
+      <p>{{ item.price }} €</p>
+      <p>Cantidad: {{ item.quantity }}</p>
+    </div>
+  
+    <div class="product-cart-btns">
+      <button class="remove-product-btn" (click)="removeProduct()">
+        <img src="assets/images/trash-bin.png" alt="Eliminar producto" />
+      </button>
+    </div>
+  </div>
+  

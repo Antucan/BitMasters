@@ -4,11 +4,16 @@
     right: 0;
     width: 450px;
     height: 100vh;
-    background-color: white;
+    background-color: rgb(220, 198, 240);
     z-index: 9999;
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
     padding: 1rem;
     overflow-y: auto;
+}
+
+.product-img-container{
+    border: 2px solid #430061;
+    border-radius: 2px;
 }
 
 .cart-preview-header {
@@ -41,7 +46,7 @@ h3 {
 }
 
 .resumen-pedido h3 {
-    margin: 20px 0 10px 20px; /* Separación superior e izquierda uniforme */
+    margin: 40px 0 30px 20px; 
     font-size: x-large;
     font-family: 'RetroGaming', sans-serif;
 }
@@ -66,7 +71,7 @@ img {
     width: 150px;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    
 }
 
 a {
@@ -90,7 +95,7 @@ hr {
 .cart-preview-btn {
     background-color: #8A00C7;
     margin-top: 10%;
-    padding: 10px;
+    padding: 20px;
     color: white;
     border-radius: 10px;
     font-family: 'RetroGaming', sans-serif;
@@ -143,3 +148,5 @@ hr {
     height: 20px;
     object-fit: contain;
 }
+
+

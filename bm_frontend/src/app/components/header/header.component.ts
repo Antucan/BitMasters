@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
-import { CartService } from '../cart-preview/cart.service';
+import { CartService } from '../cart/cart.service';
 import { LoginService } from '../login/login.service';
 import { AuthService } from '../../auth.service';
 import { BehaviorSubject } from 'rxjs';
@@ -43,7 +43,7 @@ export class HeaderComponent {
   }
 
   onCartClick() {
-    this.cartService.showCart(); // muestra el carrito
+    this.cartService.showCart(); 
   }
 
   navigateToProfile(){

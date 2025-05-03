@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/productos')]
 final class ProductController extends AbstractController
@@ -17,7 +18,7 @@ final class ProductController extends AbstractController
     #[Route(name: 'app_products_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
-        
+
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
@@ -163,10 +164,10 @@ final class ProductController extends AbstractController
         $category = $productdata["category"];
         $price = $productdata["price"];
         $img = $productdata["image"];
-            // $name = $request->request->get('name');
-            // $description = $request->request->get('description');
-            // $category = $request->request->get('category');
-            // $price = $request->request->get('price');
+        // $name = $request->request->get('name');
+        // $description = $request->request->get('description');
+        // $category = $request->request->get('category');
+        // $price = $request->request->get('price');
         //comprobamos si nombre del producto ya existe
         $productRepository = $entityManager->getRepository(Product::class);
         $product = $productRepository->findOneBy(['name' => $name]);
@@ -237,6 +238,28 @@ final class ProductController extends AbstractController
                 Response::HTTP_BAD_REQUEST
             );
         }
+    }
+
+    #[Route('/{id}', name: 'app_products_change', methods: ['PUT'])]
+    public function change($id, Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository): Response
+    {
+        $product = $entityManager->getRepository(Product::class)->find($id);
+
+        if (empty($product)) {
+            return new JsonResponse(["Error" => "Product not found"]);
+        }
+
+        $data = json_decode($request->getContent(), true);
+
+        $product->setName($data['name'] ?? $product->getName());
+        $product->setDescription($data['description'] ?? $product->getDescription());
+        $product->setCategory($data['category'] ?? $product->getCategory());
+        $product->setPrice($data['price'] ?? $product->getPrice());
+        $product->setImage($data['img_url'] ?? $product->getImage());
+
+        $entityManager->flush();
+
+        return new JsonResponse(["Ok" => "Cliente editado correctamente"]);
     }
 
     #[Route('/delete/{id}', name: 'app_products_delete', methods: ['DELETE'])]

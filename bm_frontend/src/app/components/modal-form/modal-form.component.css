@@ -1,0 +1,47 @@
+.form-title, .cancel-btn, .save-btn{
+    font-family: 'RetroGaming', sans-serif;
+    color: white;
+}
+
+.form-title {
+    text-decoration: underline;
+    text-align: center;
+    font-size: 1.5rem;   
+    margin-bottom: 20px; 
+}
+
+
+.form-content{
+    display: flex;
+    flex-direction: column;
+    
+   
+}
+
+  
+.form-container {
+    background-color: #8A00C7;
+    border: 5px solid #430061;
+    border-radius: 25px;
+    margin: 50px auto;
+    width: 100%;
+  }
+  
+.cancel-btn, .save-btn{
+    background-color: #430061;
+    border-radius: 5px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover, .save-btn:hover {
+    box-shadow: 0 0 8px #d941df;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+
+.form-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+

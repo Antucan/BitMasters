@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductosService } from './productos.service'; // Importa el nuevo servicio
 import { Product } from '../../models/product.model'; // Asegúrate de que la ruta sea correcta
 import { Router } from '@angular/router'; // Importa Router para la navegación
+import { CartService } from '../cart/cart.service';
 
 @Component({
   selector: 'app-productos',
@@ -17,8 +18,11 @@ export class ProductosComponent implements OnInit {
   currentPage = 1;
   itemsPerPage = 8;
 
-  // Inyecta el servicio Router
-  constructor(private productosService: ProductosService, private router: Router) {}
+  constructor(
+    private productosService: ProductosService,
+    private router: Router,
+  ) {}
+  
 
   ngOnInit() {
     this.loadProducts();
@@ -31,9 +35,8 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  goToProduct(productId: number): void {
-    // Navega a la ruta producto/{id}
-    this.router.navigate([`/producto/${productId}`]);
+  goToProduct(productId: number) {
+    this.router.navigate(['/producto', productId]);
   }
 
   get paginatedProducts(): Product[] {
@@ -52,4 +55,6 @@ export class ProductosComponent implements OnInit {
       this.currentPage--;
     }
   }
+
+  
 }

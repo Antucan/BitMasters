@@ -1,0 +1,14 @@
+<div class="custom-backdrop" *ngIf="show">
+  <div class="custom-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>¿Estás seguro?</h2>
+      <p>Esta acción no se puede deshacer, ¡asegúrate antes de confirmar!</p>
+      <button class="close-button-icon" (click)="onClose()">&times;</button>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="close-btn" (click)="onClose()">Cerrar</button>
+      <button type="button" class="drop-cart" (click)="onRemoveCart()"><i class="fa-solid fa-trash-can p-2"></i>Vaciar cesta</button>
+    </div>
+  </div>
+</div>
