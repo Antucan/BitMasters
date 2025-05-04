@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class ProductsComponent {
   productsList: any[] = [];
   currentPage = 1;
-  productsPerPage = 4;
+  productsPerPage = 3;
   searchTerm: string = '';
   editingProduct: any = null; // Producto en edición
   isEditing: boolean = false; // Estado de edición

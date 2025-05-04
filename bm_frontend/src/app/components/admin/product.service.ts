@@ -13,7 +13,7 @@ export class ProductService {
 
   // Obtener todos los productos
   getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+    return this.http.get<any[]>(`${this.apiUrl}/all-products`);
   }
 
   // Obtener la cantidad de productos

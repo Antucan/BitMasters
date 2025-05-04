@@ -32,6 +32,25 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/all-products', name: 'app_products_users', methods: ['GET'])]
+    public function getAllWithUser(ProductRepository $productRepository): Response
+    {
+
+        $products = $productRepository->findAll();
+        $data = array_map(function ($product) {
+            return [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+                'category' => $product->getCategory(),
+                'user' => $product->getUser()->getName(),
+                'price' => $product->getPrice(),
+                'img_url' => $product->getImgUrl(),
+            ];
+        }, $products);
+        return $this->json($data);
+    }
+
     #[Route('/id', name: 'app_products_show', methods: ['GET'])]
     public function findById(ProductRepository $productRepository, UsersRepository $usersRepository, Request $request): Response
     {
