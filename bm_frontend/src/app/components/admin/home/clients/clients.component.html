@@ -1,7 +1,9 @@
 <div class="container">
     <!-- Campo de búsqueda -->
-    <div class="mb-3" *ngIf="!isEditing">
-        <input type="text" class="form-control" placeholder="Search clients..." [(ngModel)]="searchTerm" />
+    <div class="mb-3 d-flex justify-content-center" *ngIf="!isEditing">
+        <div style="max-width: 400px; width: 100%;">
+            <input type="text" class="form-control" placeholder="Search clients..." [(ngModel)]="searchTerm" />
+        </div>
     </div>
 
     <!-- Lista de clientes -->
