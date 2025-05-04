@@ -18,7 +18,6 @@ final class ProductController extends AbstractController
     #[Route(name: 'app_products_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
-
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
@@ -35,7 +34,6 @@ final class ProductController extends AbstractController
     #[Route('/all-products', name: 'app_products_users', methods: ['GET'])]
     public function getAllWithUser(ProductRepository $productRepository): Response
     {
-
         $products = $productRepository->findAll();
         $data = array_map(function ($product) {
             return [
@@ -51,10 +49,9 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/id', name: 'app_products_show', methods: ['GET'])]
-    public function findById(ProductRepository $productRepository, UsersRepository $usersRepository, Request $request): Response
+    #[Route('/id/{id}', name: 'app_products_by_id', methods: ['GET'])]
+    public function findById(ProductRepository $productRepository, UsersRepository $usersRepository, int $id): Response
     {
-        $id = $request->query->get('id');
         if (empty($id)) {
             return $this->json(
                 ['error' => 'No id provided'],
@@ -82,10 +79,9 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/user/{id}', name: 'app_products_show', methods: ['GET'])]
+    #[Route('/user/{id}', name: 'app_products_by_user_id', methods: ['GET'])]
     public function findByUserId(ProductRepository $productRepository, UsersRepository $usersRepository, Request $request, int $id): Response
     {
-        // $id = $request->query->get('id');
         if (empty($id)) {
             return $this->json(
                 ['error' => 'No id provided'],
@@ -177,17 +173,12 @@ final class ProductController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $user): Response
     {
         $productdata = json_decode($request->getContent(), true);
-        //funcion para crear un nuevo producto
         $name = $productdata["name"];
         $description = $productdata["description"];
         $category = $productdata["category"];
         $price = $productdata["price"];
         $img = $productdata["image"];
-        // $name = $request->request->get('name');
-        // $description = $request->request->get('description');
-        // $category = $request->request->get('category');
-        // $price = $request->request->get('price');
-        //comprobamos si nombre del producto ya existe
+
         $productRepository = $entityManager->getRepository(Product::class);
         $product = $productRepository->findOneBy(['name' => $name]);
         if (!empty($product)) {
@@ -223,7 +214,6 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/update/{id}', name: 'app_products_update', methods: ['PUT'])]
-    //funcion para editar un producto
     public function edit($id, Request $request, EntityManagerInterface $entityManager, ProductRepository $productRepository): Response
     {
         $product = $productRepository->find($id);
@@ -282,7 +272,6 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'app_products_delete', methods: ['DELETE'])]
-    //funcion para eliminar un producto
     public function delete($id, EntityManagerInterface $entityManager, ProductRepository $productRepository): Response
     {
         $product = $productRepository->find($id);

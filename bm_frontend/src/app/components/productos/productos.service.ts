@@ -9,7 +9,7 @@ import { Product } from '../../models/product.model';
 export class ProductosService {
 
   private apiUrl = 'http://127.0.0.1:8000/productos';
-  private apiUrlById = 'http://127.0.0.1:8000/productos/id';
+  private apiUrlById = `${this.apiUrl}/id`; 
 
   constructor(private http: HttpClient) { }
 
@@ -18,8 +18,6 @@ export class ProductosService {
   }
 
   getProductoById(id: number): Observable<any> {
-    return this.http.get<any>(this.apiUrlById, {
-      params: { id: id.toString() }
-    });
+    return this.http.get<any>(`${this.apiUrlById}/${id}`);
   }
 }
