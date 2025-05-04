@@ -35,7 +35,7 @@ final class UsersController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/login', name: 'app_users_login', methods: ['GET'])]
+    #[Route('/login', name: 'app_users_login', methods: ['POST'])]
     public function login(UsersRepository $usersRepository, Request $request): Response
     {
         $data = json_decode($request->getContent(), true);
