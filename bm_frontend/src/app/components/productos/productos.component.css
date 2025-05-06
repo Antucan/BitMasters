@@ -1,177 +1,181 @@
 #gloval-div {
-    padding: 2rem;
-    background-image: url('/assets/images/product-background.jpg'); /* 🔁 repón tu imagen real aquí */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  #title {
-    font-family: 'RetroGaming', sans-serif;
-    font-size: 2rem;
-    color: white;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  #productsAndFilters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  
-  #filters {
-    width: 250px;
-    background-color: #8000c0; /* 💜 fondo morado como en tu imagen */
-    color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    font-family: 'Lato', sans-serif;
-  }
-  
-  #filters-title,
-  #price-filter h1,
-  #category-filter h1 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  #category-filter label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  #product-list {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 1rem;
-    box-sizing: border-box;
-    min-height: 600px; /* ⬅️ evita encogimiento */
-  }
-  
-  #product {
-    display: flex;
-    width: 275px;
-    height: 400px;
-    background-color: #a020f0; /* 💜 color morado de producto */
-    border-radius: 10px;
-    overflow: hidden;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
-    margin: 15px 15px 15px 15px;
-  }
-
-  
-  #product-img {
-    width: 100%;
+  padding: 2rem;
+  background-image: url('/assets/images/product-background.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-  #product-img img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  #product-info {
-    padding: 0.5rem;
-  }
-  
-  #product-price {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  #product-name {
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  #product-description {
-    font-size: 0.9rem;
-    color: #e0e0e0;
-  }
-  
-  #pagination-controls {
-    width: 100%;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  #pagination-controls button {
-    background-color: #a020f0;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  #pagination-controls button:disabled {
-    background-color: #555;
-    cursor: not-allowed;
-  }
-  
-  .page-number {
-    font-weight: bold;
-    color: white;
-  }
-  
-  #filters h1 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  #filters label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  #filters input[type="checkbox"] {
-    accent-color: #a020f0; /* Color del checkbox */
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
-  
-  #price-filter {
-    margin-bottom: 1.5rem;
-  }
-  
-  #category-filter {
-    margin-top: 1rem;
-  }
-  
-  .add-to-cart-btn {
-    background-color: #ffffff;
-    color: #a020f0;
-    border: none;
-    border-radius: 5px;
-    margin: 0.5rem 0;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .add-to-cart-btn:hover {
-    background-color: #e0e0e0;
-  }
-  
+#title {
+  font-family: 'RetroGaming', sans-serif;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#productsAndFilters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#filters {
+  width: 250px;
+  background-color: #8000c0; 
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+}
+
+#filters-title,
+#price-filter h1,
+#category-filter h1 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+#category-filter label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+#product-list {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  min-height: 600px;
+}
+
+#product {
+  display: flex;
+  flex-direction: column;
+  width: 275px;
+  height: 400px;
+  background-color: #a020f0; 
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  margin: 15px;
+}
+
+#product-img {
+  width: 100%;
+}
+
+#product-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+
+#product-info {
+  flex-grow: 1;
+}
+
+#product-price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+#product-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#product-description {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+}
+
+.add-to-cart-btn {
+  background-color: #ffffff;
+  color: #a020f0;
+  border: none;
+  border-radius: 5px;
+  margin-top: auto;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #e0e0e0;
+}
+
+#pagination-controls {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+#pagination-controls button {
+  background-color: #a020f0;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#pagination-controls button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.page-number {
+  font-weight: bold;
+  color: white;
+}
+
+#filters h1 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+#filters label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#filters input[type="checkbox"] {
+  accent-color: #a020f0; 
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+#price-filter {
+  margin-bottom: 1.5rem;
+}
+
+#category-filter {
+  margin-top: 1rem;
+}
