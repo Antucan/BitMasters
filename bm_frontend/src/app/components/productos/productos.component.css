@@ -61,7 +61,6 @@
     border-radius: 10px;
     overflow: hidden;
     color: white;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,9 +69,6 @@
     margin: 15px 15px 15px 15px;
   }
 
-  #product:hover {
-    transform: scale(1.05); /* efecto hover */
-  }
   
   #product-img {
     width: 100%;
