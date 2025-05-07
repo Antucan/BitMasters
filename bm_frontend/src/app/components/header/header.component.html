@@ -1,6 +1,6 @@
 <nav class="d-flex align-items-center justify-content-between px-3">
-  <button id="catalog-btn">
-    <i class="bi bi-list h1" onclick="changeIcon()"></i>
+  <button id="catalog-btn" (click)="openCatalog()">
+    <i class="bi bi-list h1"></i>
     <p class="catalog">CATÁLOGO</p>
   </button>
 
@@ -15,7 +15,6 @@
   </div>
 
   <div class="user-actions-container">
-    <!-- Mostrar botón dependiendo del estado de autenticación -->
     <div class="user-action" *ngIf="!logged" (click)="showLogin()">
       <img
         src="../../assets/images/userlogo.png"
@@ -42,4 +41,8 @@
     </div>
   </div>
 </nav>
+
 <app-banner></app-banner>
+
+<!-- Mostrar catálogo como panel lateral si está activo -->
+<app-catalog *ngIf="showCatalog" (closeModal)="closeCatalog()"></app-catalog>

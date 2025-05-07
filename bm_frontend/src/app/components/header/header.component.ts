@@ -5,31 +5,36 @@ import { BannerComponent } from '../banner/banner.component';
 import { CartService } from '../cart/cart.service';
 import { LoginService } from '../login/login.service';
 import { AuthService } from '../../auth.service';
+import { CatalogComponent } from '../catalog/catalog.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, BannerComponent],
+  imports: [CommonModule, BannerComponent, CatalogComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
   logged: boolean = false;
   userName: string = '';
+  showCatalog = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private cartService: CartService,
     private loginService: LoginService,
-    private authService: AuthService,) { }
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.authService.user$.subscribe(user => {
-      console.log('User object: ',user);
       if (user) {
-        this.logged = !!user; // Cambia a true si hay un usuario, false si no
-        this.userName = user.name || 'PERFIL'; 
-        console.log('User detected in HeaderComponent: ', this.userName);
+        this.logged = true;
+        this.userName = user.name || 'PERFIL';
+      } else {
+        this.logged = false;
+        this.userName = '';
       }
     });
   }
@@ -43,11 +48,21 @@ export class HeaderComponent {
   }
 
   onCartClick() {
-    this.cartService.showCart(); 
+    this.cartService.showCart();
   }
 
-  navigateToProfile(){
+  navigateToProfile() {
     this.router.navigate(['/profile']);
   }
 
+  openCatalog() {
+    this.showCatalog = true;
+    document.body.style.overflow = 'hidden'; 
+  }
+  
+  closeCatalog() {
+    this.showCatalog = false;
+    document.body.style.overflow = ''; 
+  }
+  
 }
