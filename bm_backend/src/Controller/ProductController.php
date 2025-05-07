@@ -18,7 +18,7 @@ final class ProductController extends AbstractController
     #[Route(name: 'app_products_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
-        $products = $productRepository->findAll();
+        $products = $productRepository->findBy(['status' => 0]);
         $data = array_map(function ($product) {
             return [
                 'id' => $product->getId(),
