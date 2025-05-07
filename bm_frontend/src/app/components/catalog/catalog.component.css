@@ -1,44 +1,85 @@
-.catalog {
-    position: absolute;
-    top: 8%;
+
+.catalog-overlay {
+    position: fixed;
+    top: 0;
     left: 0;
-    background: linear-gradient(0deg, #430061 28%, #8A00C7 100%);
-    width: 20%;
-    height: calc(100vh);
-    z-index: 10;
-}
-
-
-.categories-title{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9998;
     display: flex;
-    color: white;
+    align-items: flex-start;
+  }
+  
+
+  .catalog-panel {
+    width: 280px;
+    height: 100vh;
+    background-color: rgb(220, 198, 240);
+    border-radius: 0 8px 8px 0;
+    overflow-y: auto;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    z-index: 9999;
     font-family: 'RetroGaming', sans-serif;
-    padding-top: 10px;
-    margin-top: 20px;
-    justify-content: center;
-    text-decoration: underline;
-}
-
-a{
-    color: white;
-    text-decoration: none;
-    font-family: 'RetroGaming', sans-serif;
-    
-}
-
-a:hover{
-    text-decoration: underline;
-    font-size: large;
-   
-}
-
-.list-item {
-    display: flex; 
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Cabecera del panel */
+  .catalog-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px; 
-    color: white;
-    padding: 25px;
+    margin-bottom: 1rem;
+  }
+  
+  .offer-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #6a00d4;
+    margin: 0;
+  }
+  
+  .close-btn {
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  /* Categorías */
+  .section-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .category-list {
     list-style: none;
-}
+    padding: 0;
+    margin: 0;
+  }
+  
+  .category-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
 
-
+  
+  .category-item i {
+    min-width: 20px;
+  }
+  

@@ -1,14 +1,51 @@
-<section>
-    <div class="catalog">
-        <h3 class="categories-title">CATEGORÍAS</h3>
-        <ul class="products-list">
-            <li class="list-item"><i class="fas fa-list"></i> <a href="#">Ver todo</a></li>
-            <li class="list-item"><i class="fas fa-gamepad"></i> <a href="#">Consolas</a></li>
-            <li class="list-item"><i class="fas fa-compact-disc"></i> <a href="#">Juegos</a></li>
-            <li class="list-item"><i class="fas fa-tshirt"></i> <a href="#">Merchandising</a></li>
-            <li class="list-item"><i class="fas fa-microchip"></i> <a href="#">Hardware</a></li>
-            <li class="list-item"><i class="fas fa-gem"></i> <a href="#">Coleccionismo</a></li>
-            <li class="list-item"><i class="fas fa-ellipsis-h"></i> <a href="#">Otros</a></li>
+<div class="catalog-overlay visible" (click)="close()">
+    <div class="catalog-panel" (click)="$event.stopPropagation()">
+  
+      <div class="catalog-header">
+        <h2 class="offer-title">Categorías</h2>
+        <button class="close-btn" (click)="close()">✕</button>
+      </div>
+  
+      <div class="catalog-section">
+        <ul class="category-list">
+          <li class="category-item">
+            <i class="fas fa-list"></i>
+            <span>Ver todo</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-gamepad"></i>
+            <span>Consolas</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-compact-disc"></i>
+            <span>Juegos</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-tshirt"></i>
+            <span>Merchandising</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-microchip"></i>
+            <span>Hardware</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-gem"></i>
+            <span>Coleccionismo</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
+          <li class="category-item">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>Otros</span>
+            <i class="fas fa-chevron-right"></i>
+          </li>
         </ul>
+      </div>
+  
     </div>
-</section>
+  </div>
+  
