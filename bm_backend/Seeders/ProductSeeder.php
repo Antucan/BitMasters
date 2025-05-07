@@ -18,12 +18,12 @@ class ProductSeeder
         for ($i = 0; $i < 10; $i++) {
             $name = $faker->word;
             $description = $faker->sentence;
-            $category = $faker->word;
+            $category = $faker->randomElement(['consolas', 'juegos', 'merchandising', 'hardware', 'coleccionismo', 'otros']);
             //id de usuario aleatorio
             $user_id = rand(1, 10);
             $price = $faker->randomFloat(2, 1, 100);
             $img_url = 'https://antiguedadeseldrac.com/uploads/productos/0/0/0/9/5/1/6/IMG_3170.jpg';
-            
+            $status = 0;//en venta, 1 vendido
             
             $this->connection->executeStatement(
                 'INSERT INTO products (name, description, category, user_id, price, img_url) VALUES (?, ?, ?, ?, ?, ?)',
