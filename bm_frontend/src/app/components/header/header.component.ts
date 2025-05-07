@@ -17,6 +17,7 @@ import { BehaviorSubject } from 'rxjs';
 export class HeaderComponent {
   logged: boolean = false;
   userName: string = '';
+  Id: number = 0;
 
   constructor(private router: Router,
     private cartService: CartService,
@@ -29,6 +30,7 @@ export class HeaderComponent {
       if (user) {
         this.logged = !!user; // Cambia a true si hay un usuario, false si no
         this.userName = user.name || 'PERFIL'; 
+        this.Id = user.id
         console.log('User detected in HeaderComponent: ', this.userName);
       }
     });
@@ -47,7 +49,7 @@ export class HeaderComponent {
   }
 
   navigateToProfile(){
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/profile/'+this.Id]);
   }
 
 }
