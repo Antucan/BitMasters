@@ -36,7 +36,7 @@ export class HeaderComponent {
         this.userName = user.name || 'PERFIL'; 
         this.Id = user.id
         console.log('User detected in HeaderComponent: ', this.userName);
-    });
+  }});
   }
 
   redirectTo(route: string): void {
