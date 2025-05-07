@@ -26,6 +26,9 @@ export class AuthService {
     return this.http.post<{ success: boolean; user: any }>(this.apiUrl, credentials, { headers }).pipe(
       map(response => {
         if (response.success) {
+          if (response.user.role !== 2) {
+            throw new Error('Login failed: Unauthorized role');
+          }
           const user = new User(
             response.user.id,
             response.user.name,
