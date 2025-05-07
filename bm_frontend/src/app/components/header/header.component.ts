@@ -18,7 +18,9 @@ import { BehaviorSubject } from 'rxjs';
 export class HeaderComponent {
   logged: boolean = false;
   userName: string = '';
+  Id: number = 0;
   showCatalog = false;
+
 
   constructor(
     private router: Router,
@@ -30,12 +32,10 @@ export class HeaderComponent {
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       if (user) {
-        this.logged = true;
-        this.userName = user.name || 'PERFIL';
-      } else {
-        this.logged = false;
-        this.userName = '';
-      }
+        this.logged = !!user; // Cambia a true si hay un usuario, false si no
+        this.userName = user.name || 'PERFIL'; 
+        this.Id = user.id
+        console.log('User detected in HeaderComponent: ', this.userName);
     });
   }
 
@@ -51,8 +51,9 @@ export class HeaderComponent {
     this.cartService.showCart();
   }
 
-  navigateToProfile() {
-    this.router.navigate(['/profile']);
+  navigateToProfile(){
+    this.router.navigate(['/profile/'+this.Id]);
+
   }
 
   openCatalog() {
