@@ -31,7 +31,6 @@ export class ProductosComponent implements OnInit {
   loadProducts() {
     this.productosService.getProductos().subscribe((data: Product[]) => {
       this.products = data;
-      console.log(this.products);
     });
   }
 
@@ -55,6 +54,4 @@ export class ProductosComponent implements OnInit {
       this.currentPage--;
     }
   }
-
-  
 }
