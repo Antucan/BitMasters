@@ -11,7 +11,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  getProductoById(id: number): Observable<any> {
+  getUserById(id: number): Observable<any> {
     return this.http.get<any>('http://127.0.0.1:8000/users/'+id);
   }
 

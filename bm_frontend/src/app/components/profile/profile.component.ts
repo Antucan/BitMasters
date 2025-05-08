@@ -32,7 +32,7 @@ export class ProfileComponent {
     // Obtén el ID del producto desde la URL
     const id = Number(this.route.snapshot.paramMap.get('id'));
     // Llama al servicio para obtener el producto por ID
-    this.ProfileService.getProductoById(id).subscribe((response) => {
+    this.ProfileService.getUserById(id).subscribe((response) => {
       this.user = response[0]; // Asigna el primer elemento del array
       console.log(this.user); // Verifica el producto en la consola
     });

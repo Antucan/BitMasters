@@ -191,33 +191,37 @@ final class UsersController extends AbstractController
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
     public function show(UsersRepository $usersRepository, Request $request, int $id): Response
-    {
-        if (empty($id)) {
-            return $this->json(
-                ['error' => 'No id provided'],
-                Response::HTTP_BAD_REQUEST
-            );
-        }
-        $users = $usersRepository->findById($id);
-        if (empty($users)) {
-            return $this->json(
-                ['error' => 'No users found with id ' . $id],
-                Response::HTTP_NOT_FOUND
-            );
-        }
-        $data = array_map(function ($user) use ($usersRepository) {
-            return [
-                'id' => $user->getId(),
-                'name' => $user->getName(),
-                'surname' => $user->getSurname(),
-                'phone' => $user->getPhone(),
-                'mail' => $user->getMail(),
-                'password' => $user->getPassword(),
-                'role' => $user->getRole()->getId()
-            ];
-        }, $users);
-        return $this->json($data);
+{
+    if (empty($id)) {
+        return $this->json(
+            ['error' => 'No id provided'],
+            Response::HTTP_BAD_REQUEST
+        );
     }
+
+    $user = $usersRepository->findById($id);
+
+    // Verifica si no se encontró el usuario
+    if (empty($user)) {
+        return $this->json(
+            ['error' => 'No users found with id ' . $id],
+            Response::HTTP_NOT_FOUND
+        );
+    }
+
+    // Procesa el usuario directamente si es un único objeto
+    $data = [
+        'id' => $user->getId(),
+        'name' => $user->getName(),
+        'surname' => $user->getSurname(),
+        'phone' => $user->getPhone(),
+        'mail' => $user->getMail(),
+        'password' => $user->getPassword(),
+        'role' => $user->getRole()->getId()
+    ];
+
+    return $this->json($data);
+}
 
     #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
     public function edit(int $id, Request $request, EntityManagerInterface $entityManager, RolesRepository $role): Response
