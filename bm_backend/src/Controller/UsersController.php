@@ -199,28 +199,25 @@ final class UsersController extends AbstractController
         );
     }
 
-    $user = $usersRepository->findById($id);
-
-    // Verifica si no se encontró el usuario
-    if (empty($user)) {
-        return $this->json(
-            ['error' => 'No users found with id ' . $id],
-            Response::HTTP_NOT_FOUND
-        );
-    }
-
-    // Procesa el usuario directamente si es un único objeto
-    $data = [
-        'id' => $user->getId(),
-        'name' => $user->getName(),
-        'surname' => $user->getSurname(),
-        'phone' => $user->getPhone(),
-        'mail' => $user->getMail(),
-        'password' => $user->getPassword(),
-        'role' => $user->getRole()->getId()
-    ];
-
-    return $this->json($data);
+    $users = $usersRepository->findById($id);
+        if (empty($users)) {
+            return $this->json(
+                ['error' => 'No users found with id ' . $id],
+                Response::HTTP_NOT_FOUND
+            );
+        }
+        $data = array_map(function ($user) use ($usersRepository) {
+            return [
+                'id' => $user->getId(),
+                'name' => $user->getName(),
+                'surname' => $user->getSurname(),
+                'phone' => $user->getPhone(),
+                'mail' => $user->getMail(),
+                'password' => $user->getPassword(),
+                'role' => $user->getRole()->getId()
+            ];
+        }, $users);
+        return $this->json($data);
 }
 
     #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
