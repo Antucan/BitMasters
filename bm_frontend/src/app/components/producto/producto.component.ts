@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService } from '../productos/productos.service';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ export class ProductoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productosService.getProductoById(id).subscribe((response) => {
       this.product = response[0];
+      console.log(this.product); // Verifica el producto en la consola
     });
   }
 
@@ -39,4 +40,11 @@ export class ProductoComponent implements OnInit {
       });
     }
   }
+
+  // navigateToProfile(){
+  //   const userId = this.product?.user; // Cambia esto según cómo obtengas el user_id
+  //   if (userId) {
+  //     this.route.navigate(['/profile/' + userId]);
+  //   }
+  // }
 }
