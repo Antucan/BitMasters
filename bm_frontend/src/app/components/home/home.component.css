@@ -22,23 +22,6 @@ h1 {
     font-family: 'RetroGaming';
 }
 
-#products {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    flex-wrap: wrap;
-}
-
-#products-title {
-    display: flex;
-    width: 1200px;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    border-bottom: 1px solid white;
-    font-size: 20px;
-}
-
 #products-preview{
     display: flex;
     width: 100%;
@@ -57,4 +40,21 @@ h1 {
 #products-title>span:nth-child(2):hover {
     color: #8A00C7;
     cursor: pointer;
+}
+
+#products {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    flex-wrap: wrap;
+}
+
+#products-title {
+    display: flex;
+    width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    border-bottom: 1px solid white;
+    font-size: 20px;
 }
