@@ -51,7 +51,7 @@ export class LoginComponent {
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
-        this.loginVisible = false; // Ocultar el formulario de inicio de sesión después de un inicio de sesión exitoso
+        this.loginService.hideLogin();
         // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
         this.mailErrorMessage = null;
         this.passwordErrorMessage = null;
