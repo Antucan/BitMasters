@@ -10,7 +10,7 @@
       
       <div class="price-user">
         <p class="price">Precio: {{ product.price }}€</p>
-        <p class="user" onclick="navigateToProfile()">Vendedor: {{ product.user }}</p>
+        <p class="user" (click)="navigateToProfile()">Vendedor: {{ product.user }}</p>
       </div>
 
       <button id="buyButton" (click)="addToCart()">Añadir a la cesta</button>
