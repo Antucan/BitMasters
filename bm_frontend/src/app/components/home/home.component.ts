@@ -37,4 +37,8 @@ export class HomeComponent implements OnInit {
       this.paginatedProducts = data.slice(0, 4); // Obtén los primeros 4 productos
     });
   }
+
+  goToProduct(productId: number) {
+    this.router.navigate(['/producto', productId]);
+  }
 }

@@ -17,21 +17,16 @@
     </div>
 
     <div id="product-list" class="container">
-      <div *ngFor="let product of paginatedProducts" id="product">
+      <div (click)="goToProduct(product.id)" *ngFor="let product of paginatedProducts" id="product" >
         <div id="product-img">
           <img [src]="product.img_url" alt="{{ product.name }}">
         </div>
-    
         <div class="product-content">
           <div id="product-info">
-            <div id="product-price">{{ product.price }}€</div>
             <div id="product-name">{{ product.name }}</div>
+            <div id="product-price">{{ product.price }}€</div>
             <div id="product-description">{{ product.description }}</div>
           </div>
-    
-          <button (click)="goToProduct(product.id)" class="add-to-cart-btn">
-            Ver producto
-          </button>
         </div>
       </div>
     
