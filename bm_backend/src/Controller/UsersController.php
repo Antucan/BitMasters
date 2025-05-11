@@ -191,15 +191,15 @@ final class UsersController extends AbstractController
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
     public function show(UsersRepository $usersRepository, Request $request, int $id): Response
-{
-    if (empty($id)) {
-        return $this->json(
-            ['error' => 'No id provided'],
-            Response::HTTP_BAD_REQUEST
-        );
-    }
+    {
+        if (empty($id)) {
+            return $this->json(
+                ['error' => 'No id provided'],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
 
-    $users = $usersRepository->findById($id);
+        $users = $usersRepository->findById($id);
         if (empty($users)) {
             return $this->json(
                 ['error' => 'No users found with id ' . $id],
@@ -218,7 +218,7 @@ final class UsersController extends AbstractController
             ];
         }, $users);
         return $this->json($data);
-}
+    }
 
     #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
     public function edit(int $id, Request $request, EntityManagerInterface $entityManager, RolesRepository $role): Response
@@ -246,15 +246,16 @@ final class UsersController extends AbstractController
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
     public function delete(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        $user = $entityManager->getRepository(Users::class)->findById($id);
+        // Usa find en lugar de findById
+        $user = $entityManager->getRepository(Users::class)->find($id);
 
-        if (empty($user)) {
-            return new JsonResponse(["Error" => "User not found"]);
+        if (!$user) {
+            return new JsonResponse(["Error" => "User not found"], JsonResponse::HTTP_NOT_FOUND);
         }
 
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return new JsonResponse(["Ok" => "User deleted succesfully"]);
+        return new JsonResponse(["Ok" => "User deleted successfully"]);
     }
 }
