@@ -30,12 +30,13 @@ export class ProfileComponent {
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     // Llama al servicio para obtener el producto por ID
     this.authService.user$.subscribe((user) => {
       if (user?.id !== id) {
         this.ProfileService.getUserById(id).subscribe((response) => {
-          this.user = response; // Asigna el primer elemento del array
+          this.user = response[0]; // Asigna el primer elemento del array
           console.log(this.user); // Verifica el producto en la consola
         });
       } else {
@@ -53,7 +54,7 @@ export class ProfileComponent {
       this.products = response;
       console.log(this.products, id);
     })
-
+  })
   }
 
   navigateToAddProduct() {
