@@ -29,8 +29,9 @@ export class ProductoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productosService.getProductoById(id).subscribe((response) => {
       this.product = response[0];
-      console.log(this.product); 
-      console.log(this.product?.user); 
+      console.log("Productos: ",this.product); 
+      console.log("Nombre del usuario del producto: ", this.product?.user); 
+      console.log("ID del usuario del producto: ", id);
     });
   }
 
