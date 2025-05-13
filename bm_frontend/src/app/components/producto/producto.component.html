@@ -16,6 +16,11 @@
       </div>
 
       <button id="buyButton" (click)="addToCart()">Añadir a la cesta</button>
+
+      <p *ngIf="successMessage" class="success-message">
+        ✅ Producto añadido a la cesta.
+      </p>
+
     </div>
   </div>
 </div>

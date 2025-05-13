@@ -20,7 +20,8 @@ import { AuthService } from '../../auth.service';
 export class ProductoComponent implements OnInit {
   product: Product | null = null;
   loginVisible = false;
-  
+  successMessage = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -40,32 +41,42 @@ export class ProductoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productosService.getProductoById(id).subscribe((response) => {
       this.product = response[0];
-      console.log(this.product); 
-      console.log(this.product?.user); 
+      console.log(this.product);
+      console.log(this.product?.user);
     });
   }
 
-addToCart(): void {
-  const currentUser = this.authService.getUser();
 
-  if (!currentUser) {
-    alert('Debes iniciar sesión para añadir productos al carrito.');
-    return;
+  addToCart(): void {
+    const currentUser = this.authService.getUser();
+
+    if (!currentUser) {
+      alert('Debes iniciar sesión para añadir productos al carrito.');
+      return;
+    }
+
+    if (this.product) {
+      this.cartService.addToCart({
+        id: this.product.id,
+        name: this.product.name,
+        price: this.product.price,
+        img_url: this.product.img_url,
+        quantity: 1
+      });
+
+      this.successMessage = true;
+
+      setTimeout(() => {
+        this.successMessage = false;
+      }, 3000);
+    }
+
+
+
   }
 
-  if (this.product) {
-    this.cartService.addToCart({
-      id: this.product.id,
-      name: this.product.name,
-      price: this.product.price,
-      img_url: this.product.img_url,
-      quantity: 1
-    });
+  navigateToProfile() {
+    this.router.navigate(['/profile/' + this.product?.user.id]);
   }
-}
 
-
-  navigateToProfile(){
-    this.router.navigate(['/profile/'+this.product?.user.id]);
-  }
 }
