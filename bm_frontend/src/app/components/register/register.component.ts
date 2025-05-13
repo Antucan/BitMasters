@@ -1,17 +1,27 @@
 import { Component } from '@angular/core';
 import { CreateUser } from './register.service';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'register',
   standalone: true,
-  imports: [],
+  imports: [LoginComponent, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   providers: [CreateUser]
 })
 export class RegisterComponent {
-
-  constructor(private user: CreateUser){}
+  loginVisible = false;
+  constructor(
+    private user: CreateUser,
+    private loginService: LoginService
+  ){
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
   email: string = '';
   name: string = '';
   surname: string = '';
