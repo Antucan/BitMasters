@@ -29,6 +29,7 @@
   padding: 1rem;
   border-radius: 8px;
   font-family: 'Lato', sans-serif;
+  max-height: 600px;
 }
 
 #filters-title,
@@ -58,7 +59,7 @@
   display: flex;
   flex-direction: column;
   width: 275px;
-  height: 400px;
+  height: 395px;
   background-color: #a020f0; 
   border-radius: 10px;
   overflow: hidden;
@@ -66,6 +67,12 @@
   text-align: center;
   transition: transform 0.2s ease-in-out;
   margin: 15px;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+#product:hover {
+  cursor: pointer;
+  background-color: #8817ce; 
 }
 
 #product-img {
@@ -90,36 +97,30 @@
   flex-grow: 1;
 }
 
-#product-price {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+#product-name {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-family: 'RetroGaming', sans-serif;
+  background-color: #850285;
+  border-radius: 10px;
 }
 
-#product-name {
-  font-size: 1rem;
-  font-weight: 600;
+#product-price {
+  font-weight: bold;
+  font-size: 22px;
+  margin: 10px 0px 10px 0px;
 }
 
 #product-description {
   font-size: 0.9rem;
   color: #e0e0e0;
-}
-
-.add-to-cart-btn {
-  background-color: #ffffff;
-  color: #a020f0;
-  border: none;
-  border-radius: 5px;
-  margin-top: auto;
-  padding: 0.4rem 0.6rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #e0e0e0;
+  display: -webkit-box; /* Usar un contenedor flexible */
+  -webkit-line-clamp: 4; /* Limitar a 4 líneas */
+  -webkit-box-orient: vertical; /* Orientación vertical */
+  overflow: hidden; /* Ocultar contenido excedente */
+  text-overflow: ellipsis; /* Mostrar puntos suspensivos */
+  margin: 0px 15px 0px 15px;
 }
 
 #pagination-controls {
@@ -155,23 +156,36 @@
   margin-bottom: 1rem;
   color: #fff;
   font-weight: bold;
+  font-family: 'RetroGaming', sans-serif;
 }
 
 #filters label {
   display: flex;
-  align-items: center;
+  justify-content: space-between; 
+  align-items: center;           
   gap: 0.5rem;
-  margin-bottom: 0.75rem;
+  padding: 0.25rem 0;
+  margin-bottom: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
+  font-family: 'RetroGaming', sans-serif;
+  background-color: rgba(255, 255, 255, 0.05); 
+  border-radius: 5px;                           
 }
 
+
 #filters input[type="checkbox"] {
-  accent-color: #a020f0; 
+  accent-color:  #430061; 
   width: 16px;
   height: 16px;
   cursor: pointer;
 }
+
+#filters input[type="range"]{
+  accent-color:  #00C3FF;
+}
+
+
 
 #price-filter {
   margin-bottom: 1.5rem;

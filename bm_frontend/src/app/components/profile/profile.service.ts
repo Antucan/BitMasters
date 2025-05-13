@@ -21,6 +21,9 @@ export class ProfileService {
 
   getProducts(id: number): Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/productos/user/'+id);
-    
+  }
+
+  deleteProduct(id: number): Observable<any>{
+    return this.http.delete<any>('http://127.0.0.1:8000/productos/delete/'+id);
   }
 }

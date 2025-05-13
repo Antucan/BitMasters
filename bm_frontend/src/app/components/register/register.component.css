@@ -1,73 +1,99 @@
-#gloval-div {
-    height: 77vh;
+/* Elimina scroll y asegura que ocupe toda la pantalla */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
+/* Contenedor principal */
+#gloval-div {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fondo animado con capa oscura */
 #registerBackground {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/assets/images/registerBackground.gif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
-    display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/images/registerBackground.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 #registerBackground::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    /* Capa negra semi-transparente */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 }
 
+/* Caja del formulario centrada */
 #registerBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'RetroGaming';
-    font-size: 20px;
-    z-index: 1;
-    width: 500px;
-    flex-wrap: wrap;
-    background: linear-gradient(to bottom, #8A00C7, #430061);
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 5px 5px 5px 5px #111111;
-    color: rgb(231, 231, 231);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'RetroGaming', sans-serif;
+  font-size: 20px;
+  z-index: 1;
+  width: 500px;
+  flex-wrap: wrap;
+  background: linear-gradient(to bottom, #8A00C7, #430061);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 5px 5px 5px 5px #111111;
+  color: rgb(231, 231, 231);
 }
 
+/* Línea decorativa */
 #registerLine {
-    display: flex;
-    width: 90%;
-    height: 3px;
-    background-color: #00C3FF;
-    border-radius: 5px;
-    margin: 15px auto;
+  display: flex;
+  width: 90%;
+  height: 3px;
+  background-color: #00C3FF;
+  border-radius: 5px;
+  margin: 15px auto;
 }
 
+/* Campos del formulario */
 #emailField,
 #nameField,
 #surnameField,
 .passField {
-    width: 100%;
-    margin: 10px 0px 10px 0px;
+  width: 100%;
+  margin: 10px 0;
 }
 
+/* Estilo del botón de registro */
 #registerButton {
-    margin: 25px 0px 10px 0px;
-    background: linear-gradient(to bottom, #00C3FF, #0698c4);
-    padding: 10px 50px 10px 50px;
-    border: 0px;
+  margin: 25px 0 10px 0;
+  background: linear-gradient(to bottom, #00C3FF, #0698c4);
+  padding: 10px 50px;
+  border: none;
+  color: white;
 }
 
 #registerButton:hover {
-    background: linear-gradient(to top, #00C3FF, #0698c4);
+  background: linear-gradient(to top, #00C3FF, #0698c4);
+}
+
+/* Ajustes adicionales opcionales */
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-family: inherit;
 }

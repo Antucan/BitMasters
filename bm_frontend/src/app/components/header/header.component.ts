@@ -33,7 +33,7 @@ export class HeaderComponent {
     this.authService.user$.subscribe(user => {
       if (user) {
         this.logged = !!user; // Cambia a true si hay un usuario, false si no
-        this.userName = user.name || 'PERFIL'; 
+        this.userName = user.name.toUpperCase() || 'PERFIL'; 
         this.Id = user.id
         console.log('User detected in HeaderComponent: ', this.userName);
   }});

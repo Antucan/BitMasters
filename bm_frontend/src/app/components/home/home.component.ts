@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginService.hideLogin();
     this.loadProducts(); // Llama al método para cargar los productos
   }
 
@@ -36,5 +37,9 @@ export class HomeComponent implements OnInit {
       console.log('Productos:', data); // Muestra los productos en la consola
       this.paginatedProducts = data.slice(0, 4); // Obtén los primeros 4 productos
     });
+  }
+
+  goToProduct(productId: number) {
+    this.router.navigate(['/producto', productId]);
   }
 }

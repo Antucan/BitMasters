@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    font-size: 20px;
   }
   
   .product-image {
@@ -51,36 +52,33 @@
   
   .product-name {
     font-family: 'RetroGaming';
-    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 0.5rem;
   }
   
   .category {
-    font-size: 1rem;
     font-weight: bold;
     color: #e0e0e0;
   }
   
   .description {
-    font-size: 1rem;
     line-height: 1.5;
+    text-align: center;
   }
   
   .price-user {
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
     margin-top: 1rem;
   }
   
   .price {
     font-family: 'RetroGaming';
-    font-size: 1rem; /* ✅ Igual al resto */
+    text-align: center;
+    font-size: 25px;
   }
   
   .user {
-    font-size: 1rem;
     opacity: 0.9;
   }
   
