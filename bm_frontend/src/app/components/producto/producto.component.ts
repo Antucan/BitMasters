@@ -26,7 +26,7 @@ export class ProductoComponent implements OnInit {
     private route: ActivatedRoute,
     private productosService: ProductosService,
     private cartService: CartService, // ✅ Inyectamos el servicio
-    private loginService: LoginService
+    private loginService: LoginService,
     private router: Router,
     private authService: AuthService
   ) {
