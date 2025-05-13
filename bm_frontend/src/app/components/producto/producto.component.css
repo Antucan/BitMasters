@@ -106,4 +106,75 @@
 
 #buyButton:hover {
   background-color: #ff9a00;
+    display: flex;
+    justify-content: center;
+    background-image: url('/assets/images/product-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  #product {
+    background-color: #8A00C7;
+    color: white;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 20px;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .product-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+    flex-grow: 1;
+}
+  
+  .price {
+    font-family: 'RetroGaming';
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .success-message {
+  color: #28a745;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-family: 'RetroGaming', sans-serif;
+  text-align: center;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
 }

@@ -56,8 +56,23 @@ export class ProfileComponent {
     })
   })
   }
+  
+  deleteProduct(productId: number): void {
+    this.ProfileService.deleteProduct(productId).subscribe({
+      next: () => {
+        alert('El producto ha sido eliminado correctamente.');
+        // Actualiza la lista de productos después de eliminar
+        this.products = this.products.filter(product => product.id !== productId);
+      },
+      error: (err) => {
+        console.error('Error al eliminar el producto:', err);
+        alert('Hubo un error al intentar eliminar el producto.');
+      }
+    });
+  }
+  
+  navigateToAddProduct(){
 
-  navigateToAddProduct() {
     this.router.navigate(["/add-product"]);
   }
 
