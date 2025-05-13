@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginService.hideLogin();
     this.loadProducts(); // Llama al método para cargar los productos
   }
 
