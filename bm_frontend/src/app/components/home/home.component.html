@@ -11,14 +11,16 @@
                     <span><a id="registerLink" routerLink="/products">Ver Todos</a></span>
                 </div>
                 <div id="products-preview">
-                    <div *ngFor="let product of paginatedProducts" id="product">
+                    <div (click)="goToProduct(product.id)" *ngFor="let product of paginatedProducts" id="product">
                         <div id="product-img">
                             <img [src]="product.img_url" alt="{{ product.name }}">
                         </div>
-                        <div id="product-info">
-                            <div id="product-price">{{ product.price }}€</div>
-                            <div id="product-name">{{ product.name }}</div>
-                            <div id="product-description">{{ product.description }}</div>
+                        <div class="product-content">
+                            <div id="product-info">
+                                <div id="product-name">{{ product.name }}</div>
+                                <div id="product-price">{{ product.price }}€</div>
+                                <div id="product-description">{{ product.description }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
