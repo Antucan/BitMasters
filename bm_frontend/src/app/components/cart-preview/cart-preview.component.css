@@ -1,152 +1,161 @@
 .cart-preview-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 450px;
-    height: 100vh;
-    background-color: rgb(220, 198, 240);
-    z-index: 9999;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    overflow-y: auto;
-}
-
-.product-img-container{
-    border: 2px solid #430061;
-    border-radius: 2px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100vh;
+  background-color: rgb(220, 198, 240);
+  z-index: 9999;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px 0 0 8px;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .cart-preview-header {
-    display: flex;
-    align-items: center;
-    margin: 20px 20px 10px 20px; /* Margen uniforme */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  position: relative;
 }
 
 .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
-    z-index: 1000; /* Asegura que esté siempre por encima */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
 }
 
 h3 {
-    font-weight: bold;
-    font-size: x-large;
-    margin: 0;
-    padding: 0 20px;
-    text-align: left;
-    font-family: 'RetroGaming', sans-serif;
+  font-weight: bold;
+  font-size: x-large;
+   color: #6a00d4;
+  margin: 0;
+  padding: 0 20px 0 0;
+  text-align: left;
+  font-family: 'RetroGaming', sans-serif;
 }
 
 .resumen-pedido h3 {
-    margin: 40px 0 30px 20px; 
-    font-size: x-large;
-    font-family: 'RetroGaming', sans-serif;
+  margin: 40px 0 30px 20px;
+  font-size: x-large;
+  font-family: 'RetroGaming', sans-serif;
 }
 
 .product-info-1 {
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-    margin-left: 5%;
-    margin-top: 10%;
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  margin-left: 5%;
+  margin-top: 10%;
 }
 
-.purchase-details {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
+.product-img-container {
+  border: 2px solid #430061;
+  border-radius: 2px;
 }
 
 img {
-    width: 150px;
-    height: 100%;
-    object-fit: cover;
-    
+  width: 150px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.purchase-details {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
 }
 
 a:hover {
-    font-weight: bolder;
-    color: #8A00C7;
+  font-weight: bolder;
+  color: #8A00C7;
 }
 
 hr {
-    display: block;
-    margin: 20px auto; /* Separación clara */
-    border-style: inset;
-    border-width: 1px;
+  display: block;
+  margin: 20px auto;
+  border-style: inset;
+  border-width: 1px;
 }
 
 .cart-preview-btn {
-    background-color: #8A00C7;
-    margin-top: 10%;
-    padding: 20px;
-    color: white;
-    border-radius: 10px;
-    font-family: 'RetroGaming', sans-serif;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
+  background-color: #8A00C7;
+  margin-top: 10%;
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+  font-family: 'RetroGaming', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }
 
 .cart-preview-btn:hover {
-    background-color: #430061;
+  background-color: #430061;
 }
 
 .order-summary {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5%;
-    margin-left: 5%;
-    margin-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .product-info-2,
 .product-info-3 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .product-title-with-icon {
-    margin-bottom: 15px;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-    word-break: break-word;
+  margin-bottom: 15px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  word-break: break-word;
 }
 
 .trash-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .trash-btn img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
-
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 9998;
+  display: flex;
+  justify-content: flex-end;
+}
