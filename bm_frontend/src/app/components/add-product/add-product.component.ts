@@ -1,21 +1,34 @@
 import { Component } from '@angular/core';
 import { CreateProduct } from './add-product.service';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-add-product',
-  imports: [FormsModule],
+  imports: [FormsModule, LoginComponent, CommonModule],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
   providers: [CreateProduct]
 })
 export class AddProductComponent {
-  constructor(private product: CreateProduct){}
+  loginVisible = false;
+  constructor(
+    private product: CreateProduct,
+    private loginService: LoginService
+  ){
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
+
   name: string = '';
   description: string = '';
   category: string = '';
   price: number = 0;
   image: string = '';
+  
 
   validateName(){
     if(this.name === ""){

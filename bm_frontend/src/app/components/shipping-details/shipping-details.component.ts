@@ -3,10 +3,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalFormComponent } from '../modal-form/modal-form.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-shipping-details',
-  imports: [MatDialogModule, CommonModule],
+  imports: [MatDialogModule, CommonModule, LoginComponent],
   standalone: true,
   templateUrl: './shipping-details.component.html',
   styleUrl: './shipping-details.component.css'
@@ -14,8 +16,13 @@ import { Router } from '@angular/router';
 })
 export class ShippingDetailsComponent implements OnInit {
   addresses: any[] = [];
+  loginVisible = false;
 
-  constructor(private dialog: MatDialog, private router: Router) {}
+  constructor(private dialog: MatDialog, private router: Router, private loginService: LoginService) {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
 
   ngOnInit(): void {
     const savedAddresses = localStorage.getItem('addresses');

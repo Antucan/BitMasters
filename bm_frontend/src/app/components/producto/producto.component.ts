@@ -3,27 +3,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService } from '../productos/productos.service';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../cart/cart.service'; 
+import { CartService } from '../cart/cart.service'; // ✅ Asegúrate de que la ruta sea correcta
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../auth.service';
+
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, LoginComponent, HttpClientModule],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.css'
 })
 export class ProductoComponent implements OnInit {
   product: Product | null = null;
+  loginVisible = false;
+  
 
   constructor(
     private route: ActivatedRoute,
     private productosService: ProductosService,
-    private cartService: CartService, 
+    private cartService: CartService, // ✅ Inyectamos el servicio
+    private loginService: LoginService
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
+
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
