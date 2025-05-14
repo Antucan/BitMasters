@@ -19,7 +19,8 @@
       </div>
 
       <span id="registerMessage">¿No tienes una cuenta aún?
-        <a id="registerLink" routerLink="/register">¡Regístrate ya!</a></span>
+        <a id="registerLink" (click)="goToRegister()">¡Regístrate ya!</a>
+      </span>
       <button type="button" class="btn btn-info" id="loginButton" (click)="login()">
         Entrar
       </button>

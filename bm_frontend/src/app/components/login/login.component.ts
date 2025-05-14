@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,7 @@ export class LoginComponent {
   mailErrorMessage: string | null = null;
   passwordErrorMessage: string | null = null;
 
-  constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService) { }
+  constructor(private http: HttpClient, private loginService: LoginService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginService.loginVisible$.subscribe(visible => {
@@ -74,4 +74,9 @@ export class LoginComponent {
   hideLogin() {
     this.loginService.hideLogin();
   }
+
+  goToRegister(): void {
+  this.hideLogin();
+  this.router.navigate(['/register']);
+}
 }
