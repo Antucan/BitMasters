@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router'; // Importa Router
 
 @Component({
   selector: 'app-add-product',
@@ -25,7 +26,8 @@ export class AddProductComponent {
   constructor(
     private product: CreateProduct,
     private loginService: LoginService,
-    private authService: AuthService // Inyectamos AuthService
+    private authService: AuthService,
+    private router: Router // Inyecta Router
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
@@ -68,14 +70,18 @@ export class AddProductComponent {
   add(): void {
     if (this.validateName() && this.validateCategory() && this.validatePrice()) {
       this.product.postProduct(this.user_id, this.name, this.description, this.category, this.price, this.image).subscribe(
-        (algo) => {
-          console.log(algo);
-          console.log(this.name);
+        (response) => {
+          console.log(response);
+          alert("Producto añadido correctamente"); // Muestra el alert
+          this.router.navigate([`/profile/${this.user_id}`]); // Redirige al perfil
+        },
+        (error) => {
+          console.error("Error al añadir el producto: ", error);
+          alert("Hubo un error al añadir el producto");
         }
-      )
+      );
     } else {
       alert("Faltan campos");
     }
   }
-
 }
