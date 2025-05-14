@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { CreateUser } from './register.service';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'register',
@@ -13,72 +14,66 @@ import { CommonModule } from '@angular/common';
   providers: [CreateUser]
 })
 export class RegisterComponent {
-  loginVisible = false;
-  constructor(
-    private user: CreateUser,
-    private loginService: LoginService
-  ){
-    this.loginService.loginVisible$.subscribe(visible => {
-      this.loginVisible = visible;
-    });
-  }
   email: string = '';
   name: string = '';
   surname: string = '';
   pass: string = '';
   Rpass: string = '';
+  loginVisible = false;
+
+  constructor(
+    private user: CreateUser,
+    private router: Router,
+    private loginService: LoginService
+  ) {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
 
   updateEmail(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.email = inputElement.value;
+    this.email = (event.target as HTMLInputElement).value;
   }
 
   updateName(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.name = inputElement.value;
+    this.name = (event.target as HTMLInputElement).value;
   }
 
   updateSurname(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.surname = inputElement.value;
+    this.surname = (event.target as HTMLInputElement).value;
   }
 
   updatePass(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.pass = inputElement.value;
+    this.pass = (event.target as HTMLInputElement).value;
   }
 
   updateRpass(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.Rpass = inputElement.value;
+    this.Rpass = (event.target as HTMLInputElement).value;
   }
 
   notEmpty(): boolean {
-    if (this.email === '' || this.name === '' || this.pass === '' || this.Rpass === '') {
-      alert('Asegurate de no dejar campos vacios');
+    if (!this.email || !this.name || !this.pass || !this.Rpass) {
+      alert('Asegúrate de no dejar campos vacíos');
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   checkPass(): boolean {
     const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(this.pass)) {
-      alert('La contraseña debe tener minimo 8 caracteres, una letra mayuscula y un numero');
+      alert('La contraseña debe tener mínimo 8 caracteres, una letra mayúscula y un número');
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   checkRpass(): boolean {
     if (this.pass !== this.Rpass) {
-      alert('La confirmacion de contraseña no es correcta');
+      alert('La confirmación de contraseña no es correcta');
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
   send(): void {
@@ -86,11 +81,16 @@ export class RegisterComponent {
       console.log('register:', this.email, this.name, this.surname, this.pass, this.Rpass);
       
       this.user.postUsers(this.name, this.surname, this.pass, this.email).subscribe(
-        (algo) => {
-          console.log(algo);
-          console.log(this.name);
+        (response) => {
+          console.log(response);
+          alert('Registro exitoso');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          console.error(error);
+          alert('Ha ocurrido un error en el registro');
         }
-      )
+      );
     }
   }
 }
