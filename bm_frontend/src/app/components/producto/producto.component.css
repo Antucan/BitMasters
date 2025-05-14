@@ -103,19 +103,11 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
-
 #buyButton:hover {
   background-color: #ff9a00;
-    display: flex;
-    justify-content: center;
-    background-image: url('/assets/images/product-background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    padding: 2rem;
-    min-height: 100vh;
-  }
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
   
   #product {
     background-color: #8A00C7;

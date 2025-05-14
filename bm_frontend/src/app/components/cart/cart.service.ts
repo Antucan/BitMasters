@@ -49,15 +49,17 @@ export class CartService {
     this.cartVisible.next(!this.cartVisible.getValue());
   }
 
-  addToCart(item: CartItem) {
-    const existing = this.items.find(p => p.id === item.id);
-    if (existing) {
-      existing.quantity += item.quantity;
-    } else {
-      this.items.push({ ...item });
-    }
+addToCart(item: CartItem): boolean {
+  const existing = this.items.find(p => p.id === item.id);
+  if (existing) {
+    return false;
+  } else {
+    this.items.push({ ...item });
     this.saveCart();
+    return true;
   }
+}
+
 
   removeFromCart(id: number) {
     this.items = this.items.filter(item => item.id !== id);

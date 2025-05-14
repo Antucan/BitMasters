@@ -48,33 +48,37 @@ export class ProductoComponent implements OnInit {
   }
 
 
-  addToCart(): void {
-    const currentUser = this.authService.getUser();
+ addToCart(): void {
+  const currentUser = this.authService.getUser();
 
-    if (!currentUser) {
-      alert('Debes iniciar sesión para añadir productos al carrito.');
+  if (!currentUser) {
+    alert('Debes iniciar sesión para añadir productos al carrito.');
+    return;
+  }
+
+  if (this.product) {
+    const added = this.cartService.addToCart({
+      id: this.product!.id,
+      name: this.product!.name,
+      price: this.product!.price,
+      img_url: this.product!.img_url,
+      quantity: 1
+    });
+
+    if (!added) {
+      alert('Este producto ya está en el carrito.');
       return;
     }
 
-    if (this.product) {
-      this.cartService.addToCart({
-        id: this.product.id,
-        name: this.product.name,
-        price: this.product.price,
-        img_url: this.product.img_url,
-        quantity: 1
-      });
+    this.successMessage = true;
 
-      this.successMessage = true;
-
-      setTimeout(() => {
-        this.successMessage = false;
-      }, 3000);
-    }
-
-
-
+    setTimeout(() => {
+      this.successMessage = false;
+    }, 3000);
   }
+}
+
+
 
   navigateToProfile() {
     this.router.navigate(['/profile/' + this.product?.user.id]);
