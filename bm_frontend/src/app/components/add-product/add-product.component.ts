@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-add-product',
@@ -14,57 +15,65 @@ import { LoginComponent } from '../login/login.component';
 })
 export class AddProductComponent {
   loginVisible = false;
-  constructor(
-    private product: CreateProduct,
-    private loginService: LoginService
-  ){
-    this.loginService.loginVisible$.subscribe(visible => {
-      this.loginVisible = visible;
-    });
-  }
-
   name: string = '';
   description: string = '';
   category: string = '';
   price: number = 0;
   image: string = '';
-  
+  user_id: number = 0;
 
-  validateName(){
-    if(this.name === ""){
+  constructor(
+    private product: CreateProduct,
+    private loginService: LoginService,
+    private authService: AuthService // Inyectamos AuthService
+  ) {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
+
+  ngOnInit() {
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.user_id = user.id; // Asignamos el ID del usuario
+        console.log('User detected in AddProductComponent: ', this.user_id);
+      }
+    });
+  }
+
+  validateName() {
+    if (this.name === "") {
       return false;
     }
-    
+
     return true;
   }
 
-  validatePrice(){
-    if(this.price <= 0){
+  validatePrice() {
+    if (this.price <= 0) {
       return false;
     }
 
     return true;
   }
 
-  validateCategory(){
-    if(this.category === ''){
+  validateCategory() {
+    if (this.category === '') {
       return false;
     }
 
     return true;
   }
 
-  add(): void{
-    console.log(this.name, this.image, this.category, this.price);
-    console.log(this.image)
-    if (this.validateName() && this.validateCategory() && this.validatePrice()) { 
-      this.product.postProduct(this.name, this.description, this.category, this.price, this.image).subscribe(
+  add(): void {
+    if (this.validateName() && this.validateCategory() && this.validatePrice()) {
+      this.product.postProduct(this.user_id, this.name, this.description, this.category, this.price, this.image).subscribe(
         (algo) => {
           console.log(algo);
           console.log(this.name);
         }
       )
-    }else{
+    } else {
       alert("Faltan campos");
     }
   }
