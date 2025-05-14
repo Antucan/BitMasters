@@ -33,6 +33,7 @@ export class ProfileComponent {
   ) { }
 
   ngOnInit(): void {
+    this.authService.getUser()
     this.route.params.subscribe((params) => {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     // Llama al servicio para obtener el producto por ID
@@ -87,6 +88,7 @@ export class ProfileComponent {
     this.userService.deleteUser(userId).subscribe({
       next: (response) => {
         alert('Usuario eliminado correctamente');
+        this.authService.logout()
         // Redirigir a la página de inicio o a otra página después de eliminar el usuario
         this.router.navigate(['/']);
       },
