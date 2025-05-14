@@ -9,6 +9,7 @@ export class LoginService {
   loginVisible$ = this.loginVisible.asObservable();
 
   showLogin() {
+    console.log("sfsdfsdfa")
     this.loginVisible.next(true);
   }
 

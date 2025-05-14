@@ -1,9 +1,10 @@
-<section class="cart-preview-container" *ngIf="isVisible">
-    <button class="close-btn" (click)="closeCart()">✖</button>
+<div class="cart-overlay" *ngIf="isVisible" (click)="closeCart()">
+  <section class="cart-preview-container" (click)="$event.stopPropagation()">
     <div class="cart-preview-header">
       <h3>Mi cesta</h3>
+      <button class="close-btn" (click)="closeCart()">✕</button>
     </div>
-  
+
     <div class="product-info-1" *ngFor="let item of items">
       <div class="product-img-container">
         <img [src]="item.img_url" [alt]="item.name" />
@@ -19,13 +20,13 @@
         <p>Unidades: {{ item.quantity }}</p>
       </div>
     </div>
-  
+
     <hr />
-  
+
     <div class="resumen-pedido">
       <h3>Resumen del pedido</h3>
     </div>
-  
+
     <div class="order-summary">
       <div class="product-info-2">
         <p>Unidades:</p>
@@ -36,7 +37,7 @@
         <p>{{ totalPrice }}€</p>
       </div>
     </div>
-  
+
     <button class="cart-preview-btn" (click)="goToCart()">Ver los artículos en mi cesta</button>
   </section>
-  
+</div>

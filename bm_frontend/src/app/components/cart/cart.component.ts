@@ -6,11 +6,13 @@ import { CartService, CartItem } from './cart.service';
 import { CartItemComponent } from '../cart-item/cart-item.component';
 import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CartItemComponent, ModalComponent, CommonModule],
+  imports: [CartItemComponent, ModalComponent, CommonModule, LoginComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -19,13 +21,19 @@ export class CartComponent implements AfterViewInit {
   showProducts = true;
   itemCount = 0;
   cartItems: CartItem[] = [];
+  loginVisible = false;
 
   constructor(
     private router: Router,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
-    public cartService: CartService
-  ) {}
+    public cartService: CartService,
+    private loginService: LoginService
+  ) {
+    this.loginService.loginVisible$.subscribe(visible => {
+      this.loginVisible = visible;
+    });
+  }
 
   ngAfterViewInit() {
     setTimeout(() => this.loadItems());

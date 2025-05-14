@@ -100,3 +100,18 @@
     background-color: #FF9A00;
   }
   
+  .success-message {
+  color: #28a745;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-family: 'RetroGaming', sans-serif;
+  text-align: center;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
