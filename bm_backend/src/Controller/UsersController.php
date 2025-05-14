@@ -223,7 +223,7 @@ final class UsersController extends AbstractController
     #[Route('/{id}', name: 'app_users_edit', methods: ['PUT'])]
     public function edit(int $id, Request $request, EntityManagerInterface $entityManager, RolesRepository $role): Response
     {
-        $user = $entityManager->getRepository(Users::class)->findById($id);
+        $user = $entityManager->getRepository(Users::class)->find($id);
 
         if (empty($user)) {
             return new JsonResponse(["Error" => "User not found"]);
@@ -246,7 +246,7 @@ final class UsersController extends AbstractController
     #[Route('/{id}/delete', name: 'app_users_delete', methods: ['DELETE'])]
     public function delete(int $id, EntityManagerInterface $entityManager): JsonResponse
     {
-        $user = $entityManager->getRepository(Users::class)->findById($id);
+        $user = $entityManager->getRepository(Users::class)->find($id);
 
         if (empty($user)) {
             return new JsonResponse(["Error" => "User not found"]);
