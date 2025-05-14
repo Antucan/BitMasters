@@ -178,8 +178,9 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
+
     #[Route('/new', name: 'app_products_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $user): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $userRepository): Response
     {
         $productdata = json_decode($request->getContent(), true);
         $name = $productdata["name"];
@@ -187,25 +188,29 @@ final class ProductController extends AbstractController
         $category = $productdata["category"];
         $price = $productdata["price"];
         $img = $productdata["image"];
+        $userId = $productdata["user_id"];
 
         $productRepository = $entityManager->getRepository(Product::class);
-        $product = $productRepository->findOneBy(['name' => $name]);
-        if (!empty($product)) {
-            return $this->json(
-                ['error' => 'Product already exists'],
-                Response::HTTP_CONFLICT
-            );
-        }
-        if (isset($name) && isset($description) && isset($category) && isset($price)) {
+
+        if (isset($name) && isset($description) && isset($category) && isset($price) && isset($userId)) {
+            $user = $userRepository->find($userId); // Buscar el usuario por ID
+            if (!$user) {
+                return $this->json(
+                    ['error' => 'User not found'],
+                    Response::HTTP_NOT_FOUND
+                );
+            }
+
             $product = new Product();
             $product->setName($name);
             $product->setDescription($description);
             $product->setCategory($category);
-            $product->setUser($user->findById(1));
+            $product->setUser($user); // Asignar el usuario encontrado
             $product->setPrice($price);
             $product->setImage($img);
             $entityManager->persist($product);
             $entityManager->flush();
+
             return $this->json(
                 [
                     'id' => $product->getId(),
