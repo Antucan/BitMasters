@@ -73,7 +73,15 @@ final class ProductController extends AbstractController
                 'description' => $product->getDescription(),
                 'category' => $product->getCategory(),
                 'price' => $product->getPrice(),
-                'user' => $product->getUser()->getName(),
+                'user' => $product->getUser() ? [
+                    'id' => $product->getUser()->getId(),
+                    'name' => $product->getUser()->getName(),
+                    'surname' => $product->getUser()->getSurname(),
+                    'phone' => $product->getUser()->getPhone(),
+                    'mail' => $product->getUser()->getMail(),
+                    'password' => $product->getUser()->getPassword(),
+                    'role' => $product->getUser()->getRole()->getId(),
+                ] : null,
                 'img_url' => $product->getImgUrl(),
             ];
         }, $products);

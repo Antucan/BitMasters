@@ -33,7 +33,7 @@ export class ProfileComponent {
   ) { }
 
   ngOnInit(): void {
-    // Obtén el ID del producto desde la URL
+    this.route.params.subscribe((params) => {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     // Llama al servicio para obtener el producto por ID
     this.authService.user$.subscribe((user) => {
@@ -48,11 +48,6 @@ export class ProfileComponent {
       }
     });
 
-    // this.ProfileService.getUserById(id).subscribe((response) => {
-    //   this.user = response[0]; // Asigna el primer elemento del array
-    //   console.log(this.user); // Verifica el producto en la consola
-    // });
-
     this.ProfileService.getPurchaseHistory(id).subscribe((response) => {
       this.purchases = response;
       console.log(this.purchases);
@@ -62,12 +57,13 @@ export class ProfileComponent {
       this.products = response;
       console.log(this.products);
     });
-  }
+  })
 
+  }
   navigateToAddProduct() {
     this.router.navigate(['/add-product']);
   }
-  
+
   deleteProduct(productId: number): void {
     this.ProfileService.deleteProduct(productId).subscribe({
       next: () => {
