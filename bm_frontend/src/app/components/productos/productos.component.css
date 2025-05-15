@@ -44,6 +44,10 @@
   margin-bottom: 0.5rem;
 }
 
+.num-price {
+  width: 100px;
+}
+
 #product-list {
   flex: 1;
   display: flex;

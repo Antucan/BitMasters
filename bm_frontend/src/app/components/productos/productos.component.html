@@ -6,20 +6,31 @@
       <h1 id="filters-title">Filtros</h1>
       <div id="price-filter">
         <h1>Precio</h1>
-        <input type="range" name="" id="">
-        
+        <label>
+          Mínimo: 
+          <input class="num-price" type="number" [value]="priceMin" (input)="onPriceMinChange($event)" placeholder="MIN">
+        </label>
+        <label>
+          Máximo: 
+          <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)" placeholder="MAX">
+        </label>
+        <button class="btn btn-warning" (click)="applyFilters()">Aplicar</button>
       </div>
       <div id="category-filter">
         <h1>Categorías</h1>
-        <label>Consolas <input type="checkbox"></label>
-        <label>Videojuegos <input type="checkbox"></label>
-        <label>Accesorios <input type="checkbox"></label>
-        <label>Periféricos <input type="checkbox"></label>
+        <label *ngFor="let category of allCategories">
+          <input
+            type="checkbox"
+            [checked]="selectedCategory === category"
+            (change)="onSingleCheckboxChange(category)"
+          >
+          {{ category }}
+        </label>
       </div>
     </div>
 
     <div id="product-list" class="container">
-      <div (click)="goToProduct(product.id)" *ngFor="let product of paginatedProducts" id="product" >
+      <div (click)="goToProduct(product.id)" *ngFor="let product of getPaginatedProducts()" id="product" >
         <div id="product-img">
           <img [src]="product.img_url" alt="{{ product.name }}">
         </div>
@@ -37,7 +48,7 @@
           <span>&#9664;</span>
         </button>
         <span class="page-number">{{ currentPage }}</span>
-        <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= products.length">
+        <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= filteredProducts.length">
           <span>&#9654;</span>
         </button>
       </div>
