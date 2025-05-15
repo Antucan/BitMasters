@@ -35,30 +35,30 @@ export class ProfileComponent {
   ngOnInit(): void {
     this.authService.getUser()
     this.route.params.subscribe((params) => {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    // Llama al servicio para obtener el producto por ID
-    this.authService.user$.subscribe((user) => {
-      if (user?.id !== id) {
-        this.ProfileService.getUserById(id).subscribe((response) => {
-          this.user = response[0]; // Asigna el primer elemento del array
+      const id = Number(this.route.snapshot.paramMap.get('id'));
+      // Llama al servicio para obtener el producto por ID
+      this.authService.user$.subscribe((user) => {
+        if (user?.id !== id) {
+          this.ProfileService.getUserById(id).subscribe((response) => {
+            this.user = response[0]; // Asigna el primer elemento del array
+            console.log(this.user); // Verifica el producto en la consola
+          });
+        } else {
+          this.user = user; // Asigna el primer elemento del array
           console.log(this.user); // Verifica el producto en la consola
-        });
-      } else {
-        this.user = user; // Asigna el primer elemento del array
-        console.log(this.user); // Verifica el producto en la consola
-      }
-    });
+        }
+      });
 
-    this.ProfileService.getPurchaseHistory(id).subscribe((response) => {
-      this.purchases = response;
-      console.log(this.purchases);
-    });
+      this.ProfileService.getPurchaseHistory(id).subscribe((response) => {
+        this.purchases = response;
+        console.log(this.purchases);
+      });
 
-    this.ProfileService.getProducts(id).subscribe((response) => {
-      this.products = response;
-      console.log(this.products);
-    });
-  })
+      this.ProfileService.getProducts(id).subscribe((response) => {
+        this.products = response;
+        console.log(this.products);
+      });
+    })
 
   }
   navigateToAddProduct() {
@@ -84,11 +84,19 @@ export class ProfileComponent {
       console.error('El ID del usuario no está definido.');
       return; // Salir de la función si el ID es undefined
     }
-  
+
+    // Mostrar cuadro de confirmación
+    const confirmDelete = confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');
+
+    if (!confirmDelete) {
+      // Si el usuario cancela, no se realiza ninguna acción
+      return;
+    }
+
     this.userService.deleteUser(userId).subscribe({
       next: (response) => {
         alert('Usuario eliminado correctamente');
-        this.authService.logout()
+        this.authService.logout();
         // Redirigir a la página de inicio o a otra página después de eliminar el usuario
         this.router.navigate(['/']);
       },
