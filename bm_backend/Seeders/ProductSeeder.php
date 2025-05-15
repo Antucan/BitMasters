@@ -18,7 +18,7 @@ class ProductSeeder
         for ($i = 0; $i < 10; $i++) {
             $name = $faker->word;
             $description = $faker->sentence;
-            $category = $faker->randomElement(['consolas', 'juegos', 'merchandising', 'hardware', 'coleccionismo', 'otros']);
+            $category = $faker->randomElement(['consolas', 'juegos', 'merchandising', 'hardware', 'coleccionismo', 'perifericos', 'accesorios']);
             //id de usuario aleatorio
             $user_id = rand(1, 10);
             $price = $faker->randomFloat(2, 1, 100);
