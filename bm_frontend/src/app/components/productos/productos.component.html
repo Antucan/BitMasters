@@ -29,30 +29,37 @@
       </div>
     </div>
 
-    <div id="product-list" class="container">
-      <div (click)="goToProduct(product.id)" *ngFor="let product of getPaginatedProducts()" id="product" >
-        <div id="product-img">
-          <img [src]="product.img_url" alt="{{ product.name }}">
-        </div>
-        <div class="product-content">
-          <div id="product-info">
-            <div id="product-name">{{ product.name }}</div>
-            <div id="product-price">{{ product.price }}€</div>
-            <div id="product-description">{{ product.description }}</div>
-          </div>
-        </div>
+<div id="product-list" class="container">
+  <ng-container *ngIf="filteredProducts.length > 0; else noProducts">
+    <div (click)="goToProduct(product.id)" *ngFor="let product of getPaginatedProducts()" id="product">
+      <div id="product-img">
+        <img [src]="product.img_url" alt="{{ product.name }}">
       </div>
-    
-      <div id="pagination-controls" class="pagination-controls">
-        <button (click)="prevPage()" [disabled]="currentPage === 1">
-          <span>&#9664;</span>
-        </button>
-        <span class="page-number">{{ currentPage }}</span>
-        <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= filteredProducts.length">
-          <span>&#9654;</span>
-        </button>
+      <div class="product-content">
+        <div id="product-info">
+          <div id="product-name">{{ product.name }}</div>
+          <div id="product-price">{{ product.price }}€</div>
+          <div id="product-description">{{ product.description }}</div>
+        </div>
       </div>
     </div>
+
+    <div id="pagination-controls" class="pagination-controls">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        <span>&#9664;</span>
+      </button>
+      <span class="page-number">{{ currentPage }}</span>
+      <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= filteredProducts.length">
+        <span>&#9654;</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #noProducts>
+    <p class="no-products-message">No se encontraron productos con esos filtros.</p>
+  </ng-template>
+</div>
+
     
   </div>
 </div>
