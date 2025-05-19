@@ -43,16 +43,16 @@ export class LoginComponent {
   }
 
   login(): void {
-    // Reseteamos mensajes de error
+  
     this.mailErrorMessage = null;
     this.passwordErrorMessage = null;
     console.log('Attempting login with mail:', this.mail, 'and password:', this.password);
-    //llamar a la funcion login de auth.service.ts
+    
     this.authService.login({ mail: this.mail, password: this.password }).subscribe(
       response => {
         console.log('Login successful:', response);
         this.loginService.hideLogin();
-        // Aquí puedes manejar la respuesta del servidor después de un inicio de sesión exitoso
+        
         this.mailErrorMessage = null;
         this.passwordErrorMessage = null;
       },

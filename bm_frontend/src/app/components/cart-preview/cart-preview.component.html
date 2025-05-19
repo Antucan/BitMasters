@@ -1,4 +1,4 @@
-<div class="cart-overlay" *ngIf="isVisible" (click)="closeCart()">
+<div class="cart-overlay" *ngIf="isVisible && isLoggedIn" (click)="closeCart()">
   <section class="cart-preview-container" (click)="$event.stopPropagation()">
     <div class="cart-preview-header">
       <h3>Mi cesta</h3>

@@ -1,6 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../../auth.service';
 
 export interface CartItem {
   id: number;
@@ -20,10 +21,13 @@ export class CartService {
   private cartVisible = new BehaviorSubject<boolean>(false);
   cartVisible$ = this.cartVisible.asObservable();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private authService: AuthService
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
-    if (this.isBrowser) {
+    if (this.isBrowser && this.authService.getUser()) {
       const stored = localStorage.getItem('cart');
       if (stored) {
         this.items = JSON.parse(stored);
@@ -32,7 +36,7 @@ export class CartService {
   }
 
   private saveCart() {
-    if (this.isBrowser) {
+    if (this.isBrowser && this.authService.getUser()) {
       localStorage.setItem('cart', JSON.stringify(this.items));
     }
   }
@@ -49,17 +53,21 @@ export class CartService {
     this.cartVisible.next(!this.cartVisible.getValue());
   }
 
-addToCart(item: CartItem): boolean {
-  const existing = this.items.find(p => p.id === item.id);
-  if (existing) {
-    return false;
-  } else {
-    this.items.push({ ...item });
-    this.saveCart();
-    return true;
-  }
-}
+  addToCart(item: CartItem): boolean {
+    const user = this.authService.getUser();
+    if (!user) {
+      return false; 
+    }
 
+    const existing = this.items.find(p => p.id === item.id);
+    if (existing) {
+      return false; 
+    } else {
+      this.items.push({ ...item });
+      this.saveCart();
+      return true;
+    }
+  }
 
   removeFromCart(id: number) {
     this.items = this.items.filter(item => item.id !== id);

@@ -1,5 +1,3 @@
-// src/app/cart/cart.component.ts
-
 import { Component, Renderer2, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from './cart.service';
@@ -8,6 +6,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -28,15 +27,22 @@ export class CartComponent implements AfterViewInit {
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
     public cartService: CartService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private authService: AuthService // <- AÑADIDO
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
     });
   }
 
+  get isLoggedIn(): boolean {
+    return this.authService.getUser() !== null;
+  }
+
   ngAfterViewInit() {
-    setTimeout(() => this.loadItems());
+    if (this.isLoggedIn) {
+      setTimeout(() => this.loadItems());
+    }
   }
 
   loadItems() {
@@ -69,5 +75,9 @@ export class CartComponent implements AfterViewInit {
     this.loadItems();
     this.showModal = false;
     this.renderer.removeClass(document.body, 'modal-open');
+  }
+
+  abrirLogin() {
+    this.loginService.showLogin();
   }
 }

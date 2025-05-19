@@ -1,6 +1,7 @@
-<!-- src/app/cart/cart.component.html -->
 <login *ngIf="loginVisible"></login>
-<div class="main-container d-flex p-4">
+
+<!-- Si el usuario está logueado, muestra el contenido de la cesta -->
+<div class="main-container d-flex p-4" *ngIf="isLoggedIn; else loginMessage">
   <div class="products-container">
     <h2 class="my-cart text-bold">Mi cesta</h2>
 
@@ -46,3 +47,11 @@
     </div>
   </div>
 </div>
+
+<!-- Si no ha iniciado sesión, muestra este mensaje -->
+<ng-template #loginMessage>
+  <div class="text-center p-5">
+    <h3>Debes iniciar sesión para ver tu cesta</h3>
+    <button class="btn btn-primary mt-3" (click)="abrirLogin()">Iniciar sesión</button>
+  </div>
+</ng-template>

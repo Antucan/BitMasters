@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService } from '../cart/cart.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-cart-preview',
@@ -13,10 +14,18 @@ import { CartService } from '../cart/cart.service';
 export class CartPreviewComponent {
   isVisible: boolean = false;
 
-  constructor(private router: Router, public cartService: CartService) {
+  constructor(
+    private router: Router,
+    public cartService: CartService,
+    private authService: AuthService
+  ) {
     this.cartService.cartVisible$.subscribe(visible => {
       this.isVisible = visible;
     });
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.getUser() !== null;
   }
 
   get items() {
