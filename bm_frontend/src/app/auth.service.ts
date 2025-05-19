@@ -49,6 +49,7 @@ export class AuthService {
   }
   logout(): void {
     this.userSubject.next(null); // Limpiar el usuario al cerrar sesión
+    
   }
   getUser(): User | null {
     return this.userSubject.value; // Obtener el valor actual del BehaviorSubject

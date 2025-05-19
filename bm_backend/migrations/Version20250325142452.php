@@ -27,8 +27,8 @@ final class Version20250325142452 extends AbstractMigration
             purchase_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             status ENUM("pending", "completed", "cancelled") NOT NULL DEFAULT "pending",
             PRIMARY KEY(id),
-            FOREIGN KEY(user_id) REFERENCES users(id),
-            FOREIGN KEY(product_id) REFERENCES products(id)
+            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+            FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE
         ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 

@@ -26,7 +26,8 @@ final class ProductController extends AbstractController
                 'description' => $product->getDescription(),
                 'price' => $product->getPrice(),
                 'img_url' => $product->getImgUrl(),
-                'user' => $product->getUser()
+                'user' => $product->getUser(),
+                'category' => $product->getCategory(),
             ];
         }, $products);
         return $this->json($data);
@@ -178,34 +179,52 @@ final class ProductController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/new', name: 'app_products_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $user): Response
-    {
-        $productdata = json_decode($request->getContent(), true);
-        $name = $productdata["name"];
-        $description = $productdata["description"];
-        $category = $productdata["category"];
-        $price = $productdata["price"];
-        $img = $productdata["image"];
 
-        $productRepository = $entityManager->getRepository(Product::class);
-        $product = $productRepository->findOneBy(['name' => $name]);
-        if (!empty($product)) {
-            return $this->json(
-                ['error' => 'Product already exists'],
-                Response::HTTP_CONFLICT
-            );
-        }
-        if (isset($name) && isset($description) && isset($category) && isset($price)) {
+
+    #[Route('/new', name: 'app_products_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, UsersRepository $userRepository): Response
+    {
+        try {
+            // Decodificar el contenido JSON de la solicitud
+            $productdata = json_decode($request->getContent(), true);
+
+            // Validar que los datos requeridos estén presentes
+            $name = $productdata["name"] ?? null;
+            $description = $productdata["description"] ?? null;
+            $category = $productdata["category"] ?? null;
+            $price = $productdata["price"] ?? null;
+            $img = $productdata["image"] ?? null;
+            $userId = $productdata["user_id"] ?? null;
+
+            if (!$name || !$description || !$category || !$price || !$userId) {
+                return $this->json(
+                    ['error' => 'Missing required parameters'],
+                    Response::HTTP_BAD_REQUEST
+                );
+            }
+
+            // Buscar el usuario por ID
+            $user = $userRepository->find($userId);
+            if (!$user) {
+                return $this->json(
+                    ['error' => 'User not found'],
+                    Response::HTTP_NOT_FOUND
+                );
+            }
+
+            // Crear y guardar el producto
             $product = new Product();
             $product->setName($name);
             $product->setDescription($description);
             $product->setCategory($category);
-            $product->setUser($user->findById(1));
+            $product->setUser($user);
             $product->setPrice($price);
             $product->setImage($img);
+
             $entityManager->persist($product);
             $entityManager->flush();
+
+            // Respuesta exitosa
             return $this->json(
                 [
                     'id' => $product->getId(),
@@ -214,10 +233,11 @@ final class ProductController extends AbstractController
                 ],
                 Response::HTTP_CREATED
             );
-        } else {
+        } catch (\Exception $e) {
+            // Capturar cualquier excepción y devolver un error 500 con el mensaje
             return $this->json(
-                ['error' => 'Missing parameters'],
-                Response::HTTP_BAD_REQUEST
+                ['error' => 'An unexpected error occurred: ' . $e->getMessage()],
+                Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }
