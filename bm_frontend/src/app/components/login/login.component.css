@@ -39,14 +39,13 @@
   margin: 15px auto;
 }
 
-#mailField {
-  width: 100%;
-  margin: 10px 0px 10px 0px;
-}
-
+#mailField,
 #passField {
   width: 100%;
-  margin: 20px 0px 0px 0px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 #registerMessage {
@@ -78,12 +77,27 @@
 }
 
 .error-message {
+  margin: 5px 0 10px 0;
+  padding: 6px 10px;
   color: #ff0000;
-  font-size: 16px;
+  font-size: 15px;
+  border-radius: 6px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'RetroGaming', sans-serif;
+  text-align: center;
+  
 }
+
+
 
 #error {
   height: 25px;
+}
+
+input{
+  margin-bottom: 5px !important;
 }
 
 input:focus{
