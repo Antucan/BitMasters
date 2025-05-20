@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductosService } from './productos.service'; // Importa el nuevo servicio
-import { Product } from '../../models/product.model'; // Asegúrate de que la ruta sea correcta
-import { Router } from '@angular/router'; // Importa Router para la navegación
+import { ProductosService } from './productos.service'; 
+import { Product } from '../../models/product.model';
+import { Router } from '@angular/router'; 
 import { CartService } from '../cart/cart.service';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
@@ -11,19 +11,20 @@ import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-productos',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, LoginComponent], // Elimina Router de aquí
+  imports: [CommonModule, HttpClientModule, LoginComponent], 
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
 
 export class ProductosComponent implements OnInit {
   products: Product[] = [];
-  filteredProducts: Product[] = []; // Inicializa filteredProducts
+  filteredProducts: Product[] = []; 
   currentPage = 1;
   itemsPerPage = 8;
   loginVisible = false;
   priceMin: number | null = null;
   priceMax: number | null = null;
+  priceRangeError = false;
   allCategories: string[] = [
     'consolas',
     'juegos',
@@ -65,21 +66,39 @@ export class ProductosComponent implements OnInit {
 
   onSingleCheckboxChange(category: string) {
     if (this.selectedCategory === category) {
-      // Si se hace clic sobre el que ya está seleccionado, se deselecciona
       this.selectedCategory = null;
     } else {
       this.selectedCategory = category;
     }
 
-    this.applyFilters();
+    this.applyFilters(); 
   }
+
+ validateAndApplyFilters() {
+  if (
+    this.priceMin !== null &&
+    this.priceMax !== null &&
+    this.priceMin > this.priceMax
+  ) {
+    this.priceRangeError = true;
+    setTimeout(() => {
+      this.priceRangeError = false;
+    }, 5000);
+
+    return;
+  }
+
+  this.priceRangeError = false;
+  this.applyFilters();
+}
+
 
   applyFilters() {
     this.filteredProducts = this.products.filter(product => {
       const meetsMin = this.priceMin === null || product.price >= this.priceMin;
       const meetsMax = this.priceMax === null || product.price <= this.priceMax;
-
-      const inSelectedCategory = !this.selectedCategory || product.category === this.selectedCategory;
+      const inSelectedCategory =
+        !this.selectedCategory || product.category === this.selectedCategory;
 
       return meetsMin && meetsMax && inSelectedCategory;
     });
@@ -103,13 +122,13 @@ export class ProductosComponent implements OnInit {
       const meetsMax = this.priceMax === null || product.price <= this.priceMax;
       return meetsMin && meetsMax;
     });
-    this.currentPage = 1; // Reinicia la paginación al aplicar un filtro
+    this.currentPage = 1; 
   }
 
   loadProducts() {
     this.productosService.getProductos().subscribe((data: Product[]) => {
       this.products = data;
-      this.filteredProducts = data; // Inicializa filteredProducts con todos los productos
+      this.filteredProducts = data; 
       console.log(this.products);
     });
   }
