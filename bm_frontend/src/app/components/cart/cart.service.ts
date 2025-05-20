@@ -1,7 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from '../../auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface CartItem {
   id: number;
@@ -56,15 +57,16 @@ export class CartService {
   addToCart(item: CartItem): boolean {
     const user = this.authService.getUser();
     if (!user) {
-      return false; 
+      return false;
     }
 
     const existing = this.items.find(p => p.id === item.id);
     if (existing) {
-      return false; 
+      return false;
     } else {
       this.items.push({ ...item });
       this.saveCart();
+
       return true;
     }
   }
@@ -91,3 +93,4 @@ export class CartService {
     return this.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }
 }
+

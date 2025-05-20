@@ -41,42 +41,42 @@ export class ProductoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productosService.getProductoById(id).subscribe((response) => {
       this.product = response[0];
-      console.log("Productos: ",this.product); 
-      console.log("Nombre del usuario del producto: ", this.product?.user); 
+      console.log("Productos: ", this.product);
+      console.log("Nombre del usuario del producto: ", this.product?.user);
       console.log("ID del usuario del producto: ", id);
     });
   }
 
 
- addToCart(): void {
-  const currentUser = this.authService.getUser();
+  addToCart(): void {
+    const currentUser = this.authService.getUser();
 
-  if (!currentUser) {
-    alert('Debes iniciar sesión para añadir productos al carrito.');
-    return;
-  }
-
-  if (this.product) {
-    const added = this.cartService.addToCart({
-      id: this.product!.id,
-      name: this.product!.name,
-      price: this.product!.price,
-      img_url: this.product!.img_url,
-      quantity: 1
-    });
-
-    if (!added) {
-      alert('Este producto ya está en el carrito.');
+    if (!currentUser) {
+      alert('Debes iniciar sesión para añadir productos al carrito.');
       return;
     }
 
-    this.successMessage = true;
+    if (this.product) {
+      const added = this.cartService.addToCart({
+        id: this.product!.id,
+        name: this.product!.name,
+        price: this.product!.price,
+        img_url: this.product!.img_url,
+        quantity: 1
+      });
 
-    setTimeout(() => {
-      this.successMessage = false;
-    }, 3000);
+      if (!added) {
+        alert('Este producto ya está en el carrito.');
+        return;
+      }
+
+      this.successMessage = true;
+
+      setTimeout(() => {
+        this.successMessage = false;
+      }, 3000);
+    }
   }
-}
 
 
 
