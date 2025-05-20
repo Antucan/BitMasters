@@ -96,3 +96,7 @@ input.form-control {
   margin-top: 5px;
   font-family: inherit;
 }
+
+input:focus{
+  box-shadow: 0 0 20px #bf5dea;
+}
