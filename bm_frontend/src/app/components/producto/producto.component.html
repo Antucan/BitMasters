@@ -1,26 +1,34 @@
 <login *ngIf="loginVisible"></login>
-<div id="background">
-  <div *ngIf="product" id="product">
+<div id="product-background">
+  <div *ngIf="product" id="product-container">
+
     <div class="product-image">
       <img [src]="product.img_url" [alt]="product.name" />
     </div>
-    <div class="product-details">
+
+    <div class="product-header">
+      <span class="category">{{ product.category }}</span>
       <h1 class="product-name">{{ product.name }}</h1>
-      <p class="price">Precio: {{ product.price }}€</p>
-      <p class="description">{{ product.description }}</p>
-      <div class="price-user">
-        <p class="category">Categoría: {{ product.category }}</p>
-        <p class="user" (click)="navigateToProfile()">
-          Vendedor: {{ product.user.name }}
-        </p>
-      </div>
-
-      <button id="buyButton" (click)="addToCart()">Añadir a la cesta</button>
-
-      <p *ngIf="successMessage" class="success-message">
-        ✅ Producto añadido a la cesta.
-      </p>
-
+      <div class="product-price">{{ product.price }}€</div>
     </div>
+
+    <p class="product-description">{{ product.description }}</p>
+
+    <div class="product-meta">
+      
+      <span class="vendedor-wrapper">
+        <span class="vendedor-label">Vendedor:</span>
+        <span class="user" (click)="navigateToProfile()">{{ product.user.name }}</span>
+      </span>
+    </div>
+
+
+
+    <button id="buy-button" (click)="addToCart()">Añadir a la cesta</button>
+
+    <p *ngIf="successMessage" class="success-message">
+      ✅ Producto añadido a la cesta.
+    </p>
+
   </div>
 </div>
