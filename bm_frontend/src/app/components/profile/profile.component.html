@@ -2,20 +2,29 @@
     <div class="d-inline-block content">
         <!-- HEADER DEL PERFIL -->
         <div class="profile-header">
-            <div class="profile-name">
-                <h3> {{user?.name}} {{user?.surname}}</h3>
-                <!-- <div class = "profile-summary">
-                    "Chavales, hoy subo a oro 1"
-                </div> -->
-                <!-- <div class = "profile-date"> 
-                    Se ha unido: 20 de marzo de 2025
-                </div> -->
+            <div class="profile-name d-flex">
+                <div class="d-flex">
+                    <h3 class="mx-2" *ngIf="!editName"> {{user?.name}}</h3>
+                    <input class="form-control" *ngIf="editName" [value]="user?.name"
+                        (input)="updateField('name', $event)">
+                </div>
+                <div class="d-flex">
+                    <h3 *ngIf="!editSurname"> {{user?.surname}} </h3>
+                    <input class="form-control" *ngIf="editSurname" [value]="user?.surname"
+                        (input)="updateField('surname', $event)">
+                    <img src="../../../assets/icons/icons8-pencil-drawing-64.png" *ngIf="!editName && isLoggedIn"
+                        (click)="toggleEdit('name')" class="edit-icon">
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success mx-4" *ngIf="isLoggedIn && (editName || editSurname)"
+                        (click)="saveProfile()">Guardar cambios</button>
+                </div>
             </div>
 
             <div class="header-buttons d-flex flex-column">
                 <button> Enviar Mensaje</button>
-                <button (click)="navigateToAddProduct()"> Vender Producto </button>
-                <button (click)="deleteProfile(user?.id)">Darse de baja</button>
+                <button *ngIf="isLoggedIn" (click)="navigateToAddProduct()"> Vender Producto </button>
+                <button *ngIf="isLoggedIn" (click)="deleteProfile(user?.id)">Darse de baja</button>
             </div>
 
             <div class="pfp">
@@ -26,20 +35,47 @@
 
         <!-- DATOS PERSONALES -->
         <div class="personal-data profile-content">
-            <div class="d-flex justify-content-between my-4">
+            <div class="d-flex justify-content-between my-3">
                 <h2> Datos personales </h2>
                 <!-- <img src = "../../../assets/images/profile/Star-Logo-PNG-HD.png" class = "edit-data"> -->
             </div>
 
             <div class="d-flex justify-content-around gap-5">
                 <div class="d-flex flex-column">
-                    <span><strong>Correo electrónico</strong></span>
-                    <span> {{user?.mail}} </span>
+                    <div>
+                        <div>
+                            <span><strong>Correo electrónico</strong></span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between my-3">
+                        <div>
+                            <span *ngIf="!editMail"> {{user?.mail}} </span>
+                            <input class="form-control" *ngIf="editMail" [value]="user?.mail"
+                                (input)="updateField('mail', $event)">
+                        </div>
+                        <img src="../../../assets/icons/icons8-pencil-drawing-64.png" *ngIf="!editMail && isLoggedIn"
+                            (click)="toggleEdit('mail')" class="edit-icon">
+                        <button type="button" class="btn btn-success mx-4" *ngIf="isLoggedIn && (editMail)"
+                            (click)="saveProfile()">Guardar cambios</button>
+                    </div>
+
                 </div>
                 <div class="d-flex flex-column">
-                    <span><strong>Teléfono de contacto</strong></span>
-                    <span *ngIf="user?.phone === null"> Telefono no proporcionado </span>
-                    <span *ngIf="user?.phone !== null"> {{user?.phone}} </span>
+                    <div>
+                        <span><strong>Teléfono de contacto</strong></span>
+                    </div>
+                    <div class="d-flex justify-content-between my-3">
+                        <div>
+                            <span *ngIf="!editPhone && user?.phone === null">Teléfono no proporcionado</span>
+                            <span *ngIf="!editPhone && user?.phone !== null">{{user?.phone}}</span>
+                            <input class="form-control" *ngIf="editPhone" [value]="user?.phone"
+                                (input)="updateField('phone', $event)">
+                        </div>
+                        <img src="../../../assets/icons/icons8-pencil-drawing-64.png" *ngIf="!editPhone && isLoggedIn"
+                            (click)="toggleEdit('phone')" class="edit-icon">
+                        <button type="button" class="btn btn-success mx-4" *ngIf="isLoggedIn && (editPhone)"
+                            (click)="saveProfile()">Guardar cambios</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +133,7 @@
                         <div class="product-summary"><span> {{product.description}} </span></div>
                         <div class="product-date"><span> {{product.category}} </span></div>
                     </div>
-                    <div (click)="deleteProduct(product.id)" class="delete-product">
+                    <div *ngIf="isLoggedIn" (click)="deleteProduct(product.id)" class="delete-product">
                         <span>Eliminar</span>
                     </div>
                 </div>
