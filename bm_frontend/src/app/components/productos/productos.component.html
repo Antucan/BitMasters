@@ -8,13 +8,11 @@
         <h1>Precio</h1>
         <label>
           Mínimo:
-          <input class="num-price" type="number" [value]="priceMin" (input)="onPriceMinChange($event)"
-            placeholder="MIN" min="1">
+          <input class="num-price" type="number" [value]="priceMin" (input)="onPriceMinChange($event)" placeholder="MIN" min="1">
         </label>
         <label>
           Máximo:
-          <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)"
-            placeholder="MAX" min="1">
+          <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)" placeholder="MAX" min="1">
         </label>
         <button (click)="validateAndApplyFilters()" id="apply-filters-btn">
           Aplicar
@@ -24,6 +22,7 @@
           El precio mínimo no puede ser mayor que el precio máximo.
         </div>
       </div>
+
       <div id="category-filter">
         <h1>Categorías</h1>
         <label *ngFor="let category of allCategories">
@@ -63,7 +62,5 @@
         <p class="no-products-message">No se encontraron productos con esos filtros.</p>
       </ng-template>
     </div>
-
-
   </div>
 </div>
