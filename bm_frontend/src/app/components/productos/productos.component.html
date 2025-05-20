@@ -8,11 +8,11 @@
         <h1>Precio</h1>
         <label>
           Mínimo: 
-          <input class="num-price" type="number" [value]="priceMin" (input)="onPriceMinChange($event)" placeholder="MIN">
+          <input class="num-price" type="number" [value]="priceMin" (input)="onPriceMinChange($event)" placeholder="MIN" min="1">
         </label>
         <label>
           Máximo: 
-          <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)" placeholder="MAX">
+          <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)" placeholder="MAX" min="1">
         </label>
         <button (click)="applyFilters()" id="apply-filters-btn">Aplicar</button>
       </div>
