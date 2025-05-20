@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 export class HomeComponent {
   countClients: number = 0;
   countProducts: number = 0;
+  countPurchases: number = 0;
   clientsComponent = false;
   productsComponent = false;
 

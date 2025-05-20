@@ -48,7 +48,13 @@
             </div>
             <!-- ORDERS -->
             <div *ngIf="!clientsComponent && !productsComponent" class="col-12">
-              <div class="bg-light placeholder-box"></div>
+              <div class="bg-light placeholder-box d-flex align-items-center">
+                <div style="margin-left:20px;">
+                  <h3>COMPRAS</h3>
+                  <p style="font-size:20px;">Número total de compras</p>
+                  <p style="font-size:30px"><strong>sasdasdf</strong></p>
+                </div>
+              </div>
             </div>
             <!-- CLIENTS LIST -->
             <app-clients *ngIf="clientsComponent && !productsComponent"></app-clients>
