@@ -76,18 +76,6 @@ class Purchase
         return $this;
     }
 
-    // public function getPurchaseDate(): ?\DateTimeInterface
-    // {
-    //     return $this->purchase_date;
-    // }
-
-    // public function setPurchaseDate(\DateTimeInterface $purchase_date): static
-    // {
-    //     $this->purchase_date = $purchase_date;
-
-    //     return $this;
-    // }
-
     public function getStatus(): ?string
     {
         return $this->status;
