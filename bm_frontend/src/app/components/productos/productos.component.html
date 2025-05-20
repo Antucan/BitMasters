@@ -14,7 +14,7 @@
           Máximo: 
           <input class="num-price" type="number" [value]="priceMax" (input)="onPriceMaxChange($event)" placeholder="MAX">
         </label>
-        <button class="btn btn-warning" (click)="applyFilters()">Aplicar</button>
+        <button (click)="applyFilters()" id="apply-filters-btn">Aplicar</button>
       </div>
       <div id="category-filter">
         <h1>Categorías</h1>
