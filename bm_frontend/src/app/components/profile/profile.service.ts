@@ -12,18 +12,26 @@ export class ProfileService {
   constructor(private http: HttpClient) { }
 
   getUserById(id: number): Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:8000/users/'+id);
+    return this.http.get<any>('http://127.0.0.1:8000/users/' + id);
   }
 
-  getPurchaseHistory(id: number): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/purchases/get/'+id);
+  getPurchaseHistory(id: number): Observable<any> {
+    return this.http.get<any>('http://127.0.0.1:8000/purchases/get/' + id);
   }
 
-  getProducts(id: number): Observable<any>{
-    return this.http.get<any>('http://127.0.0.1:8000/productos/user/'+id);
+  getProducts(id: number): Observable<any> {
+    return this.http.get<any>('http://127.0.0.1:8000/productos/user/' + id);
   }
 
-  deleteProduct(id: number): Observable<any>{
-    return this.http.delete<any>('http://127.0.0.1:8000/productos/delete/'+id);
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete<any>('http://127.0.0.1:8000/productos/delete/' + id);
   }
+
+  // Actualizar un usuario existente
+  updateUser(client: any): Observable<any> {
+    return this.http.put<any>(`http://127.0.0.1:8000/users/${client.id}`, client, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
 }
