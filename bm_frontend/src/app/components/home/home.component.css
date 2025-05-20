@@ -20,6 +20,7 @@ h1 {
     justify-content: center;
     margin: 20px;
     font-family: 'RetroGaming';
+    text-shadow: 0 0 8px #bf5dea;
 }
 
 #products-preview{
