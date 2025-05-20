@@ -34,7 +34,7 @@ export class AppComponent {
     if (route === '/cart') {
       this.toggleCart();
     } else {
-      // Lógica de redirección aquí
+
     }
   }
 

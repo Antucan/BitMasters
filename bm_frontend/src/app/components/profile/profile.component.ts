@@ -69,7 +69,7 @@ export class ProfileComponent {
     this.ProfileService.deleteProduct(productId).subscribe({
       next: () => {
         alert('El producto ha sido eliminado correctamente.');
-        // Actualiza la lista de productos después de eliminar
+
         this.products = this.products.filter(product => product.id !== productId);
       },
       error: (err) => {
@@ -82,14 +82,14 @@ export class ProfileComponent {
   deleteProfile(userId: number | undefined): void {
     if (userId === undefined) {
       console.error('El ID del usuario no está definido.');
-      return; // Salir de la función si el ID es undefined
+      return; 
     }
 
-    // Mostrar cuadro de confirmación
+ 
     const confirmDelete = confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');
 
     if (!confirmDelete) {
-      // Si el usuario cancela, no se realiza ninguna acción
+    
       return;
     }
 
@@ -97,7 +97,7 @@ export class ProfileComponent {
       next: (response) => {
         alert('Usuario eliminado correctamente');
         this.authService.logout();
-        // Redirigir a la página de inicio o a otra página después de eliminar el usuario
+
         this.router.navigate(['/']);
       },
       error: (error) => {

@@ -1,4 +1,4 @@
-/* Elimina scroll y asegura que ocupe toda la pantalla */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -6,7 +6,7 @@ html, body {
   overflow: hidden;
 }
 
-/* Contenedor principal */
+
 #gloval-div {
   height: 100vh;
   width: 100vw;
@@ -14,7 +14,7 @@ html, body {
   position: relative;
 }
 
-/* Fondo animado con capa oscura */
+
 #registerBackground {
   position: absolute;
   top: 0;
@@ -37,7 +37,7 @@ html, body {
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* Caja del formulario centrada */
+
 #registerBox {
   position: absolute;
   top: 50%;
@@ -56,7 +56,7 @@ html, body {
   color: rgb(231, 231, 231);
 }
 
-/* Línea decorativa */
+
 #registerLine {
   display: flex;
   width: 90%;
@@ -66,7 +66,6 @@ html, body {
   margin: 15px auto;
 }
 
-/* Campos del formulario */
 #emailField,
 #nameField,
 #surnameField,
@@ -75,7 +74,7 @@ html, body {
   margin: 10px 0;
 }
 
-/* Estilo del botón de registro */
+
 #registerButton {
   margin: 25px 0 10px 0;
   background: linear-gradient(to bottom, #00C3FF, #0698c4);
@@ -88,7 +87,7 @@ html, body {
   background: linear-gradient(to top, #00C3FF, #0698c4);
 }
 
-/* Ajustes adicionales opcionales */
+
 input.form-control {
   width: 100%;
   padding: 10px;

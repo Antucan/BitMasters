@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { User } from './models/user.model'; // Update the path to the User model
-import { map, tap } from 'rxjs';//para actualizar la propiedad user
+import { User } from './models/user.model'; 
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/users/login'; // Reemplaza con tu URL de Symfony
+  private apiUrl = 'http://127.0.0.1:8000/users/login'; 
   private userSubject = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) { }
@@ -37,8 +37,8 @@ export class AuthService {
             response.user.mail,
             response.user.password,
             response.user.role
-          ); // Mapea los datos al modelo User
-          this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
+          ); 
+          this.userSubject.next(user); 
           console.log('User logged in:', user);
           return user;
         } else {
@@ -48,13 +48,13 @@ export class AuthService {
     );
   }
   logout(): void {
-    this.userSubject.next(null); // Limpiar el usuario al cerrar sesión
+    this.userSubject.next(null); 
     
   }
   getUser(): User | null {
-    return this.userSubject.value; // Obtener el valor actual del BehaviorSubject
+    return this.userSubject.value; 
   }
   setUser(user: User): void {
-    this.userSubject.next(user); // Actualiza el BehaviorSubject con el nuevo usuario
+    this.userSubject.next(user); 
   }
 }
