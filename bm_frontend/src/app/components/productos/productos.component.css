@@ -20,6 +20,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  align-items: flex-start;
 }
 
 #filters {
@@ -29,7 +30,6 @@
   padding: 1rem;
   border-radius: 8px;
   font-family: 'Lato', sans-serif;
-  max-height: 800px;
 }
 
 #filters-title,
@@ -197,7 +197,7 @@
 }
 
 #category-filter {
-  margin-top: 1rem;
+  margin-top: 0;
 }
 
 .no-products-message {
@@ -233,6 +233,7 @@
   border: none;
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 #apply-filters-btn:hover {
@@ -240,7 +241,7 @@
 }
 
 .price-error-message {
-  margin-top: 1rem;
+  margin: 0.75rem 0; 
   padding: 0.75rem 1rem;
   background-color: rgba(255, 0, 0, 0.2);
   color: #ff4d4d;
@@ -251,3 +252,5 @@
   font-family: 'RetroGaming', sans-serif;
   animation: fadeIn 0.4s ease-in-out;
 }
+
+
