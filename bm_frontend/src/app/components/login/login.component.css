@@ -1,105 +1,105 @@
-.form-control {
-  text-align: center;
-}
+  .form-control {
+    text-align: center;
+  }
 
-#loginBackground {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-}
+  #loginBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+  }
 
-#loginBox {
-  position: absolute;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "RetroGaming";
-  font-size: 20px;
-  width: 500px;
-  flex-wrap: wrap;
-  background: linear-gradient(to bottom, #8a00c7, #430061);
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 20px #bf5dea;
-  color: rgb(231, 231, 231);
-}
+  #loginBox {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "RetroGaming";
+    font-size: 20px;
+    width: 500px;
+    flex-wrap: wrap;
+    background: linear-gradient(to bottom, #8a00c7, #430061);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px #bf5dea;
+    color: rgb(231, 231, 231);
+  }
 
-#loginLine {
-  display: flex;
-  width: 90%;
-  height: 3px;
-  background-color: #ff2fb3;
-  border-radius: 5px;
-  margin: 15px auto;
-}
+  #loginLine {
+    display: flex;
+    width: 90%;
+    height: 3px;
+    background-color: #ff2fb3;
+    border-radius: 5px;
+    margin: 15px auto;
+  }
 
-#mailField,
-#passField {
-  width: 100%;
-  margin-bottom: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
+  #mailField,
+  #passField {
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
-#registerMessage {
-  width: 100%;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-
-#registerLink {
-  text-decoration: none !important;
-  color: #ff2fb3;
-}
-
-#registerLink:hover {
-  color: #ff2fb3;
-}
-
-#loginButton {
-  margin: 25px 0px 10px 0px;
-  background: #ff2fb3;
-  padding: 10px 50px 10px 50px;
-  border: 0px;
-  color: white;
-}
-
-#loginButton:hover {
-  background: #cc2490;
-}
-
-.error-message {
-  margin: 5px 0 10px 0;
-  padding: 6px 10px;
-  color: #ff0000;
-  font-size: 15px;
-  border-radius: 6px;
-  text-align: left;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: 'RetroGaming', sans-serif;
-  text-align: center;
-  
-}
+  #registerMessage {
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
 
+  #registerLink {
+    text-decoration: none !important;
+    color: #ff2fb3;
+  }
 
-#error {
-  height: 25px;
-}
+  #registerLink:hover {
+    color: #ff2fb3;
+  }
 
-input{
-  margin-bottom: 5px !important;
-}
+  #loginButton {
+    margin: 25px 0px 10px 0px;
+    background: #ff2fb3;
+    padding: 10px 50px 10px 50px;
+    border: 0px;
+    color: white;
+  }
 
-input:focus{
-   box-shadow: 0 0 20px #bf5dea;
-}
+  #loginButton:hover {
+    background: #cc2490;
+  }
+
+  .error-message {
+    margin: 5px 0 10px 0;
+    padding: 6px 10px;
+    color: #ff0000;
+    font-size: 15px;
+    border-radius: 6px;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'RetroGaming', sans-serif;
+    text-align: center;
+    
+  }
+
+
+
+  #error {
+    height: 25px;
+  }
+
+  input{
+    margin-bottom: 5px !important;
+  }
+
+  input:focus{
+    box-shadow: 0 0 20px #bf5dea;
+  }
