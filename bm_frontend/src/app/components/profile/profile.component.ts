@@ -12,11 +12,11 @@ import { UserService } from '../admin/user.service';
 
 @Component({
   selector: 'app-profile',
-  standalone: true, 
-  imports: [CommonModule], 
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  providers: [UserService] 
+  providers: [UserService]
 })
 export class ProfileComponent {
   user: User | null = null;
@@ -29,12 +29,13 @@ export class ProfileComponent {
   editSurname: boolean = false;
   editMail: boolean = false;
   editPhone: boolean = false;
+  loginVisible = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
-    private userService: UserService, // Inyecta el servicio aquí
+    private userService: UserService,
     private authService: AuthService
   ) { }
 
@@ -74,10 +75,10 @@ export class ProfileComponent {
    * @param field Funciones para editar el perfil
    */
   toggleEdit(field: string): void {
-    if (field === 'name'){
+    if (field === 'name') {
       this.editName = !this.editName;
       this.editSurname = !this.editSurname; // Desactiva la edición de apellido si se activa la edición de nombre
-    } 
+    }
     if (field === 'mail') this.editMail = !this.editMail;
     if (field === 'phone') this.editPhone = !this.editPhone;
   }
@@ -128,14 +129,14 @@ export class ProfileComponent {
   deleteProfile(userId: number | undefined): void {
     if (userId === undefined) {
       console.error('El ID del usuario no está definido.');
-      return; 
+      return;
     }
 
- 
+
     const confirmDelete = confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.');
 
     if (!confirmDelete) {
-    
+
       return;
     }
 
