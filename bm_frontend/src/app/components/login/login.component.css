@@ -26,7 +26,7 @@
   border-radius: 15px;
   padding: 20px;
   text-align: center;
-  box-shadow: 5px 5px 5px 5px #616060;
+  box-shadow: 0 0 20px #bf5dea;
   color: rgb(231, 231, 231);
 }
 
@@ -34,7 +34,7 @@
   display: flex;
   width: 90%;
   height: 3px;
-  background-color: #00c3ff;
+  background-color: #ff2fb3;
   border-radius: 5px;
   margin: 15px auto;
 }
@@ -52,26 +52,29 @@
 #registerMessage {
   width: 100%;
   font-size: 16px;
+  cursor: pointer;
 }
+
 
 #registerLink {
   text-decoration: none !important;
-  color: #00c3ff;
+  color: #ff2fb3;
 }
 
 #registerLink:hover {
-  color: #0698c4;
+  color: #ff2fb3;
 }
 
 #loginButton {
   margin: 25px 0px 10px 0px;
-  background: linear-gradient(to bottom, #00c3ff, #0698c4);
+  background: #ff2fb3;
   padding: 10px 50px 10px 50px;
   border: 0px;
+  color: white;
 }
 
 #loginButton:hover {
-  background: linear-gradient(to top, #00c3ff, #0698c4);
+  background: #cc2490;
 }
 
 .error-message {

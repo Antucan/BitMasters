@@ -61,7 +61,7 @@ html, body {
   display: flex;
   width: 90%;
   height: 3px;
-  background-color: #00C3FF;
+  background-color: #ff2fb3;
   border-radius: 5px;
   margin: 15px auto;
 }
@@ -77,14 +77,14 @@ html, body {
 
 #registerButton {
   margin: 25px 0 10px 0;
-  background: linear-gradient(to bottom, #00C3FF, #0698c4);
+  background: #ff2fb3;
   padding: 10px 50px;
   border: none;
   color: white;
 }
 
 #registerButton:hover {
-  background: linear-gradient(to top, #00C3FF, #0698c4);
+  background: #cc2490;
 }
 
 
