@@ -29,7 +29,7 @@
   padding: 1rem;
   border-radius: 8px;
   font-family: 'Lato', sans-serif;
-  max-height: 600px;
+  max-height: 800px;
 }
 
 #filters-title,
@@ -57,6 +57,7 @@
   padding: 1rem;
   box-sizing: border-box;
   min-height: 600px;
+  position: relative;
 }
 
 #product {
@@ -119,11 +120,11 @@
 #product-description {
   font-size: 0.9rem;
   color: #e0e0e0;
-  display: -webkit-box; /* Usar un contenedor flexible */
-  -webkit-line-clamp: 4; /* Limitar a 4 líneas */
-  -webkit-box-orient: vertical; /* Orientación vertical */
-  overflow: hidden; /* Ocultar contenido excedente */
-  text-overflow: ellipsis; /* Mostrar puntos suspensivos */
+  display: -webkit-box; 
+  -webkit-line-clamp: 4; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
   margin: 0px 15px 0px 15px;
 }
 
@@ -200,15 +201,27 @@
 }
 
 .no-products-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 400px; 
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-family: 'RetroGaming', sans-serif;
-  color: red;
   font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 2px solid #ff1744;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.6s ease-out;
+  max-width: 600px;
+  width: 90%;
+  z-index: 10;
 }
+
+
 
 #apply-filters-btn {
   font-family: 'RetroGaming', sans-serif;
@@ -224,4 +237,17 @@
 
 #apply-filters-btn:hover {
   background-color: #e0a800; 
+}
+
+.price-error-message {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #ff4d4d;
+  font-weight: bold;
+  border: 1px solid #ff1744;
+  border-radius: 6px;
+  text-align: center;
+  font-family: 'RetroGaming', sans-serif;
+  animation: fadeIn 0.4s ease-in-out;
 }
