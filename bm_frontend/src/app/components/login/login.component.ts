@@ -68,8 +68,8 @@ export class LoginComponent {
           this.passwordErrorMessage = "Contraseña incorrecta";
         } else if (error.status === 404) {
           this.mailErrorMessage = "Usuario no encontrado";
-        } else {
-          this.passwordErrorMessage = "Error inesperado. Intenta más tarde.";
+        } else if (error.message === "Login failed: Unauthorized role") {
+          this.errorMessage = "Usuario no autorizado";
         }
       }
     );
