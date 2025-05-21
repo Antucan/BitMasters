@@ -15,7 +15,7 @@ import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, LoginComponent],
+  imports: [CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
   providers: [UserService]
@@ -37,9 +37,8 @@ export class ProfileComponent {
     private router: Router,
     private route: ActivatedRoute,
     private ProfileService: ProfileService,
-    private userService: UserService, // Inyecta el servicio aquí
-    private authService: AuthService,
-    private loginService: LoginService,
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
