@@ -7,7 +7,11 @@ use App\Entity\Purchase;
 use App\Repository\ProductRepository;
 use App\Repository\PurchaseRepository;
 use App\Repository\UsersRepository;
+use DateTime;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,5 +62,43 @@ final class PurchaseController extends AbstractController
             ];
         }, $purchases);
         return $this->json($data);
+    }
+
+    #[Route('/new', name: 'app_purchase', methods: ['POST'])]
+    public function addPurchase(Request $request, PurchaseRepository $purchaseRepository, UsersRepository $userRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
+    {
+        $purchaseData = json_decode($request->getContent(), true);
+
+        if (!isset($purchaseData["user_id"]) || !isset($purchaseData["product_id"]) || !isset($purchaseData["quantity"]) || !isset($purchaseData["status"])) {
+            return new JsonResponse(["Error" => "Faltan campos obligatorios"]);
+        }
+
+        $user_id = $purchaseData['user_id'];
+        $user = $userRepository->findOneBy(array("id" => $user_id));
+        $product_id = $purchaseData['product_id'];
+        $product = $productRepository->findOneBy(array("id" => $product_id));
+        $quantity = $purchaseData['quantity'];
+        $status = $purchaseData['status'];
+
+        $purchase = new Purchase();
+        $purchase->setUser($user);
+        $purchase->setProduct($product);
+        $purchase->setQuantity($quantity);
+        $purchase->setPurchaseDate(new DateTime());
+        $purchase->setStatus($status);
+
+        if($user === null)
+            return new JsonResponse(["Error" => "No se ha encontrado usuario"]);
+
+        if($product === null)
+            return new JsonResponse(["Error" => "No se ha encontrado producto"]);
+
+        if($user->getRole()->getId() === 1)
+            return new JsonResponse(["Error" => "Usuario no autorizado para la compra"]);
+
+        $entityManager->persist($purchase);
+        $entityManager->flush();
+
+        return new JsonResponse(["Ok" => "Compra realizada correctamente"]);
     }
 }

@@ -11,9 +11,11 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    z-index: 9999;
   }
 
   #loginBox {
+    z-index: 10000;
     position: absolute;
     top: 47%;
     left: 50%;
@@ -87,7 +89,7 @@
     box-sizing: border-box;
     font-family: 'RetroGaming', sans-serif;
     text-align: center;
-    
+
   }
 
 
@@ -96,10 +98,10 @@
     height: 25px;
   }
 
-  input{
+  input {
     margin-bottom: 5px !important;
   }
 
-  input:focus{
+  input:focus {
     box-shadow: 0 0 20px #bf5dea;
   }

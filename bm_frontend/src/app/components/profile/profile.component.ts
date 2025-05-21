@@ -9,6 +9,8 @@ import { Purchase } from '../../models/purchase.model';
 import { Product } from '../../models/product.model';
 import { Router } from '@angular/router';
 import { UserService } from '../admin/user.service';
+import { LoginService } from '../login/login.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-profile',
@@ -66,6 +68,9 @@ export class ProfileComponent {
       this.ProfileService.getProducts(id).subscribe((response) => {
         this.products = response;
         console.log(this.products);
+      });
+      this.loginService.loginVisible$.subscribe(visible => {
+        this.loginVisible = visible;
       });
     })
 
@@ -151,5 +156,9 @@ export class ProfileComponent {
         console.error('Error al eliminar el usuario:', error);
       }
     });
+  }
+
+  hideLogin() {
+    this.loginService.hideLogin();
   }
 }
