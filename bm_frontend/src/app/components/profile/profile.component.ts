@@ -15,10 +15,10 @@ import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoginComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  providers: [UserService]
+  providers: [UserService, LoginService]
 })
 export class ProfileComponent {
   user: User | null = null;
@@ -36,6 +36,7 @@ export class ProfileComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private loginService: LoginService,
     private ProfileService: ProfileService,
     private userService: UserService,
     private authService: AuthService
