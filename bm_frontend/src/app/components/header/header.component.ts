@@ -66,4 +66,12 @@ export class HeaderComponent {
     document.body.style.overflow = ''; 
   }
   
+  logout(){
+    this.authService.logout();
+    this.logged = false;
+    this.userName = '';
+    this.router.navigate(['/']);
+    alert('User logged out');
+  }
+
 }

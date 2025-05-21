@@ -2,7 +2,7 @@
     display: flex;
     padding: 0px !important;
     color: white;
-    background-image: url('/assets/images/home-background.jpg');
+    background-image: url('../../../assets/images/home-background.jpg');
 }
 
 #bannerDiv {

@@ -9,6 +9,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ShippingDetailsComponent } from './components/shipping-details/shipping-details.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,6 @@ export const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'cesta', component: CartComponent },
   { path: 'direccion', component: ShippingDetailsComponent},
-  { path: 'pago', component: PaymentComponent}
-
+  { path: 'pago', component: PaymentComponent},
+  { path: 'about-us', component: AboutusComponent }
 ];

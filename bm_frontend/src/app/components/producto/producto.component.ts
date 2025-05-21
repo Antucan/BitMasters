@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosService } from '../productos/productos.service';
 import { Product } from '../../models/product.model';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../cart/cart.service'; // ✅ Asegúrate de que la ruta sea correcta
+import { CartService } from '../cart/cart.service';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
 import { HttpClientModule } from '@angular/common/http';

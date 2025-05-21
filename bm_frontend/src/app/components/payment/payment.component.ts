@@ -32,7 +32,7 @@ export class PaymentComponent {
     private loginService: LoginService,
     private authService: AuthService,
     private purchase: addPurchase
-    
+
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
@@ -47,11 +47,6 @@ export class PaymentComponent {
   }
 
   ngOnInit() {
-    // this.products = this.cartService.getItems();
-    // this.products.forEach(element => {
-    //   console.log("xd" + element)
-    // });
-    
     this.authService.user$.subscribe(user => {
       if (user) {
         this.user_id = user.id; // Asignamos el ID del usuario

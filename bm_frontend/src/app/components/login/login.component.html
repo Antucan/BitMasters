@@ -14,8 +14,11 @@
           required
         />
       </label>
-      <div *ngIf="mailErrorMessage && !mail?.trim()" class="error-message">
+      <div *ngIf="mailErrorMessage" class="error-message">
         {{ mailErrorMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage}}
       </div>
 
       <label id="passField">
@@ -28,7 +31,7 @@
           required
         />
       </label>
-      <div *ngIf="passwordErrorMessage && !password?.trim()" class="error-message">
+      <div *ngIf="passwordErrorMessage" class="error-message">
         {{ passwordErrorMessage }}
       </div>
 

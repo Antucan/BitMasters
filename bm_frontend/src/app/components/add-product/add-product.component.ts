@@ -7,6 +7,7 @@ import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-add-product',
   imports: [FormsModule, LoginComponent, CommonModule],

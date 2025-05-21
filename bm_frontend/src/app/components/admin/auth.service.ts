@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { User } from '../../models/user.model'; // Update the path to the User model
+import { User } from '../../models/user.model'; 
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/users/login'; // Reemplaza con tu URL de Symfony
+  private apiUrl = 'http://127.0.0.1:8000/users/login'; 
   private userSubject = new BehaviorSubject<User | null>(null);
   constructor(private http: HttpClient) { }
 

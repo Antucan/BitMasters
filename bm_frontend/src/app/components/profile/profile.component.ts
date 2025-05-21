@@ -18,7 +18,7 @@ import { LoginComponent } from '../login/login.component';
   imports: [CommonModule, LoginComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
-  providers: [UserService]
+  providers: [UserService, LoginService]
 })
 export class ProfileComponent {
   user: User | null = null;
@@ -36,10 +36,10 @@ export class ProfileComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private ProfileService: ProfileService,
-    private userService: UserService, // Inyecta el servicio aquí
-    private authService: AuthService,
     private loginService: LoginService,
+    private ProfileService: ProfileService,
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {

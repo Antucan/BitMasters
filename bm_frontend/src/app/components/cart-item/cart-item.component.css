@@ -1,79 +1,77 @@
 .products-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border: 2px solid #430061;
-    border-radius: 5px;
-    margin: 20px;
-    width: 725px;
-    background-color: rgb(180, 79, 226);
-  }
-  
-  .product-img-container {
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 2px;
-  }
-  
-  .product-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    border-radius: inherit; 
-  }
-  
-  /* Evita afectar a otras imágenes */
-  .remove-product-btn img,
-  .add-btn img,
-  .minus-btn img {
-    width: 40px;
-    height: 40px;
-    padding: 5px;
-  }
-  
-  .quantity {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #430061;
-    background-color: white;
-    border-radius: 5px;
-  }
-  
-  .products-details p {
-    margin-left: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    color: black;
-    font-weight: bold;
-  }
-  
-  .remove-product-btn {
-    border: 2px solid #430061;
-    background-color: white;
-    border-radius: 5px;
-  }
-  
-  .remove-product-btn:hover,
-  .quantity:hover {
-    background-color: lightgray;
-  }
-  
-  .remove-product-btn {
-    margin-right: 30px;
-  }
-  
-  .product-cart-btns{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-left: auto;
-    margin-right: 10px;
-  }
-  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 2px solid #430061;
+  border-radius: 5px;
+  margin: 20px;
+  width: 725px;
+  background-color: rgb(180, 79, 226);
+}
+
+.product-img-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 2px;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: inherit;
+}
+
+.remove-product-btn img,
+.add-btn img,
+.minus-btn img {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.quantity {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #430061;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.products-details p {
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.remove-product-btn {
+  border: 2px solid #430061;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.remove-product-btn:hover,
+.quantity:hover {
+  background-color: lightgray;
+}
+
+.remove-product-btn {
+  margin-right: 30px;
+}
+
+.product-cart-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+  margin-right: 10px;
+}

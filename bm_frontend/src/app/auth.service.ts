@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
-import { User } from './models/user.model'; 
+import { User } from './models/user.model';
 import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/users/login'; 
+  private apiUrl = 'http://127.0.0.1:8000/users/login';
   private userSubject = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) { }
@@ -37,8 +37,9 @@ export class AuthService {
             response.user.mail,
             response.user.password,
             response.user.role
-          ); 
-          this.userSubject.next(user); 
+          );
+
+          this.userSubject.next(user);
           console.log('User logged in:', user);
           return user;
         } else {
@@ -48,13 +49,13 @@ export class AuthService {
     );
   }
   logout(): void {
-    this.userSubject.next(null); 
-    
+    this.userSubject.next(null);
+
   }
   getUser(): User | null {
-    return this.userSubject.value; 
+    return this.userSubject.value;
   }
   setUser(user: User): void {
-    this.userSubject.next(user); 
+    this.userSubject.next(user);
   }
 }

@@ -1,5 +1,3 @@
-// src/app/cart-item/cart-item.component.ts
-
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService, CartItem } from '../cart/cart.service';

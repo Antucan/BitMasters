@@ -1,0 +1,28 @@
+#gloval-div {
+    min-height: 60vh;
+    padding: 2rem;
+    background-image: url('../../../assets/images/home-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;;
+}
+
+#title {
+    font-family: 'RetroGaming', sans-serif;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#title2 {
+    font-family: 'RetroGaming', sans-serif;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-family: 'RetroGaming', sans-serif;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+}

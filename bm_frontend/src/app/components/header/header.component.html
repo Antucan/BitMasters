@@ -6,37 +6,26 @@
 
   <div class="d-flex flex-grow-1 justify-content-center ms-auto">
     <form class="d-flex w-50 justify-content-center" role="search">
-      <input
-        class="searchbar form-control search-input w-100"
-        type="search"
-        aria-label="Search"
-      />
+      <input class="searchbar form-control search-input w-100" type="search" aria-label="Search" />
     </form>
   </div>
 
   <div class="user-actions-container">
     <div class="user-action" *ngIf="!logged" (click)="showLogin()">
-      <img
-        src="../../assets/images/userlogo.png"
-        alt="icon"
-        class="user-icon"
-      />
+      <img src="../../assets/images/userlogo.png" alt="icon" class="user-icon" />
       <span class="login">INICIAR SESIÓN</span>
     </div>
-    <div class="user-action" *ngIf="logged" (click)="navigateToProfile()">
-      <img
-        src="../../assets/images/userlogo.png"
-        alt="icon"
-        class="user-icon"
-      />
-      <span class="login">{{ userName }}</span>
+    <div *ngIf="logged" class="d-flex">
+      <div class="user-action" (click)="logout()">
+        <img src="../../../assets/icons/icons8-logout-32.png" alt="icon" class="user-icon" />
+      </div>
+      <div class="user-action" (click)="navigateToProfile()">
+        <img src="../../assets/images/userlogo.png" alt="icon" class="user-icon" />
+        <span class="login">{{ userName }}</span>
+      </div>
     </div>
     <div class="user-action" (click)="onCartClick()">
-      <img
-        src="../../assets/images/shopping-bag.png"
-        alt="shopping-icon"
-        class="bag-icon"
-      />
+      <img src="../../assets/images/shopping-bag.png" alt="shopping-icon" class="bag-icon" />
       <span class="cart">MI CESTA</span>
     </div>
   </div>
