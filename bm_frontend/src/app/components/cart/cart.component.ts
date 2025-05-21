@@ -28,7 +28,7 @@ export class CartComponent implements AfterViewInit {
     private cdr: ChangeDetectorRef,
     public cartService: CartService,
     private loginService: LoginService,
-    private authService: AuthService // <- AÑADIDO
+    private authService: AuthService 
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;

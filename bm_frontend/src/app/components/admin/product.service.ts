@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://127.0.0.1:8000/productos'; // Cambia la URL según tu backend
+  private apiUrl = 'http://127.0.0.1:8000/productos';
 
   constructor(private http: HttpClient) {}
 

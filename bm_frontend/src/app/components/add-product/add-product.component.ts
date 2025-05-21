@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../auth.service';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-add-product',
@@ -27,7 +27,7 @@ export class AddProductComponent {
     private product: CreateProduct,
     private loginService: LoginService,
     private authService: AuthService,
-    private router: Router // Inyecta Router
+    private router: Router 
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;

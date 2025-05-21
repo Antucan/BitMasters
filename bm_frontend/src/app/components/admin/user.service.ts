@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = 'http://127.0.0.1:8000/users'; // Cambia la URL según tu backend
+    private apiUrl = 'http://127.0.0.1:8000/users'; 
 
     constructor(private http: HttpClient) { }
 
