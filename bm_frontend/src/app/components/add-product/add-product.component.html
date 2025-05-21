@@ -1,30 +1,43 @@
 <login *ngIf="loginVisible"></login>
-<section id = "productForm">
-    <div class = "hola">
-        <div class = "adios">
-            <h2 class = "title"> AÑADIR PRODUCTO </h2>
-            <form method = "POST" (ngSubmit)="add()">
-                <label for = "name" id = "test"> Nombre </label>
-                <input type = "text" required [(ngModel)] = "name" name = "name" id = "name" class = "input">
-                
-                <label for = "name" id = "test"> Descripción </label>
-                <input type = "text" [(ngModel)] = "description" name = "description">
-                
-                <label for = "name" id = "test"> Categoria </label>
-                <select [(ngModel)] = "category" name = "category">
-                    <option> Consolas </option>
-                    <option> Merchandising </option>
-                </select>
 
-                <label for = "name" id = "test"> Precio </label>
-                <input type = "number" placeholder = "Precio de venta" [(ngModel)] = "price" name = "price">
-            
-                <label for = "name" id = "test"> Url Imagen </label>
-                <input type = "text" [(ngModel)] = "image" name = "image">
-                
-                <input type = "submit" value = "AÑADIR PRODUCTO" id = "submit"> 
-                
-            </form>
+<div id="global-div">
+  <div id="productBackground"></div>
+
+  <section id="productForm">
+    <div class="productBox">
+      <h2 class="title"> AÑADIR PRODUCTO </h2>
+      <div id="productLine"></div>
+
+      <form (ngSubmit)="add()">
+        <label for="name"> Nombre </label>
+        <input type="text" required [(ngModel)]="name" name="name" id="name" class="form-control">
+
+        <label for="description"> Descripción </label>
+        <input type="text" [(ngModel)]="description" name="description" class="form-control">
+
+        <label for="category"> Categoría </label>
+        <select [(ngModel)]="category" name="category" class="form-control">
+          <option> Consolas </option>
+          <option> Merchandising </option>
+          <option> Periféricos </option>
+        </select>
+
+        <label for="price"> Precio </label>
+        <input type="number" placeholder="Precio de venta" [(ngModel)]="price" name="price" min="1" class="form-control">
+
+        <label for="image"> Imagen (URL) </label>
+        <input type="text" [(ngModel)]="image" name="image" class="form-control">
+
+        <div *ngIf="messageType === 'success'" class="feedback-message success-message">
+          {{ message }}
         </div>
+
+        <div *ngIf="messageType === 'error'" class="feedback-message error-message">
+          {{ message }}
+        </div>
+
+        <input type="submit" value="AÑADIR PRODUCTO" id="registerButton">
+      </form>
     </div>
-</section>
+  </section>
+</div>

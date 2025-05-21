@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../login/login.service';
 import { LoginComponent } from '../login/login.component';
 import { AuthService } from '../../auth.service';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -23,11 +23,14 @@ export class AddProductComponent {
   image: string = '';
   user_id: number = 0;
 
+  message: string = '';
+  messageType: 'success' | 'error' | '' = '';
+
   constructor(
     private product: CreateProduct,
     private loginService: LoginService,
     private authService: AuthService,
-    private router: Router // Inyecta Router
+    private router: Router
   ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
@@ -37,51 +40,58 @@ export class AddProductComponent {
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       if (user) {
-        this.user_id = user.id; // Asignamos el ID del usuario
+        this.user_id = user.id;
         console.log('User detected in AddProductComponent: ', this.user_id);
       }
     });
   }
 
-  validateName() {
-    if (this.name === "") {
-      return false;
-    }
-
-    return true;
+  validateName(): boolean {
+    return this.name.trim() !== '';
   }
 
-  validatePrice() {
-    if (this.price <= 0) {
-      return false;
-    }
-
-    return true;
+  validatePrice(): boolean {
+    return this.price > 0;
   }
 
-  validateCategory() {
-    if (this.category === '') {
-      return false;
-    }
+  validateCategory(): boolean {
+    return this.category.trim() !== '';
+  }
 
-    return true;
+  showMessage(msg: string, type: 'success' | 'error') {
+    this.message = msg;
+    this.messageType = type;
+
+    setTimeout(() => {
+      this.message = '';
+      this.messageType = '';
+    }, 5000);
   }
 
   add(): void {
     if (this.validateName() && this.validateCategory() && this.validatePrice()) {
-      this.product.postProduct(this.user_id, this.name, this.description, this.category, this.price, this.image).subscribe(
+      this.product.postProduct(
+        this.user_id,
+        this.name,
+        this.description,
+        this.category,
+        this.price,
+        this.image
+      ).subscribe(
         (response) => {
           console.log(response);
-          alert("Producto añadido correctamente"); // Muestra el alert
-          this.router.navigate([`/profile/${this.user_id}`]); // Redirige al perfil
+          this.showMessage("Producto añadido correctamente!", 'success');
+          setTimeout(() => {
+            this.router.navigate([`/profile/${this.user_id}`]);
+          }, 3000);
         },
         (error) => {
           console.error("Error al añadir el producto: ", error);
-          alert("Hubo un error al añadir el producto");
+          this.showMessage("Hubo un error al añadir el producto", 'error');
         }
       );
     } else {
-      alert("Faltan campos");
+      this.showMessage("Faltan campos por rellenar", 'error');
     }
   }
 }
