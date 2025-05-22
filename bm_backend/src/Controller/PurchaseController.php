@@ -19,15 +19,44 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route('/purchases')]
 final class PurchaseController extends AbstractController
 {
-    #[Route('/index', name: 'app_purchase', methods: ['GET'])]
-    public function index(): Response
+    #[Route(name: 'app_purchase_all', methods: ['GET'])]
+    public function getAll(PurchaseRepository $purchaseRepository): Response
     {
-        return $this->render('purchase/index.html.twig', [
-            'controller_name' => 'PurchaseController',
-        ]);
+        $purchases = $purchaseRepository->findall();
+        $data = array_map(function ($purchase) {
+            return [
+                'id' => $purchase->getId(),
+                'user' => $purchase->getUser() ? [
+                    'id' => $purchase->getUser()->getId(),
+                    'name' => $purchase->getUser()->getName(),
+                    'surname' => $purchase->getUser()->getSurname(),
+                    'phone' => $purchase->getUser()->getPhone(),
+                    'mail' => $purchase->getUser()->getMail(),
+                    'password' => $purchase->getUser()->getPassword(),
+                    'role' => $purchase->getUser()->getRole()->getId(),
+                ] : null,
+
+                'product' => $purchase->getProduct() ? [
+                    'id' => $purchase->getProduct()->getId(),
+                    'name' => $purchase->getProduct()->getName(),
+                    'description' => $purchase->getProduct()->getDescription(),
+                    'category' => $purchase->getProduct()->getCategory(),
+                    'user_id' => $purchase->getProduct()->getUser()->getId(),
+                    'price' => $purchase->getProduct()->getPrice(),
+                    'img_url' => $purchase->getProduct()->getImage(),
+                ] : null,
+
+                'quantity' => $purchase->getQuantity(),
+                'purchase_date' => $purchase->getPurchaseDate(),
+                'status' => $purchase->getStatus()
+            ];
+        }, $purchases);
+        return $this->json($data);
     }
 
-    #[Route('/get/{id}', name: 'app_purchase', methods: ['GET'])]
+
+
+    #[Route('/get/{id}', name: 'app_purchase_id', methods: ['GET'])]
     public function getByUserId(PurchaseRepository $purchaseRepository, Request $request, UsersRepository $usersRepository, ProductRepository $productRepository, int $id): Response
     {
         // $id = $request->query->get('id');
@@ -87,13 +116,13 @@ final class PurchaseController extends AbstractController
         $purchase->setPurchaseDate(new DateTime());
         $purchase->setStatus($status);
 
-        if($user === null)
+        if ($user === null)
             return new JsonResponse(["Error" => "No se ha encontrado usuario"]);
 
-        if($product === null)
+        if ($product === null)
             return new JsonResponse(["Error" => "No se ha encontrado producto"]);
 
-        if($user->getRole()->getId() === 1)
+        if ($user->getRole()->getId() === 1)
             return new JsonResponse(["Error" => "Usuario no autorizado para la compra"]);
 
         $entityManager->persist($purchase);

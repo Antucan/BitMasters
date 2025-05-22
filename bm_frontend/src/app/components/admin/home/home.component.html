@@ -20,14 +20,14 @@
           <ul class="nav flex-column list-style-disc">
             <li id="nav_text" class="nav-item mb-2" (click)="showClients()"><strong>Lista Clientes</strong></li>
             <li id="nav_text" class="nav-item mb-2" (click)="showProducts()"><strong>Lista Productos</strong></li>
-            <li id="nav_text" class="nav-item"><strong>Pedidos y compras</strong></li>
+            <li id="nav_text" class="nav-item" (click)="showPurchases()"><strong>Pedidos y compras</strong></li>
           </ul>
         </div>
         <!-- Content -->
         <div id="home-content" class="col-md-10 p-4">
           <div class="row g-3">
             <!-- CLIENTS -->
-            <div *ngIf="!clientsComponent && !productsComponent" class="col-md-6">
+            <div *ngIf="!clientsComponent && !productsComponent && !purchaseComponent" class="col-md-6">
               <div class="bg-light placeholder-box d-flex align-items-center">
                 <div style="margin-left: 20px;">
                   <h3>CLIENTES</h3>
@@ -37,7 +37,7 @@
               </div>
             </div>
             <!-- PRODCUTS -->
-            <div *ngIf="!clientsComponent && !productsComponent" class="col-md-6">
+            <div *ngIf="!clientsComponent && !productsComponent && !purchaseComponent" class="col-md-6">
               <div class="bg-light placeholder-box d-flex align-items-center">
                 <div style="margin-left: 20px;">
                   <h3>PRODUCTOS</h3>
@@ -47,13 +47,21 @@
               </div>
             </div>
             <!-- ORDERS -->
-            <div *ngIf="!clientsComponent && !productsComponent" class="col-12">
-              <div class="bg-light placeholder-box"></div>
+            <div *ngIf="!clientsComponent && !productsComponent && !purchaseComponent" class="col-12">
+              <div class="bg-light placeholder-box">
+                <div style="margin-left: 20px;">
+                  <h3>PEDIDOS</h3>
+                  <p style="font-size: 20px;">Número total de pedidos</p>
+                  <p style="font-size: 30px;"><strong>{{ countPurchases }}</strong></p>
+                </div>
+              </div>
             </div>
             <!-- CLIENTS LIST -->
             <app-clients *ngIf="clientsComponent && !productsComponent"></app-clients>
             <!-- PRODUCTS LIST -->
             <app-products *ngIf="productsComponent && !clientsComponent"></app-products>
+            <!-- PURCHASES LIST -->
+            <app-purchases *ngIf="purchaseComponent && !clientsComponent && !productsComponent"></app-purchases>
           </div>
 
         </div>
