@@ -48,10 +48,8 @@
   </div>
 </div>
 
-<!-- Si no ha iniciado sesión, muestra este mensaje -->
 <ng-template #loginMessage>
-  <div class="text-center p-5">
-    <h3>Debes iniciar sesión para ver tu cesta</h3>
-    <button class="btn btn-primary mt-3" (click)="abrirLogin()">Iniciar sesión</button>
+  <div class="login-message-container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;  background-color: rgb(220, 198, 240);">
+    <h3 class="warning-message" style="padding: 20px; font-family: 'RetroGaming', sans-serif;">¡Debes iniciar sesión para ver tu cesta!</h3>
   </div>
 </ng-template>
