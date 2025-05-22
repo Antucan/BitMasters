@@ -44,7 +44,7 @@
           </div>
           <div class="product-content">
             <div id="product-info">
-              <div id="product-name">{{ product.name }}</div>
+              <div id="product-name">{{ product.name | slice:0:20  }}</div>
               <div id="product-price">{{ product.price }}€</div>
               <div id="product-description">{{ product.description }}</div>
             </div>
