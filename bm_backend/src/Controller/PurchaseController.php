@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 #[Route('/purchases')]
 final class PurchaseController extends AbstractController
 {
-    #[Route('/index', name: 'app_purchase', methods: ['GET'])]
+    #[Route(name: 'app_purchase_index', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('purchase/index.html.twig', [
@@ -27,7 +27,7 @@ final class PurchaseController extends AbstractController
         ]);
     }
 
-    #[Route('/get/{id}', name: 'app_purchase', methods: ['GET'])]
+    #[Route('/get/{id}', name: 'app_purchase_find', methods: ['GET'])]
     public function getByUserId(PurchaseRepository $purchaseRepository, Request $request, UsersRepository $usersRepository, ProductRepository $productRepository, int $id): Response
     {
         // $id = $request->query->get('id');
@@ -64,7 +64,7 @@ final class PurchaseController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/new', name: 'app_purchase', methods: ['POST'])]
+    #[Route('/new', name: 'app_purchase_new', methods: ['POST'])]
     public function addPurchase(Request $request, PurchaseRepository $purchaseRepository, UsersRepository $userRepository, ProductRepository $productRepository, EntityManagerInterface $entityManager): Response
     {
         $purchaseData = json_decode($request->getContent(), true);
