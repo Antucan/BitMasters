@@ -29,14 +29,14 @@ try {
     echo "Roles insertados correctamente.\n";
 
     // Ejecutar UserSeeder
-    $userSeeder = new UserSeeder($connection);
-    $userSeeder->run(20); // Genera 20 usuarios
-    echo "Usuarios insertados correctamente.\n";
+    // $userSeeder = new UserSeeder($connection);
+    // $userSeeder->run(20); // Genera 20 usuarios
+    // echo "Usuarios insertados correctamente.\n";
 
     // Ejecutar ProductSeeder
-    $productSeeder = new ProductSeeder($connection);
-    $productSeeder->run(); // Genera 20 productos
-    echo "Productos insertados correctamente.\n";
+    // $productSeeder = new ProductSeeder($connection);
+    // $productSeeder->run(); // Genera 20 productos
+    // echo "Productos insertados correctamente.\n";
 } catch (\Exception $e) {
     echo "Error al ejecutar los seeders: " . $e->getMessage() . "\n";
 }

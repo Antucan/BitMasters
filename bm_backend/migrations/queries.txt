@@ -12,13 +12,13 @@ VALUES ('Antonio', 'Herrero', 608938062, 'antherpra@gmail.com', '1234', 1),
 ---------------------------------------------------------------------
 INSERT INTO products (name, description, category, user_id, price, img_url, status) 
 VALUES 
-('Game Boy Color', 'Funcionando perfectamente. Sin desperfectos. Todo completo. Color azul petroleo.', 'consolas', 7, 70, 'https://cdn.wallapop.com/images/10420/h1/wv/__/c10420p1031137799/i5029177412.jpg?pictureSize=W640', 1),
-('Pokemon Oro', 'Pokémon Oro para Nintendo Gameboy Color.', 'juegos', 7, 899, 'https://cdn.wallapop.com/images/10420/f1/zw/__/c10420p910347196/i3336422624.jpg?pictureSize=W640', 1),
-('GAME CUBE Pad', 'Controlador original de Nintendo GameCube en su icónico color violeta, probado y en excelente estado.', 'perifericos', 6, 180, 'https://cdn.wallapop.com/images/10420/ip/53/__/c10420p1130619974/i5635040319.jpg?pictureSize=W640', 1),
-('PS2 Cam', 'Camara para la PlayStation2.', 'accesorios', 8, 50, 'https://i.ebayimg.com/images/g/uZYAAOSwQYFe-eAf/s-l1200.jpg', 1),
-('Ico LLavero', 'LLavero del videojuego Ico de PlayStation2.', 'merchandising', 10, 150, 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSmaiPVJ9FVu1JG7MwppfKWwNmFdz1ruRfA__spwylqVgBAxSOYdbtxDCD81Bjg5-OtyH_roDB5WuJIiaY3W_8xjRNpEUuya9mHrnwIC0CLekCmeK3UXxj3SQ', 1),
-('Wii Piezas', 'Consola Wii estropeada.', 'hardware', 10, 20, 'https://i.ebayimg.com/images/g/AjAAAOSw8-tWWg1S/s-l1200.jpg', 1),
-('Commodore 64', 'Ultima edición de Commodore 64.', 'coleccionismo', 8, 1000, 'https://belengache.net/caramelosdevioletas/wp-content/uploads/cmmd.jpg', 1),
-('PS3 Slim+juegos', 'Consola de PlayStation3 + 4 juegos clásicos', 'consolas', 5, 75, 'https://m.media-amazon.com/images/I/71aoeLUhQyL._SL1500_.jpg', 1),
-('LOTR 1 PC', 'Caja con juego de La Comunidad del anillo.', 'juegos', 5, 50, 'https://i.ebayimg.com/images/g/gakAAOSwG8NlHToc/s-l1200.jpg', 1),
-('PS2 T-shirt', 'Camiseta de PS2 de 2003.', 'coleccionismo', 6, 80, 'https://i.ebayimg.com/00/s/MTYwMFgxMjAw/z/uEoAAOSwRn9dhhCK/$_57.JPG?set_id=8800005007', 1);
+('Game Boy Color', 'Funcionando perfectamente. Sin desperfectos. Todo completo. Color azul petroleo.', 'consolas', 7, 70, 'https://cdn.wallapop.com/images/10420/h1/wv/__/c10420p1031137799/i5029177412.jpg?pictureSize=W640', 0),
+('Pokemon Oro', 'Pokémon Oro para Nintendo Gameboy Color.', 'juegos', 7, 899, 'https://cdn.wallapop.com/images/10420/f1/zw/__/c10420p910347196/i3336422624.jpg?pictureSize=W640', 0),
+('GAME CUBE Pad', 'Controlador original de Nintendo GameCube en su icónico color violeta, probado y en excelente estado.', 'perifericos', 6, 180, 'https://cdn.wallapop.com/images/10420/ip/53/__/c10420p1130619974/i5635040319.jpg?pictureSize=W640', 0),
+('PS2 Cam', 'Camara para la PlayStation2.', 'accesorios', 8, 50, 'https://i.ebayimg.com/images/g/uZYAAOSwQYFe-eAf/s-l1200.jpg', 0),
+('Ico LLavero', 'LLavero del videojuego Ico de PlayStation2.', 'merchandising', 10, 150, 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSmaiPVJ9FVu1JG7MwppfKWwNmFdz1ruRfA__spwylqVgBAxSOYdbtxDCD81Bjg5-OtyH_roDB5WuJIiaY3W_8xjRNpEUuya9mHrnwIC0CLekCmeK3UXxj3SQ', 0),
+('Wii Piezas', 'Consola Wii estropeada.', 'hardware', 10, 20, 'https://i.ebayimg.com/images/g/AjAAAOSw8-tWWg1S/s-l1200.jpg', 0),
+('Commodore 64', 'Ultima edición de Commodore 64.', 'coleccionismo', 8, 1000, 'https://belengache.net/caramelosdevioletas/wp-content/uploads/cmmd.jpg', 0),
+('PS3 Slim+juegos', 'Consola de PlayStation3 + 4 juegos clásicos', 'consolas', 5, 75, 'https://m.media-amazon.com/images/I/71aoeLUhQyL._SL1500_.jpg', 0),
+('LOTR 1 PC', 'Caja con juego de La Comunidad del anillo.', 'juegos', 5, 50, 'https://i.ebayimg.com/images/g/gakAAOSwG8NlHToc/s-l1200.jpg', 0),
+('PS2 T-shirt', 'Camiseta de PS2 de 2003.', 'coleccionismo', 6, 80, 'https://i.ebayimg.com/00/s/MTYwMFgxMjAw/z/uEoAAOSwRn9dhhCK/$_57.JPG?set_id=8800005007', 0);
