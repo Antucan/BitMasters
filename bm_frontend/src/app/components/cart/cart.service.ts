@@ -92,5 +92,9 @@ export class CartService {
   getTotalPrice(): number {
     return this.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }
+
+  removeAllItems(){
+    this.items = [];
+  }
 }
 

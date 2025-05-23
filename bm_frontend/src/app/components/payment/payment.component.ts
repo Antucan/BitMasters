@@ -71,7 +71,10 @@ export class PaymentComponent {
         }
       )
     });
-    // this.purchase.postPurchase(this.user_id, )
+    // Borra todos los productos en la cesta
+    this.cartService.removeAllItems();
+
+    // Redirige a la página principal
     this.router.navigate(['/']);
   }
 
