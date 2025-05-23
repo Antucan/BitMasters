@@ -93,6 +93,7 @@ export class CartService {
     return this.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   }
 
+  // Vacia los productos de la cesta
   removeAllItems(){
     this.items = [];
   }
