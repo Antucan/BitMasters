@@ -105,3 +105,27 @@
   input:focus {
     box-shadow: 0 0 20px #bf5dea;
   }
+
+  .login-success-message {
+    margin: 10px 0;
+    padding: 10px;
+    color: #00ff00;
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 1px solid #00cc00;
+    border-radius: 6px;
+    font-family: 'RetroGaming', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    animation: fadeOut 1s ease forwards;
+    animation-delay: 5s;
+  }
+
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
