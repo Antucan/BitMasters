@@ -49,7 +49,7 @@ export class PaymentComponent {
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       if (user) {
-        this.user_id = user.id; // Asignamos el ID del usuario
+        this.user_id = user.id; 
         console.log('User detected in AddProductComponent: ', this.user_id);
       }
     });
@@ -59,26 +59,32 @@ export class PaymentComponent {
     return this.authService.getUser() !== null;
   }
 
-  confirmPayment() {
-    alert('Pago realizado correctamente con tarjeta');
-    this.cartService.getItems().forEach(element => {
-      this.purchase.postPurchase(this.user_id, element.id, element.quantity).subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-    });
-    // Borra todos los productos en la cesta
-    this.cartService.removeAllItems();
+ confirmPayment() {
+  this.paymentSuccess = true; 
 
-    // Redirige a la página principal
+  this.cartService.getItems().forEach(element => {
+    this.purchase.postPurchase(this.user_id, element.id, element.quantity).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  });
+
+  this.cartService.removeAllItems();
+
+  setTimeout(() => {
     this.router.navigate(['/']);
-  }
+  }, 3000); 
+}
+
 
   abrirLogin() {
     this.loginService.showLogin();
   }
+
+  paymentSuccess = false;
+
 }
