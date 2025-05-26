@@ -55,6 +55,9 @@ export class LoginComponent {
       },
       error => {
         console.error('Login failed:', error);
+        if (error.status === 400) {
+          this.passwordErrorMessage = "Introduce la Contraseña";
+        }
         if (error.status === 401) {
           this.passwordErrorMessage = "Constraseña incorrecta";
         } else if (error.status === 404) {
