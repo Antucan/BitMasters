@@ -43,6 +43,7 @@ export class HomeComponent {
   showDashboard() {
     this.clientsComponent = false;
     this.productsComponent = false;
+    this.purchaseComponent = false;
   }
 
   showClients() {
