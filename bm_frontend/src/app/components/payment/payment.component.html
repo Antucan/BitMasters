@@ -7,8 +7,10 @@
     <form (ngSubmit)="confirmPayment()" #paymentForm="ngForm">
       <div class="method-fields">
         <input type="text" name="cardName" [(ngModel)]="cardName" placeholder="Nombre en la tarjeta" required />
-        <input type="text" name="cardNumber" [(ngModel)]="cardNumber" placeholder="Número de tarjeta" required pattern="[0-9]{16}" />
-        <input type="text" name="cardExpiry" [(ngModel)]="cardExpiry" placeholder="Caducidad (MM/AA)" required pattern="(0[1-9]|1[0-2])\/\d{2}" />
+        <input type="text" name="cardNumber" [(ngModel)]="cardNumber" placeholder="Número de tarjeta" required
+          pattern="[0-9]{16}" />
+        <input type="text" name="cardExpiry" [(ngModel)]="cardExpiry" placeholder="Caducidad (MM/AA)" required
+          pattern="(0[1-9]|1[0-2])\/\d{2}" />
         <input type="text" name="cardCvv" [(ngModel)]="cardCvv" placeholder="CVV" required pattern="[0-9]{3}" />
       </div>
 
@@ -18,6 +20,10 @@
 
       <button type="submit" [disabled]="!paymentForm.form.valid">Confirmar pago</button>
     </form>
+    <div *ngIf="paymentSuccess" class="success-message">
+      ¡Pago realizado con éxito! Serás redirigido en unos segundos...
+    </div>
+
   </div>
 </div>
 
