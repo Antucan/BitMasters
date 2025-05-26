@@ -28,11 +28,12 @@ export class ModalFormComponent {
   ) {
     this.form = this.fb.group({
       name: [data?.name || '', Validators.required],
-      surname: [data?.surname || '', Validators.required],
-      phone: [data?.phone || '', [Validators.required, Validators.pattern('^[0-9]{9,15}$')]],
-      address: [data?.address || '', Validators.required],
+      streetType: [data?.street_type || '', Validators.required],
+      // surname: [data?.surname || '', Validators.required],
+      // phone: [data?.phone || '', [Validators.required, Validators.pattern('^[0-9]{9,15}$')]],
+      // address: [data?.address || '', Validators.required],
       city: [data?.city || '', Validators.required],
-      zipCode: [data?.zipCode || '', Validators.required]
+      zipCode: [data?.zip_code || '', Validators.required]
     });
   }
 
