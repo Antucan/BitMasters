@@ -69,8 +69,10 @@ export class ShippingDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (indexToUpdate !== undefined) {
+          //Editar direccion
           this.addresses[indexToUpdate] = result;
         } else {
+          //Añadir direccion
           this.addresses.push(result);
         }
         if (typeof window !== 'undefined') {
