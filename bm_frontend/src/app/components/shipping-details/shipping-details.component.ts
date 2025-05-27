@@ -72,7 +72,11 @@ export class ShippingDetailsComponent implements OnInit {
           //Editar direccion
           this.addresses[indexToUpdate] = result;
         } else {
-          //Añadir direccion
+          console.log(result);
+          this.shippingDetailsService.createAddress(result.streetType, result.name, result.zipCode, result.city, this.user_id).subscribe((response) => {
+            console.log(response);
+          }
+          )
           this.addresses.push(result);
         }
         if (typeof window !== 'undefined') {
