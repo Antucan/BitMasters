@@ -79,7 +79,7 @@ export class RegisterComponent {
   send(): void {
     if (this.notEmpty() && this.checkPass() && this.checkRpass()) {
       console.log('register:', this.email, this.name, this.surname, this.pass, this.Rpass);
-      
+
       this.user.postUsers(this.name, this.surname, this.pass, this.email).subscribe(
         (response) => {
           console.log(response);
@@ -87,8 +87,11 @@ export class RegisterComponent {
           this.router.navigate(['/']);
         },
         (error) => {
-          console.error(error);
-          alert('Ha ocurrido un error en el registro');
+          if (error.status === 409) {
+            alert('Ya existe un usuario con ese correo electrónico');
+          } else {
+            alert('Ha ocurrido un error en el registro');
+          }
         }
       );
     }
