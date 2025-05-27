@@ -153,41 +153,43 @@ final class UsersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_users_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role): JsonResponse
+    public function new(Request $request, EntityManagerInterface $entityManager, RolesRepository $role, UsersRepository $usersRepository): JsonResponse
     {
         $userdata = json_decode($request->getContent(), true);
-        $name = $userdata['name'];
-        $surname = $userdata['surname'];
-        // $phone = $user['phone'];
-        $mail = $userdata['mail'];
-        $password = $userdata['password'];
-        // $name = $request->get("name");
-        // $surname = $request->get("surname");
-        // $phone = $request->get("phone");
-        // $mail = $request->get("mail");
-        // $password = $request->get("password");
 
-        if (isset($name) && isset($mail) && isset($password) && isset($surname)) {
-            $user = new Users();
-            $user->setName($name);
-            $user->setSurname($surname);
+        $name = $userdata['name'] ?? null;
+        $surname = $userdata['surname'] ?? null;
+        $mail = $userdata['mail'] ?? null;
+        $password = $userdata['password'] ?? null;
+        $phone = $userdata['phone'] ?? null;
 
-            if (isset($userdata['phone']))
-                $user->setPhone($userdata['phone']);
-
-            $user->setMail($mail);
-            $user->setPassword($password);
-
-            $user->setRole($role->findOneByID(2));
-
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            return new JsonResponse(["Ok" => "Usuario creado correctamente"]);
-        } else {
-            return new JsonResponse(["Error" => "Faltan campos obligatorios, $name"]);
+        if (!$name || !$surname || !$mail || !$password) {
+            return new JsonResponse(["error" => "Faltan campos obligatorios"], JsonResponse::HTTP_BAD_REQUEST);
         }
+
+        $existingUser = $usersRepository->findOneBy(['mail' => $mail]);
+        if ($existingUser) {
+            return new JsonResponse(["error" => "Ya existe un usuario con ese correo"], JsonResponse::HTTP_CONFLICT);
+        }
+
+        $user = new Users();
+        $user->setName($name);
+        $user->setSurname($surname);
+        $user->setMail($mail);
+        $user->setPassword($password);
+        if ($phone) {
+            $user->setPhone($phone);
+        }
+
+        // Asignar rol por defecto (2)
+        $user->setRole($role->findOneByID(2));
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return new JsonResponse(["success" => "Usuario creado correctamente"], JsonResponse::HTTP_CREATED);
     }
+
 
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
     public function show(UsersRepository $usersRepository, Request $request, int $id): Response
