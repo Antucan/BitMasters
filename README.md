@@ -1,6 +1,6 @@
 # BitMasters
 
-Bienvenido al repositorio de **BitMasters**, una aplicación web diseñada para [breve descripción de la funcionalidad de la aplicación]. Este proyecto utiliza Angular para el frontend y Symfony para el backend, proporcionando una experiencia de usuario dinámica y un manejo robusto de datos.
+Bienvenido al repositorio de **BitMasters**, una aplicación web diseñada para la compra-venta de productos retro gaming. Este proyecto utiliza Angular para el frontend y Symfony para el backend, proporcionando una experiencia de usuario dinámica y un manejo robusto de datos.
 
 ## Tecnologías Utilizadas
 
