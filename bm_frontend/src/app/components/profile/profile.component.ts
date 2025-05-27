@@ -151,7 +151,9 @@ export class ProfileComponent {
         alert('Usuario eliminado correctamente');
         this.authService.logout();
 
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
       },
       error: (error) => {
         console.error('Error al eliminar el usuario:', error);

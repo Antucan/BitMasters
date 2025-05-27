@@ -11,7 +11,7 @@ export class AuthService {
   private apiUrl = 'http://127.0.0.1:8000/users/login';
   private userSubject = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Observable para exponer los datos del usuario
   get user$(): Observable<User | null> {
@@ -28,7 +28,7 @@ export class AuthService {
       credentials,
       {
         headers,
-        withCredentials: true 
+        withCredentials: true
       }
     ).pipe(
       map(response => {
@@ -59,6 +59,9 @@ export class AuthService {
 
   logout(): void {
     this.userSubject.next(null);
+    localStorage.removeItem('user');
+    sessionStorage.clear();
+    
   }
 
   getUser(): User | null {

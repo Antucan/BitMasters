@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BannerComponent } from '../banner/banner.component';
@@ -15,7 +15,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   logged: boolean = false;
   userName: string = '';
   Id: number = 0;
