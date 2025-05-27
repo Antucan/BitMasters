@@ -27,16 +27,17 @@ export class HeaderComponent implements OnInit {
     private cartService: CartService,
     private loginService: LoginService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       if (user) {
         this.logged = !!user; // Cambia a true si hay un usuario, false si no
-        this.userName = user.name.toUpperCase() || 'PERFIL'; 
+        this.userName = user.name.toUpperCase() || 'PERFIL';
         this.Id = user.id
         console.log('User detected in HeaderComponent: ', this.userName);
-  }});
+      }
+    });
   }
 
   redirectTo(route: string): void {
@@ -47,26 +48,30 @@ export class HeaderComponent implements OnInit {
     this.loginService.showLogin();
   }
 
+  showRegister() {
+    this.router.navigate(['/register'])
+  }
+
   onCartClick() {
     this.cartService.showCart();
   }
 
-  navigateToProfile(){
-    this.router.navigate(['/profile/'+this.Id]);
+  navigateToProfile() {
+    this.router.navigate(['/profile/' + this.Id]);
 
   }
 
   openCatalog() {
     this.showCatalog = true;
-    document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = 'hidden';
   }
-  
+
   closeCatalog() {
     this.showCatalog = false;
-    document.body.style.overflow = ''; 
+    document.body.style.overflow = '';
   }
-  
-  logout(){
+
+  logout() {
     this.authService.logout();
     this.logged = false;
     this.userName = '';
