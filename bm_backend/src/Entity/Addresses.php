@@ -14,20 +14,20 @@ class Addresses
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Street_Type = null;
+    private ?string $streetType = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $Zip_Code = null;
+    #[ORM\Column(length: 20)]
+    private ?string $zipCode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $City = null;
+    private ?string $city = null;
 
     #[ORM\ManyToOne(inversedBy: 'addresses')]
     #[ORM\JoinColumn(name: "id_user", referencedColumnName: "id", nullable: false)]
-    private ?Users $user_id = null;
+    private ?Users $user = null;
 
     public function getId(): ?int
     {
@@ -36,61 +36,56 @@ class Addresses
 
     public function getStreetType(): ?string
     {
-        return $this->Street_Type;
+        return $this->streetType;
     }
 
-    public function setStreetType(string $Street_Type): static
+    public function setStreetType(string $streetType): static
     {
-        $this->Street_Type = $Street_Type;
-
+        $this->streetType = $streetType;
         return $this;
     }
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getZipCode(): ?int
+    public function getZipCode(): ?string
     {
-        return $this->Zip_Code;
+        return $this->zipCode;
     }
 
-    public function setZipCode(int $Zip_Code): static
+    public function setZipCode(string $zipCode): static
     {
-        $this->Zip_Code = $Zip_Code;
-
+        $this->zipCode = $zipCode;
         return $this;
     }
 
     public function getCity(): ?string
     {
-        return $this->City;
+        return $this->city;
     }
 
-    public function setCity(string $City): static
+    public function setCity(string $city): static
     {
-        $this->City = $City;
-
+        $this->city = $city;
         return $this;
     }
 
     public function getUser(): ?Users
     {
-        return $this->user_id;
+        return $this->user;
     }
 
     public function setUser(?Users $user): static
     {
-        $this->user_id = $user;
-
+        $this->user = $user;
         return $this;
     }
 }

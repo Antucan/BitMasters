@@ -8,7 +8,6 @@ import { LoginComponent } from '../login/login.component';
 import { ShippingDetailsService } from './shipping-details.service';
 import { AuthService } from '../../auth.service';
 import { Address } from '../../models/address.model';
-import { isEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-shipping-details',
@@ -16,7 +15,6 @@ import { isEmpty } from 'rxjs';
   standalone: true,
   templateUrl: './shipping-details.component.html',
   styleUrl: './shipping-details.component.css'
-
 })
 export class ShippingDetailsComponent implements OnInit {
   addresses: any[] = [];
@@ -29,74 +27,91 @@ export class ShippingDetailsComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private shippingDetailsService: ShippingDetailsService,
-    private authService: AuthService) {
+    private authService: AuthService
+  ) {
     this.loginService.loginVisible$.subscribe(visible => {
       this.loginVisible = visible;
     });
   }
 
   ngOnInit(): void {
-    //Guarda el id de usuario de la base de datos en la variable user_id
     this.authService.user$.subscribe(user => {
       if (user) {
         this.user_id = user.id;
+        this.loadAddresses();
       }
     });
+  }
 
-    //Guarda en un array las direcciones del usuario
-    this.shippingDetailsService.getUserAddress(this.user_id).subscribe((response) => {
-      if(response.length === 0){
-        console.log("No hay direcciones guardadas");
-      }else{
-        this.address = response;
-        console.log(this.address);
-      }
-    })
-
-    const savedAddresses = localStorage.getItem('addresses');
-    if (savedAddresses) {
-      this.addresses = JSON.parse(savedAddresses);
-    }
+  loadAddresses(): void {
+    this.shippingDetailsService.getUserAddress(this.user_id).subscribe({
+      next: (response) => {
+        if (response.length === 0) {
+          console.log('No hay direcciones guardadas');
+        } else {
+          this.address = response;
+          console.log(this.address);
+        }
+      },
+      error: (err) => console.error('Error al cargar direcciones:', err)
+    });
   }
 
   openFormDialog(data?: any, indexToUpdate?: number) {
-    const dialogRef = this.dialog.open(ModalFormComponent, {
-      data,
-      width: '400px',
-      maxWidth: '90vw'
-    });
+  const dialogRef = this.dialog.open(ModalFormComponent, {
+    data,
+    width: '400px',
+    maxWidth: '90vw'
+  });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        if (indexToUpdate !== undefined) {
-          this.addresses[indexToUpdate] = result;
-        } else {
-          this.addresses.push(result);
-        }
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('addresses', JSON.stringify(this.addresses));
-        }
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      const formattedResult = {
+        name: result.name,
+        street_type: result.streetType,
+        city: result.city,
+        zip_code: result.zipCode
+      };
+
+      if (data?.id) {
+
+        this.shippingDetailsService.updateAddress(data.id, formattedResult).subscribe({
+          next: () => {
+            this.loadAddresses();
+            console.log('Dirección actualizada');
+          },
+          error: (err) => console.error('Error al actualizar:', err)
+        });
+
+      } else {
+        this.shippingDetailsService.addAddress(this.user_id, formattedResult).subscribe({
+          next: () => {
+            this.loadAddresses();
+            console.log('Dirección añadida');
+          },
+          error: (err) => console.error('Error al añadir:', err)
+        });
       }
-    });
-  }
-  deleteAddress(index: number) {
-    // this.addresses.splice(index, 1);
-    // localStorage.setItem('addresses', JSON.stringify(this.addresses));
+    }
+  });
+}
 
-    this.shippingDetailsService.DeleteAddress(this.user_id).subscribe((response) => {
-      console.log(response);
-    })
+
+
+  deleteAddress(addressId: number) {
+    if (confirm('¿Estás seguro de eliminar esta dirección?')) {
+      this.shippingDetailsService.deleteAddress(addressId).subscribe({
+        next: () => {
+          this.loadAddresses();
+          console.log('Dirección eliminada');
+        },
+        error: (err) => console.error('Error al eliminar:', err)
+      });
+    }
   }
 
   goToPayment() {
     console.log('Navegando a /pago');
     this.router.navigate(['/pago']);
   }
-
-
 }
-
-
-
-
-

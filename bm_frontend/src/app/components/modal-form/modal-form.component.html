@@ -37,6 +37,6 @@
 
     <div mat-dialog-actions align="end" class="form-buttons">
         <button type="button" (click)="onCancel()" class="cancel-btn">Cancelar</button>
-        <button type="submit" [disabled]="form.invalid" class="save-btn">Guardar</button>
+        <button type="submit" [disabled]="form.invalid" (click)="onSave()" class="save-btn">Guardar</button>
     </div>
 </form>
